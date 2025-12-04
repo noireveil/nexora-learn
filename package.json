@@ -3,36 +3,43 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
     "@monaco-editor/react": "^4.6.0",
-    "@tensorflow/tfjs": "^4.17.0",
+    "@tensorflow/tfjs": "^4.22.0",
     "@types/canvas-confetti": "^1.6.4",
     "canvas-confetti": "^1.9.2",
     "clsx": "^2.1.0",
-    "date-fns": "^3.3.1",
+    "date-fns": "^4.1.0",
     "dexie": "^3.2.4",
     "dexie-react-hooks": "^1.1.7",
-    "framer-motion": "^11.0.8",
-    "lucide-react": "^0.344.0",
-    "next": "^15.5.6",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
+    "framer-motion": "^11.13.0",
+    "lucide-react": "^0.460.0",
+    "next": "^15.0.3",
+    "react": "^19.0.0-rc",
+    "react-dom": "^19.0.0-rc",
     "react-hot-toast": "^2.4.1",
-    "tailwind-merge": "^2.2.1",
-    "zustand": "^4.5.2"
+    "tailwind-merge": "^2.5.4",
+    "zustand": "^5.0.1"
   },
   "devDependencies": {
-    "@types/node": "^20.11.24",
-    "@types/react": "^18.3.0",
-    "@types/react-dom": "^18.3.0",
-    "autoprefixer": "^10.4.18",
-    "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5.4.0"
+    "@types/node": "^20.17.6",
+    "@types/offscreencanvas": "^2019.7.3",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.1",
+    "@types/trusted-types": "^2.0.7",
+    "autoprefixer": "^10.4.20",
+    "babel-plugin-react-compiler": "^1.0.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.15",
+    "typescript": "^5.6.3"
+  },
+  "overrides": {
+    "react": "$react",
+    "react-dom": "$react-dom"
   }
 }

@@ -1,18 +1,35 @@
 import * as tf from '@tensorflow/tfjs';
 
-// Initialize backend. Prioritizes WebGL for performance.
 export const initTFBackend = async () => {
     try {
-        await tf.setBackend('webgl'); 
+        await tf.setBackend('webgl');
+
+        const backend = tf.backend() as any;
+        
+        if (backend?.getGPGPUContext) {
+            const gl = backend.getGPGPUContext().gl;
+            if (gl) {
+                tf.env().set('WEBGL_CHECK_NUMERICS', false);
+            }
+        }
+        
         await tf.ready();
-        console.log(`TFJS Backend: ${tf.getBackend()}`);
+        console.log(`[ML-Engine] Initialized: ${tf.getBackend()}`);
     } catch (error) {
-        console.error("TFJS init failed, falling back:", error);
-        // TODO: Add CPU/WASM fallback logic here
+        console.warn("[ML-Engine] WebGL failed, falling back to CPU", error);
+        try {
+            await tf.setBackend('cpu');
+            await tf.ready();
+        } catch (cpuError) {
+            console.error("[ML-Engine] CRITICAL FAILURE: Could not initialize TFJS", cpuError);
+        }
     }
 };
 
-// Memory management helper to prevent leaks
-export const cleanTensors = (tensors: tf.Tensor[]) => {
-    tensors.forEach(t => t.dispose());
+export const cleanTensors = (tensors: (tf.Tensor | undefined | null)[]) => {
+    tensors.forEach(t => {
+        if (t && !t.isDisposed) {
+            t.dispose();
+        }
+    });
 };

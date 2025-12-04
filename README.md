@@ -2,24 +2,25 @@
 
 **Next-Era Adaptive Coding Education Platform**
 
-[![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?logo=typescript)](https://www.typescriptlang.org/)
-[![TensorFlow.js](https://img.shields.io/badge/TensorFlow.js-4.15-orange?logo=tensorflow)](https://www.tensorflow.org/js)
+[![Next.js](https://img.shields.io/badge/Next.js-15.0-black?logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19_RC-61DAFB?logo=react)](https://react.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue?logo=typescript)](https://www.typescriptlang.org/)
+[![TensorFlow.js](https://img.shields.io/badge/TensorFlow.js-4.22-orange?logo=tensorflow)](https://www.tensorflow.org/js)
 ![Status](https://img.shields.io/badge/Status-In%20Development-yellow)
 
->Nexora Learn is an **Offline-First** coding education platform utilizing **On-Device Machine Learning** to personalize learning experiences in real-time, directly in the browser (Client-Side).
+> Nexora Learn is an **Offline-First** coding education platform utilizing **On-Device Machine Learning** to personalize learning experiences in real-time, directly in the browser (Client-Side).
 
 ---
 
 ## 🏗️ System Architecture
 
-This project employs a **Clean Architecture** separating UI, Logic, and Data Layers for scalability.
+This project employs a **Clean Architecture** separating UI, Logic, and Data Layers, built on top of the latest **React 19** features.
 
-* **`src/app`**: Routing & Pages (Next.js App Router).
-* **`src/components`**: UI Components (Visual only).
+* **`src/app`**: Routing & Pages (Next.js 15 App Router).
+* **`src/components`**: UI Components (Visual only, React Server Components where applicable).
 * **`src/hooks`**: React State & Lifecycle Logic (Controller).
 * **`src/services`**: Database & Business Logic (Model).
-* **`src/ml`**: Machine Learning Engine (TFJS Configuration & Inference).
+* **`src/ml`**: Machine Learning Engine (TFJS WebGL Backend).
 * **`src/workers`**: Background Threads for secure code execution.
 
 ---
@@ -31,7 +32,6 @@ Ensure Node.js (v18+) is installed.
 1.  **Clone Repository**
     ```bash
     git clone https://github.com/noireveil/nexora-learn.git
-    cd nexora-learn
     ```
 
 2.  **Install Dependencies**
@@ -40,6 +40,7 @@ Ensure Node.js (v18+) is installed.
     ```
 
 3.  **Run Development Server**
+    Uses **Turbopack** for instant HMR.
     ```bash
     npm run dev
     ```
@@ -73,7 +74,7 @@ Ensure Node.js (v18+) is installed.
 ### 🟢 Phase 3: AI & Content (In Progress)
 **Goal:** Active AI Engine and comprehensive content.
 
-- [x] Setup TensorFlow.js Core (WebGL/WASM Backend)
+- [x] **Engine Upgrade**: TensorFlow.js 4.22 (WebGL Backend optimized for React 19)
 - [x] ML Modular Structure (`src/ml`)
 - [ ] **Feature Engineering**: User data to Tensor conversion logic (`extractor.ts`)
 - [ ] **Anti-Cheat Engine**: Levenshtein algorithm implementation (`antiCheatService.ts`)
@@ -85,15 +86,12 @@ Ensure Node.js (v18+) is installed.
 
 - [x] Basic XP & Leveling Logic (`src/lib/gamification`)
 - [x] Dashboard Stats Visualization
+- [x] **Performance**: React Compiler & Turbopack Integration
 - [ ] **PWA Optimization**: Service Worker configuration for offline caching
 
 ---
 
 ## 🧠 ML & Content Engineer Guide
-
-The **Fullstack (UI/DB/Worker)** foundation is complete. Your tasks are divided into two main areas: **Intelligence (ML)** and **Content Creation**.
-
-Please complete the following TODOs:
 
 ### 1. Machine Learning Tasks (Folder: `src/ml`)
 * **Feature Engineering (`features/extractor.ts`)**:

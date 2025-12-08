@@ -1,0 +1,218 @@
+[
+  {
+    "id": "js-conditionals-easy-01",
+    "title": "Cek Umur untuk Nonton Film",
+    "topic": "Conditionals",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\n**If/Else** adalah struktur kontrol yang digunakan untuk membuat keputusan dalam program. Kode akan dijalankan berdasarkan kondisi yang kita tentukan.\n\n**Syntax Dasar:**\n```javascript\nif (kondisi) {\n  // kode ini jalan kalau kondisi true\n} else {\n  // kode ini jalan kalau kondisi false\n}\n```\n\n**Contoh:**\n```javascript\nlet umur = 18;\nif (umur >= 17) {\n  console.log(\"Boleh buat KTP\");\n} else {\n  console.log(\"Belum boleh buat KTP\");\n}\n```\n\n### Misi\nBuatlah function `solution` yang menerima parameter `umur` (number) dan mengembalikan string:\n- Jika umur >= 17, return `\"Boleh nonton\"`\n- Jika umur < 17, return `\"Belum boleh nonton\"`\n\nFilm ini hanya untuk penonton berumur 17 tahun ke atas.",
+    "starterCode": "function solution(umur) {\n  // Tulis kodemu di sini\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Gunakan if/else untuk membandingkan umur dengan angka 17."
+      },
+      {
+        "level": 2,
+        "text": "Jika umur >= 17, return string \"Boleh nonton\", selain itu return \"Belum boleh nonton\"."
+      },
+      {
+        "level": 3,
+        "text": "if (umur >= 17) {\n  return \"Boleh nonton\";\n} else {\n  return \"Belum boleh nonton\";\n}"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [17],
+        "expected": "Boleh nonton",
+        "description": "Test umur pas 17 tahun (batas minimal)"
+      },
+      {
+        "input": [20],
+        "expected": "Boleh nonton",
+        "description": "Test umur di atas 17 tahun"
+      },
+      {
+        "input": [16],
+        "expected": "Belum boleh nonton",
+        "description": "Test umur di bawah 17 tahun"
+      },
+      {
+        "input": [10],
+        "expected": "Belum boleh nonton",
+        "description": "Test umur anak-anak"
+      }
+    ]
+  },
+  {
+    "id": "js-conditionals-easy-02",
+    "title": "Diskon Belanja dengan Ternary",
+    "topic": "Conditionals",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\n**Ternary Operator** adalah cara singkat menulis if/else dalam satu baris. Sangat berguna untuk kondisi sederhana.\n\n**Syntax:**\n```javascript\nkondisi ? nilaiJikaTrue : nilaiJikaFalse\n```\n\n**Contoh:**\n```javascript\nlet umur = 18;\nlet status = umur >= 17 ? \"Dewasa\" : \"Anak-anak\";\nconsole.log(status); // Output: \"Dewasa\"\n\n// Sama dengan:\nlet status;\nif (umur >= 17) {\n  status = \"Dewasa\";\n} else {\n  status = \"Anak-anak\";\n}\n```\n\n### Misi\nSebuah toko memberikan diskon 10% jika belanja minimal Rp 100.000.\n\nBuatlah function `solution` yang menerima parameter `totalBelanja` (number) dan mengembalikan total yang harus dibayar setelah diskon (number).\n\n**Aturan:**\n- Jika totalBelanja >= 100000, kurangi 10%\n- Jika totalBelanja < 100000, tidak ada diskon\n\n**Contoh:**\n- Input: 150000 → Output: 135000 (diskon 15000)\n- Input: 50000 → Output: 50000 (tidak ada diskon)",
+    "starterCode": "function solution(totalBelanja) {\n  // Tulis kodemu di sini\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Cek apakah totalBelanja >= 100000, jika ya kurangi 10% (kalikan dengan 0.9)."
+      },
+      {
+        "level": 2,
+        "text": "Gunakan ternary operator: totalBelanja >= 100000 ? (hitung diskon) : (tanpa diskon)."
+      },
+      {
+        "level": 3,
+        "text": "return totalBelanja >= 100000 ? totalBelanja * 0.9 : totalBelanja;"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [150000],
+        "expected": 135000,
+        "description": "Test belanja di atas minimal, dapat diskon 10%"
+      },
+      {
+        "input": [100000],
+        "expected": 90000,
+        "description": "Test belanja pas minimal, dapat diskon 10%"
+      },
+      {
+        "input": [50000],
+        "expected": 50000,
+        "description": "Test belanja di bawah minimal, tidak dapat diskon"
+      },
+      {
+        "input": [200000],
+        "expected": 180000,
+        "description": "Test belanja besar, dapat diskon 10%"
+      }
+    ]
+  },
+  {
+    "id": "js-conditionals-medium-01",
+    "title": "Sistem Grading Nilai Ujian",
+    "topic": "Conditionals",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\n**Else If** digunakan ketika kita punya lebih dari 2 kondisi yang harus dicek secara berurutan.\n\n**Syntax:**\n```javascript\nif (kondisi1) {\n  // jalan jika kondisi1 true\n} else if (kondisi2) {\n  // jalan jika kondisi1 false, kondisi2 true\n} else if (kondisi3) {\n  // jalan jika kondisi1 & 2 false, kondisi3 true\n} else {\n  // jalan jika semua kondisi false\n}\n```\n\n**Contoh:**\n```javascript\nlet nilai = 85;\nif (nilai >= 90) {\n  console.log(\"A\");\n} else if (nilai >= 80) {\n  console.log(\"B\");\n} else if (nilai >= 70) {\n  console.log(\"C\");\n} else {\n  console.log(\"D\");\n}\n// Output: \"B\"\n```\n\n### Misi\nBuatlah function `solution` yang menerima parameter `nilai` (number 0-100) dan mengembalikan grade huruf (string) sesuai ketentuan:\n\n**Ketentuan Grading:**\n- Nilai >= 90 → return `\"A\"`\n- Nilai >= 80 → return `\"B\"`\n- Nilai >= 70 → return `\"C\"`\n- Nilai >= 60 → return `\"D\"`\n- Nilai < 60 → return `\"E\"`\n\n**Contoh:**\n- Input: 95 → Output: \"A\"\n- Input: 75 → Output: \"C\"\n- Input: 55 → Output: \"E\"",
+    "starterCode": "function solution(nilai) {\n  // Tulis kodemu di sini\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Gunakan if, else if, dan else untuk mengecek rentang nilai dari yang tertinggi ke terendah."
+      },
+      {
+        "level": 2,
+        "text": "Mulai cek dari nilai >= 90 untuk A, lalu >= 80 untuk B, dan seterusnya."
+      },
+      {
+        "level": 3,
+        "text": "if (nilai >= 90) return \"A\";\nelse if (nilai >= 80) return \"B\";\nelse if (nilai >= 70) return \"C\";\nelse if (nilai >= 60) return \"D\";\nelse return \"E\";"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [95],
+        "expected": "A",
+        "description": "Test nilai sangat tinggi (A)"
+      },
+      {
+        "input": [85],
+        "expected": "B",
+        "description": "Test nilai tinggi (B)"
+      },
+      {
+        "input": [75],
+        "expected": "C",
+        "description": "Test nilai sedang (C)"
+      },
+      { "input": [65], "expected": "D", "description": "Test nilai cukup (D)" },
+      {
+        "input": [55],
+        "expected": "E",
+        "description": "Test nilai kurang (E)"
+      },
+      {
+        "input": [90],
+        "expected": "A",
+        "description": "Test nilai pas di batas A"
+      },
+      {
+        "input": [59],
+        "expected": "E",
+        "description": "Test nilai pas di bawah batas D"
+      }
+    ]
+  },
+  {
+    "id": "js-conditionals-hard-01",
+    "title": "Kalkulator Tarif Parkir Kompleks",
+    "topic": "Conditionals",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\n**Nested If (If Bersarang)** adalah if/else di dalam if/else lainnya. Digunakan untuk logika yang kompleks dengan banyak kondisi bertingkat.\n\n**Syntax:**\n```javascript\nif (kondisiLuar) {\n  if (kondisiDalam1) {\n    // kode jika kondisiLuar dan kondisiDalam1 true\n  } else {\n    // kode jika kondisiLuar true, kondisiDalam1 false\n  }\n} else {\n  if (kondisiDalam2) {\n    // kode jika kondisiLuar false, kondisiDalam2 true\n  } else {\n    // kode jika kondisiLuar dan kondisiDalam2 false\n  }\n}\n```\n\n**Contoh:**\n```javascript\nlet umur = 25;\nlet punyaSIM = true;\n\nif (umur >= 17) {\n  if (punyaSIM) {\n    console.log(\"Boleh nyetir\");\n  } else {\n    console.log(\"Urus SIM dulu\");\n  }\n} else {\n  console.log(\"Belum cukup umur\");\n}\n```\n\n### Misi\nSebuah parkiran punya tarif yang kompleks berdasarkan jenis kendaraan dan durasi parkir.\n\nBuatlah function `solution` yang menerima 2 parameter:\n- `jenisKendaraan` (string): \"motor\" atau \"mobil\"\n- `jam` (number): durasi parkir dalam jam\n\nDan mengembalikan total tarif (number).\n\n**Ketentuan Tarif:**\n\n**Motor:**\n- 2 jam pertama: Rp 2000\n- Jam ke-3 dan seterusnya: Rp 1000/jam\n- Maksimal tarif: Rp 10000 (parkir inap)\n\n**Mobil:**\n- 2 jam pertama: Rp 5000\n- Jam ke-3 dan seterusnya: Rp 2000/jam\n- Maksimal tarif: Rp 25000 (parkir inap)\n\n**Contoh:**\n- Motor 1 jam → 2000\n- Motor 3 jam → 2000 + 1000 = 3000\n- Motor 15 jam → 10000 (kena maksimal)\n- Mobil 2 jam → 5000\n- Mobil 5 jam → 5000 + (3 × 2000) = 11000\n- Mobil 20 jam → 25000 (kena maksimal)",
+    "starterCode": "function solution(jenisKendaraan, jam) {\n  // Tulis kodemu di sini\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Pisahkan logika untuk motor dan mobil dengan if. Di dalam masing-masing, cek durasi parkirnya."
+      },
+      {
+        "level": 2,
+        "text": "Untuk motor: tarif = 2000 (untuk 2 jam pertama), lalu tambah 1000 untuk setiap jam berikutnya. Cek jika lebih dari 10000, set ke 10000."
+      },
+      {
+        "level": 3,
+        "text": "if (jenisKendaraan === \"motor\") {\n  let tarif = 2000;\n  if (jam > 2) tarif += (jam - 2) * 1000;\n  return tarif > 10000 ? 10000 : tarif;\n} else {\n  let tarif = 5000;\n  if (jam > 2) tarif += (jam - 2) * 2000;\n  return tarif > 25000 ? 25000 : tarif;\n}"
+      }
+    ],
+    "testCases": [
+      {
+        "input": ["motor", 1],
+        "expected": 2000,
+        "description": "Test motor parkir 1 jam (tarif awal)"
+      },
+      {
+        "input": ["motor", 2],
+        "expected": 2000,
+        "description": "Test motor parkir 2 jam (masih tarif awal)"
+      },
+      {
+        "input": ["motor", 3],
+        "expected": 3000,
+        "description": "Test motor parkir 3 jam (mulai tambah per jam)"
+      },
+      {
+        "input": ["motor", 5],
+        "expected": 5000,
+        "description": "Test motor parkir 5 jam"
+      },
+      {
+        "input": ["motor", 15],
+        "expected": 10000,
+        "description": "Test motor parkir lama (kena maksimal)"
+      },
+      {
+        "input": ["mobil", 1],
+        "expected": 5000,
+        "description": "Test mobil parkir 1 jam (tarif awal)"
+      },
+      {
+        "input": ["mobil", 2],
+        "expected": 5000,
+        "description": "Test mobil parkir 2 jam (masih tarif awal)"
+      },
+      {
+        "input": ["mobil", 5],
+        "expected": 11000,
+        "description": "Test mobil parkir 5 jam (5000 + 3×2000)"
+      },
+      {
+        "input": ["mobil", 20],
+        "expected": 25000,
+        "description": "Test mobil parkir lama (kena maksimal)"
+      }
+    ]
+  }
+]

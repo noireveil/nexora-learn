@@ -1,0 +1,161 @@
+[
+  {
+    "id": "js-functions-easy-01",
+    "title": "Sapaan Hangat",
+    "topic": "Functions",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nFunction (fungsi) adalah blok kode yang dirancang untuk melakukan tugas tertentu. Bayangkan seperti resep masakan: kamu punya bahan (input), kamu olah, dan jadilah makanan (output).\n\nCara membuat function dasar:\n```javascript\nfunction namaFungsi(parameter) {\n  return \"Hasilnya\";\n}\n```\nKata kunci `return` itu penting! Tanpa `return`, fungsimu hanya 'bekerja' tapi tidak memberikan hasil kembali kepada yang memanggilnya.\n\n### Misi\nBuatlah function bernama `solution` yang menerima satu parameter string `nama`. Function harus mengembalikan kalimat sapaan: `\"Halo, [nama]!\"`.\n\nContoh: Jika input `\"Budi\"`, output harus `\"Halo, Budi!\"`.",
+    "starterCode": "function solution(nama) {\n  // Tulis kodemu di sini\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Gunakan keyword 'return' untuk mengembalikan nilai."
+      },
+      {
+        "level": 2,
+        "text": "Kamu bisa menggabungkan string menggunakan operator '+'."
+      },
+      { "level": 3, "text": "return \"Halo, \" + nama + \"!\";" }
+    ],
+    "testCases": [
+      {
+        "input": ["Nexora"],
+        "expected": "Halo, Nexora!",
+        "description": "Menyapa Nexora"
+      },
+      {
+        "input": ["Dunia"],
+        "expected": "Halo, Dunia!",
+        "description": "Menyapa Dunia"
+      }
+    ]
+  },
+  {
+    "id": "js-functions-easy-02",
+    "title": "Hitung Luas Persegi",
+    "topic": "Functions",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nFunction sangat berguna untuk perhitungan matematika. Kita bisa memasukkan angka ke dalam **parameter** (yang ada di dalam kurung `()`).\n\nContoh function penjumlahan:\n```javascript\nfunction tambah(a, b) {\n  return a + b;\n}\n```\nDi sini, `a` dan `b` adalah wadah untuk angka yang akan kita masukkan nanti.\n\n### Misi\nBuatlah function `solution` yang menerima satu parameter angka `sisi`. Tugasmu adalah mengembalikan nilai **Luas Persegi** tersebut (Rumus: sisi x sisi).",
+    "starterCode": "function solution(sisi) {\n  // Hitung luas persegi di sini\n  \n}",
+    "hints": [
+      { "level": 1, "text": "Luas persegi adalah sisi dikali sisi." },
+      { "level": 2, "text": "Gunakan operator perkalian bintang (*)." },
+      { "level": 3, "text": "return sisi * sisi;" }
+    ],
+    "testCases": [
+      {
+        "input": [5],
+        "expected": 25,
+        "description": "Sisi 5 menghasilkan luas 25"
+      },
+      {
+        "input": [10],
+        "expected": 100,
+        "description": "Sisi 10 menghasilkan luas 100"
+      }
+    ]
+  },
+  {
+    "id": "js-functions-medium-01",
+    "title": "Mesin Konversi Suhu",
+    "topic": "Functions",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nDi dalam function, kita bisa melakukan logika matematika yang lebih kompleks sebelum melakukan `return`. Ini membuat kode kita rapi karena kita tidak perlu menulis rumus berkali-kali.\n\n### Misi\nKita perlu alat untuk mengubah suhu dari **Celcius** ke **Fahrenheit**.\nBuatlah function `solution` yang menerima parameter `celcius`.\n\nRumus konversinya adalah:  \n`Fahrenheit = (Celcius × 9/5) + 32`\n\nKembalikan nilai Fahrenheit-nya.",
+    "starterCode": "function solution(celcius) {\n  // Terapkan rumus konversi di sini\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Ikuti rumusnya dengan teliti. Perkalian dan pembagian dilakukan sebelum penjumlahan."
+      },
+      { "level": 2, "text": "9 dibagi 5 itu sama dengan 1.8." },
+      { "level": 3, "text": "return (celcius * 1.8) + 32;" }
+    ],
+    "testCases": [
+      {
+        "input": [0],
+        "expected": 32,
+        "description": "0 Celcius adalah 32 Fahrenheit (Titik Beku)"
+      },
+      {
+        "input": [100],
+        "expected": 212,
+        "description": "100 Celcius adalah 212 Fahrenheit (Titik Didih)"
+      },
+      {
+        "input": [30],
+        "expected": 86,
+        "description": "30 Celcius adalah 86 Fahrenheit"
+      }
+    ]
+  },
+  {
+    "id": "js-functions-medium-02",
+    "title": "Rata-Rata Arrow",
+    "topic": "Functions",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori: Arrow Function\nDi JavaScript modern (ES6), kita sering menggunakan **Arrow Function**. Penulisannya lebih singkat.\n\n**Biasa:**\n```javascript\nfunction sapa() {\n  return \"Hai\";\n}\n```\n**Arrow Function:**\n```javascript\nconst sapa = () => {\n  return \"Hai\";\n};\n```\nJika isinya cuma satu baris return, bisa lebih singkat lagi: `const sapa = () => \"Hai\";`\n\n### Misi\nBuatlah function `solution` (boleh pakai cara biasa atau arrow function) yang menerima parameter berupa **Array Angka** (`nilaiArray`).\n\nTugasmu adalah mengembalikan nilai **rata-rata** (average) dari angka-angka di dalam array tersebut.\n\n*Catatan: Rata-rata = Total semua nilai / Jumlah data.*",
+    "starterCode": "function solution(nilaiArray) {\n  // Hitung total dulu, baru bagi dengan panjang array\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Gunakan loop (for) untuk menjumlahkan semua angka di array."
+      },
+      {
+        "level": 2,
+        "text": "Untuk mengetahui jumlah data, gunakan `nilaiArray.length`."
+      },
+      {
+        "level": 3,
+        "text": "Total dibagi length. Hati-hati jika array kosong (tapi di soal ini diasumsikan ada isinya)."
+      }
+    ],
+    "testCases": [
+      {
+        "input": [[80, 90, 100]],
+        "expected": 90,
+        "description": "Rata-rata dari 80, 90, 100 adalah 90"
+      },
+      {
+        "input": [[2, 4, 6, 8, 10]],
+        "expected": 6,
+        "description": "Rata-rata deret genap 2-10 adalah 6"
+      }
+    ]
+  },
+  {
+    "id": "js-functions-hard-01",
+    "title": "Kekuatan Rekursif (Pangkat)",
+    "topic": "Functions",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori: Recursion (Rekursif)\nRekursif adalah kondisi di mana sebuah function **memanggil dirinya sendiri**. \n\nAgar tidak terjadi *looping selamanya* (Infinite Loop) yang bikin komputer hang, rekursif WAJIB punya 2 hal:\n1.  **Base Case**: Kondisi untuk BERHENTI memanggil diri sendiri.\n2.  **Recursive Case**: Kondisi lanjut memanggil diri sendiri dengan input yang makin mendekati base case.\n\n### Misi\nBuat function `solution(angka, pangkat)` untuk menghitung hasil perpangkatan TANPA menggunakan `Math.pow()` atau operator `**`.\n\nGunakan konsep **Rekursif**.\n\nContoh logika $2^3$:\n- $2^3 = 2 \\times 2^2$\n- $2^2 = 2 \\times 2^1$\n- $2^1 = 2 \\times 2^0$\n- $2^0 = 1$ (**Base Case**: Pangkat 0 hasilnya selalu 1)",
+    "starterCode": "function solution(angka, pangkat) {\n  // 1. Tentukan Base Case (kapan berhenti?)\n  // 2. Tentukan Recursive Case (panggil solution lagi)\n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Base Case: Jika pangkatnya 0, kembalikan nilai 1."
+      },
+      {
+        "level": 2,
+        "text": "Recursive Case: return angka dikali solution(angka, pangkat - 1)."
+      },
+      {
+        "level": 3,
+        "text": "if (pangkat === 0) return 1; else return angka * solution(angka, pangkat - 1);"
+      }
+    ],
+    "testCases": [
+      { "input": [2, 3], "expected": 8, "description": "2 pangkat 3 = 8" },
+      { "input": [5, 2], "expected": 25, "description": "5 pangkat 2 = 25" },
+      {
+        "input": [10, 0],
+        "expected": 1,
+        "description": "Angka apapun pangkat 0 hasilnya 1"
+      }
+    ]
+  }
+]

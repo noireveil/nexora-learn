@@ -1,0 +1,142 @@
+[
+  {
+    "id": "py-modules-easy-01",
+    "title": "Matematika Canggih (Math)",
+    "topic": "Python Modules",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nPython punya modul bernama `math` untuk operasi matematika tingkat lanjut.\n\nUntuk menggunakannya, kita harus **import** dulu.\n\n**Contoh:**\n```python\nimport math\n\nprint(math.ceil(4.1))  # 5 (Pembulatan ke atas)\nprint(math.floor(4.9)) # 4 (Pembulatan ke bawah)\n```\n\n### Misi\nBuat fungsi `solution(penumpang, kapasitas)`.\nHitung berapa bus yang dibutuhkan untuk mengangkut semua penumpang.\n\n*Clue: Jika ada 11 orang dan kapasitas bus 10, kita butuh 2 bus (bukan 1.1). Gunakan `math.ceil()`.*",
+    "starterCode": "import math\n\ndef solution(penumpang, kapasitas):\n    # Hitung pembagian, lalu bulatkan ke atas\n    pass",
+    "hints": [
+      { "level": 1, "text": "Hasil pembagian penumpang / kapasitas mungkin desimal." },
+      { "level": 2, "text": "Gunakan math.ceil(...) pada hasil pembagian tersebut." },
+      { "level": 3, "text": "return math.ceil(penumpang / kapasitas)" }
+    ],
+    "testCases": [
+      {
+        "input": [11, 10],
+        "expected": 2,
+        "description": "11 orang, bus isi 10 -> Butuh 2 bus"
+      },
+      {
+        "input": [50, 50],
+        "expected": 1,
+        "description": "Pas 1 bus"
+      },
+      {
+        "input": [5, 10],
+        "expected": 1,
+        "description": "Cukup 1 bus"
+      }
+    ]
+  },
+  {
+    "id": "py-modules-easy-02",
+    "title": "Luas Lingkaran (Math Pi)",
+    "topic": "Python Modules",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nNilai **Pi (π)** yang akurat ada di dalam modul math: `math.pi` (sekitar 3.14159...).\n\n**Rumus Luas Lingkaran:** $L = \\pi \\times r^2$\n\n### Misi\nBuat fungsi `solution(jari_jari)`.\nHitung luas lingkaran dan **bulatkan 2 angka di belakang koma** menggunakan fungsi bawaan `round(nilai, 2)`.\n\nContoh: `round(3.14159, 2)` -> `3.14`",
+    "starterCode": "import math\n\ndef solution(jari_jari):\n    # Gunakan math.pi dan round()\n    pass",
+    "hints": [
+      { "level": 1, "text": "Luas = math.pi * jari_jari * jari_jari" },
+      { "level": 2, "text": "Bungkus rumus tersebut dengan round(..., 2)" },
+      { "level": 3, "text": "return round(math.pi * jari_jari ** 2, 2)" }
+    ],
+    "testCases": [
+      {
+        "input": [10],
+        "expected": 314.16,
+        "description": "r=10 -> 314.159... dibulatkan 314.16"
+      },
+      {
+        "input": [7],
+        "expected": 153.94,
+        "description": "r=7 -> 153.938... dibulatkan 153.94"
+      }
+    ]
+  },
+  {
+    "id": "py-modules-medium-01",
+    "title": "Mesin Gacha (Random Choice)",
+    "topic": "Python Modules",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nModul `random` digunakan untuk membuat sesuatu yang acak.\n\nSalah satu fitur populernya adalah `random.choice(list)`, yang memilih **satu item acak** dari dalam list.\n\n**Contoh:**\n```python\nimport random\nbuah = [\"Apel\", \"Jeruk\"]\npemenang = random.choice(buah)\n```\n\n### Misi\nBuat fungsi `solution(peserta)` yang menerima list nama.\nKembalikan satu nama pemenang secara acak menggunakan `random.choice`.",
+    "starterCode": "import random\n\ndef solution(peserta):\n    # Pilih satu pemenang acak\n    pass",
+    "hints": [
+      { "level": 1, "text": "Jangan lupa import random." },
+      { "level": 2, "text": "Gunakan random.choice(peserta)." },
+      { "level": 3, "text": "return random.choice(peserta)" }
+    ],
+    "testCases": [
+      {
+        "input": [["Nexora"]],
+        "expected": "Nexora",
+        "description": "Test dengan 1 peserta (Pasti menang)"
+      },
+      {
+        "input": [["Juara"]],
+        "expected": "Juara",
+        "description": "Test deterministik untuk validasi sistem"
+      }
+    ]
+  },
+  {
+    "id": "py-modules-medium-02",
+    "title": "Mesin Waktu (DateTime)",
+    "topic": "Python Modules",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nUntuk mengelola tanggal, kita gunakan modul `datetime`.\n\n**Membuat Tanggal Spesifik:**\n```python\nimport datetime\n# Format: year, month, day\ntanggal = datetime.date(2025, 12, 31)\n\n# Ubah ke string agar mudah dibaca\nprint(str(tanggal)) # \"2025-12-31\"\n```\n\n### Misi\nBuat fungsi `solution(tahun, bulan, tanggal)`.\nKembalikan tanggal tersebut dalam format **String** ISO (YYYY-MM-DD).\n\n*Gunakan `str()` untuk mengubah object date menjadi text.*",
+    "starterCode": "import datetime\n\ndef solution(tahun, bulan, tanggal):\n    # Buat object date, lalu convert ke string\n    pass",
+    "hints": [
+      { "level": 1, "text": "Buat variabel tgl = datetime.date(tahun, bulan, tanggal)." },
+      { "level": 2, "text": "Return str(tgl)." },
+      { "level": 3, "text": "return str(datetime.date(tahun, bulan, tanggal))" }
+    ],
+    "testCases": [
+      {
+        "input": [1945, 8, 17],
+        "expected": "1945-08-17",
+        "description": "Hari Kemerdekaan RI"
+      },
+      {
+        "input": [2000, 1, 1],
+        "expected": "2000-01-01",
+        "description": "Tahun Baru Milenium"
+      }
+    ]
+  },
+  {
+    "id": "py-modules-hard-01",
+    "title": "Pythagoras (Math Sqrt & Pow)",
+    "topic": "Python Modules",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\nMari gabungkan logika matematika dengan modul `math`.\n\n**Teorema Pythagoras:**\nUntuk mencari sisi miring segitiga ($c$), rumusnya:\n$c = \\sqrt{a^2 + b^2}$\n\nDi Python:\n- Akar kuadrat: `math.sqrt(x)`\n- Pangkat dua: `x ** 2` atau `math.pow(x, 2)`\n\n### Misi\nBuat fungsi `solution(a, b)` untuk menghitung panjang sisi miring ($c$).\nHasilnya harus tipe data **Float**.",
+    "starterCode": "import math\n\ndef solution(a, b):\n    # Hitung sisi miring (hypotenuse)\n    pass",
+    "hints": [
+      { "level": 1, "text": "Hitung dulu a kuadrat ditambah b kuadrat." },
+      { "level": 2, "text": "Lalu akarkan hasilnya dengan math.sqrt()." },
+      { "level": 3, "text": "return math.sqrt(a**2 + b**2)" }
+    ],
+    "testCases": [
+      {
+        "input": [3, 4],
+        "expected": 5.0,
+        "description": "Segitiga 3, 4, 5"
+      },
+      {
+        "input": [5, 12],
+        "expected": 13.0,
+        "description": "Segitiga 5, 12, 13"
+      },
+      {
+        "input": [8, 15],
+        "expected": 17.0,
+        "description": "Segitiga 8, 15, 17"
+      }
+    ]
+  }
+]

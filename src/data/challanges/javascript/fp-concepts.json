@@ -1,0 +1,65 @@
+[
+  {
+    "id": "fp-easy-01",
+    "title": "Pure Function (Tanpa Efek Samping)",
+    "topic": "FP Concepts",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\n**Pure Function** adalah fungsi yang:\n1. Selalu menghasilkan output yang sama untuk input yang sama.\n2. Tidak mengubah data di luar fungsi (No Side Effects).\n\n### Misi\nUbah kode `solution` agar menjadi **Pure Function**.\nTerima `listBelanja` dan `itemBaru`, lalu kembalikan **array baru** tanpa mengubah array lama.\n\n*Clue: Gunakan spread operator `[...]`.*",
+    "starterCode": "function solution(listBelanja, itemBaru) {\n  // Jangan push() ke array lama\n  // Return array baru gabungan list lama + item baru\n}",
+    "hints": [
+      { "level": 1, "text": "Jangan ubah variabel input." },
+      { "level": 2, "text": "Buat array baru: [...listBelanja, itemBaru]." },
+      { "level": 3, "text": "return [...listBelanja, itemBaru];" }
+    ],
+    "testCases": [
+      {
+        "input": [["Apel"], "Jeruk"],
+        "expected": ["Apel", "Jeruk"],
+        "description": "No side effect"
+      }
+    ]
+  },
+  {
+    "id": "fp-easy-02",
+    "title": "Immutability (Object Frozen)",
+    "topic": "FP Concepts",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nDi FP, data itu **Immutable** (pantang diubah). Kalau mau edit, buat copy-annya.\n\n### Misi\nBuat function `solution(dataUser, skorBaru)`.\nKembalikan object user **baru** dengan skor yang sudah diupdate, tanpa menyentuh object asli.",
+    "starterCode": "function solution(dataUser, skorBaru) {\n  // Gunakan Spread Operator pada Object\n}",
+    "hints": [
+      { "level": 1, "text": "Gunakan { ...dataUser }." },
+      { "level": 2, "text": "Timpa properti skor." },
+      { "level": 3, "text": "return { ...dataUser, skor: skorBaru };" }
+    ],
+    "testCases": [
+      {
+        "input": [{ "nama": "A", "skor": 10 }, 50],
+        "expected": { "nama": "A", "skor": 50 },
+        "description": "Update skor immutable"
+      }
+    ]
+  },
+  {
+    "id": "fp-easy-03",
+    "title": "First-Class Function (Callback)",
+    "topic": "FP Concepts",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nFungsi di JS adalah **First-Class Citizen**. Bisa disimpan di variabel dan dikirim sebagai argumen (Callback).\n\n### Misi\nBuat function `solution(angka, aksi)`.\nPanggil function `aksi` dengan input `angka`, lalu return hasilnya.",
+    "starterCode": "function solution(angka, aksi) {\n  // Panggil function 'aksi' dengan parameter 'angka'\n}",
+    "hints": [
+      { "level": 1, "text": "Panggil dengan kurung: aksi(angka)." },
+      { "level": 2, "text": "return aksi(angka);" },
+      { "level": 3, "text": "return aksi(angka);" }
+    ],
+    "testCases": [
+      {
+        "input": [5, "(x) => x * 2"],
+        "expected": 10,
+        "description": "Callback kali 2"
+      }
+    ]
+  }
+]

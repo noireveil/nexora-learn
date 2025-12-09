@@ -1,0 +1,80 @@
+[
+  {
+    "id": "fp-rec-med-01",
+    "title": "Recursion vs Looping",
+    "topic": "FP Processing",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nHindari Loop, gunakan **Rekursi** untuk menjumlahkan array.\n`Sum([1, 2])` = `1 + Sum([2])`.\n\n### Misi\nBuat function `solution(arr)` untuk menjumlahkan array secara rekursif.",
+    "starterCode": "function solution(arr) {\n  if (arr.length === 0) return 0;\n  // arr[0] + solution(sisa)\n}",
+    "hints": [
+      { "level": 1, "text": "arr[0] + solution(arr.slice(1))" },
+      { "level": 2, "text": "Base case: length 0 return 0" },
+      { "level": 3, "text": "return arr[0] + solution(arr.slice(1));" }
+    ],
+    "testCases": [
+      { "input": [[1, 2, 3]], "expected": 6, "description": "Sum recursive" }
+    ]
+  },
+  {
+    "id": "fp-hof-hard-01",
+    "title": "Map & Filter Chain",
+    "topic": "FP Processing",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\n**Chaining**: Menggabungkan `.filter()` dan `.map()`.\n\n### Misi\nBuat function `solution(produk)`:\n1. **Filter**: Ambil produk stok > 0.\n2. **Map**: Format jadi `\"[nama] - Rp[harga]\"`.",
+    "starterCode": "function solution(produk) {\n  return produk\n    .filter(p => /* cek stok */)\n    .map(p => /* format string */);\n}",
+    "hints": [
+      { "level": 1, "text": "filter: p.stok > 0" },
+      { "level": 2, "text": "map: `${p.nama} - Rp${p.harga}`" },
+      {
+        "level": 3,
+        "text": "return produk.filter(p => p.stok > 0).map(p => `${p.nama} - Rp${p.harga}`);"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [
+          [
+            { "nama": "A", "harga": 1000, "stok": 5 },
+            { "nama": "B", "harga": 2000, "stok": 0 }
+          ]
+        ],
+        "expected": ["A - Rp1000"],
+        "description": "Filter stok kosong"
+      }
+    ]
+  },
+  {
+    "id": "fp-hof-hard-02",
+    "title": "Reduce Mastery (Grouping)",
+    "topic": "FP Processing",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\n**.reduce()** bisa mengubah Array menjadi Object (Grouping).\n\n### Misi\nKelompokkan siswa berdasarkan kelas.\nInput: `[{nama: 'A', kelas: '1'}, {nama: 'B', kelas: '1'}]`\nOutput: `{'1': ['A', 'B']}`",
+    "starterCode": "function solution(siswa) {\n  return siswa.reduce((hasil, murid) => {\n    // Logic grouping\n    return hasil;\n  }, {});\n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "if (!hasil[murid.kelas]) hasil[murid.kelas] = []"
+      },
+      { "level": 2, "text": "hasil[murid.kelas].push(murid.nama)" },
+      {
+        "level": 3,
+        "text": "const k = murid.kelas; if(!hasil[k]) hasil[k]=[]; hasil[k].push(murid.nama); return hasil;"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [
+          [
+            { "nama": "Budi", "kelas": "1A" },
+            { "nama": "Siti", "kelas": "1A" }
+          ]
+        ],
+        "expected": { "1A": ["Budi", "Siti"] },
+        "description": "Group by kelas"
+      }
+    ]
+  }
+]

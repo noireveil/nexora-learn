@@ -1,0 +1,72 @@
+[
+  {
+    "id": "logic-str-easy-01",
+    "title": "Palindrome Checker",
+    "topic": "String & Logic",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\n**Palindrome**: Kata yang dibaca dari depan dan belakang sama (Contoh: \"KATAK\").\n\n### Misi\nBuat function `solution(kata)` -> return `true`/`false`.\n\n*Tips: Balik stringnya dan bandingkan.*",
+    "starterCode": "function solution(kata) {\n  // Balik string, cek equality\n}",
+    "hints": [
+      { "level": 1, "text": "kata.split('').reverse().join('')." },
+      { "level": 2, "text": "return kata === kataDibalik." },
+      { "level": 3, "text": "return kata === kata.split('').reverse().join('');" }
+    ],
+    "testCases": [
+      { "input": ["KATAK"], "expected": true, "description": "Palindrome" },
+      { "input": ["KASUR"], "expected": false, "description": "Bukan Palindrome" }
+    ]
+  },
+  {
+    "id": "logic-str-easy-02",
+    "title": "Hapus Duplikat (Big O & Set)",
+    "topic": "String & Logic",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nMenggunakan **Set** ($O(1)$) jauh lebih cepat daripada loop manual ($O(n^2)$) untuk menghapus duplikat.\n\n### Misi\nBuat function `solution(angka)` yang menghapus angka kembar menggunakan `new Set()`.",
+    "starterCode": "function solution(angka) {\n  // Gunakan Set dan Spread Operator [...]\n}",
+    "hints": [
+      { "level": 1, "text": "new Set(angka) membuang duplikat." },
+      { "level": 2, "text": "Ubah balik ke array pakai [...hasil]." },
+      { "level": 3, "text": "return [...new Set(angka)];" }
+    ],
+    "testCases": [
+      { "input": [[1, 2, 2, 3]], "expected": [1, 2, 3], "description": "Unique items" }
+    ]
+  },
+  {
+    "id": "logic-str-hard-01",
+    "title": "Anagram Check",
+    "topic": "String & Logic",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\n**Anagram**: Dua kata dengan huruf penyusun yang sama (Contoh: \"LISTEN\" & \"SILENT\").\n\n### Misi\nBuat function `solution(kata1, kata2)` -> return `true`/`false`.\n*Clue: Urutkan hurufnya (Sort), lalu bandingkan.*",
+    "starterCode": "function solution(kata1, kata2) {\n  // Sort huruf di kedua kata, lalu bandingkan stringnya\n}",
+    "hints": [
+      { "level": 1, "text": "split('') -> sort() -> join('')." },
+      { "level": 2, "text": "Lakukan untuk kedua kata." },
+      { "level": 3, "text": "return sorted1 === sorted2;" }
+    ],
+    "testCases": [
+      { "input": ["listen", "silent"], "expected": true, "description": "Anagram" },
+      { "input": ["budi", "ibu"], "expected": false, "description": "Bukan Anagram" }
+    ]
+  },
+  {
+    "id": "logic-recursion-hard-01",
+    "title": "Fibonacci (Recursion)",
+    "topic": "String & Logic",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\n**Recursion**: Fungsi memanggil dirinya sendiri.\nDeret Fibonacci: 0, 1, 1, 2, 3, 5...\nRumus: $F(n) = F(n-1) + F(n-2)$.\n\n### Misi\nBuat function `solution(n)` mencari angka Fibonacci ke-n secara rekursif.",
+    "starterCode": "function solution(n) {\n  // Base case: n=0 return 0, n=1 return 1\n  // Recursive: panggil solution(n-1) + solution(n-2)\n}",
+    "hints": [
+      { "level": 1, "text": "if (n <= 1) return n;" },
+      { "level": 2, "text": "return solution(n-1) + solution(n-2);" },
+      { "level": 3, "text": "if (n<=1) return n; return solution(n-1)+solution(n-2);" }
+    ],
+    "testCases": [
+      { "input": [6], "expected": 8, "description": "Fibonacci ke-6" }
+    ]
+  }
+]

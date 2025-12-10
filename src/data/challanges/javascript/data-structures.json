@@ -1,0 +1,96 @@
+[
+  {
+    "id": "struct-easy-01",
+    "title": "Tumpukan Buku (Stack)",
+    "topic": "Data Structures",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\n**Stack** = LIFO (Last In, First Out). Masuk terakhir, keluar pertama.\n- `push()`: Masuk.\n- `pop()`: Keluar.\n\n### Misi\nBuat function `solution(bukuBaru)`.\n1. Masukkan `bukuBaru` ke array `[\"A\", \"B\"]`.\n2. Ambil & return buku paling atas (pop).",
+    "starterCode": "function solution(bukuBaru) {\n  let tumpukan = [\"A\", \"B\"];\n  // push lalu pop\n}",
+    "hints": [
+      { "level": 1, "text": "tumpukan.push(bukuBaru)." },
+      { "level": 2, "text": "return tumpukan.pop()." },
+      { "level": 3, "text": "tumpukan.push(bukuBaru); return tumpukan.pop();" }
+    ],
+    "testCases": [
+      { "input": ["C"], "expected": "C", "description": "LIFO check" }
+    ]
+  },
+  {
+    "id": "struct-med-01",
+    "title": "Antrian (Queue)",
+    "topic": "Data Structures",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\n**Queue** = FIFO (First In, First Out). Masuk duluan, keluar duluan.\n- `push()`: Masuk belakang.\n- `shift()`: Keluar depan.\n\n### Misi\nBuat function `solution(antrian, orangBaru)`.\n1. Masukkan `orangBaru`.\n2. Keluarkan satu orang dari depan.\n3. Return sisa antrian.",
+    "starterCode": "function solution(antrian, orangBaru) {\n  // push lalu shift\n  return antrian;\n}",
+    "hints": [
+      { "level": 1, "text": "antrian.push(orangBaru)." },
+      { "level": 2, "text": "antrian.shift()." },
+      {
+        "level": 3,
+        "text": "antrian.push(orangBaru); antrian.shift(); return antrian;"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [["A", "B"], "C"],
+        "expected": ["B", "C"],
+        "description": "FIFO check"
+      }
+    ]
+  },
+  {
+    "id": "struct-med-02",
+    "title": "Hitung Suara (Hash Table/Map)",
+    "topic": "Data Structures",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\n**Hash Table** (Object/Map) sangat cepat untuk menghitung frekuensi data ($O(n)$).\n\n### Misi\nBuat function `solution(vote)` (array).\nKembalikan object jumlah suara.\nContoh: `[\"A\", \"B\", \"A\"]` -> `{\"A\": 2, \"B\": 1}`.",
+    "starterCode": "function solution(vote) {\n  let hasil = {};\n  // Loop vote, update count di hasil\n  return hasil;\n}",
+    "hints": [
+      { "level": 1, "text": "Loop for..of vote." },
+      { "level": 2, "text": "hasil[v] = (hasil[v] || 0) + 1." },
+      {
+        "level": 3,
+        "text": "for (let v of vote) hasil[v] = (hasil[v] || 0) + 1;"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [["A", "B", "A"]],
+        "expected": { "A": 2, "B": 1 },
+        "description": "Counting vote"
+      }
+    ]
+  },
+  {
+    "id": "struct-hard-01",
+    "title": "Diagonal Matrix (2D Array)",
+    "topic": "Data Structures",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\n**Matrix** adalah array di dalam array.\nDiagonal utama adalah elemen di mana index baris == index kolom (`[0][0]`, `[1][1]`, dst).\n\n### Misi\nBuat function `solution(matrix)` untuk menghitung **Total Jumlah** angka di diagonal utama.",
+    "starterCode": "function solution(matrix) {\n  let total = 0;\n  // Loop dan jumlahkan matrix[i][i]\n  return total;\n}",
+    "hints": [
+      { "level": 1, "text": "Gunakan satu loop i dari 0 sampai length." },
+      { "level": 2, "text": "total += matrix[i][i]." },
+      {
+        "level": 3,
+        "text": "for (let i=0; i<matrix.length; i++) total += matrix[i][i];"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [
+          [
+            [1, 2],
+            [3, 4]
+          ]
+        ],
+        "expected": 5,
+        "description": "1 + 4 = 5"
+      }
+    ]
+  }
+]

@@ -1,0 +1,254 @@
+[
+  {
+    "id": "js-loops-easy-01",
+    "title": "Hitung Mundur Roket",
+    "topic": "Loops",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\n**For Loop** adalah cara untuk mengulang kode beberapa kali. Sangat berguna ketika kita tahu berapa kali harus mengulang.\n\n**Syntax:**\n```javascript\nfor (inisialisasi; kondisi; increment) {\n  // kode yang diulang\n}\n```\n\n**Contoh:**\n```javascript\n// Print angka 1 sampai 5\nfor (let i = 1; i <= 5; i++) {\n  console.log(i);\n}\n// Output: 1, 2, 3, 4, 5\n```\n\n**Penjelasan:**\n- `let i = 1` → mulai dari 1\n- `i <= 5` → ulangi selama i tidak lebih dari 5\n- `i++` → tambah i sebanyak 1 setiap kali loop\n\n### Misi\nBuatlah function `solution` yang menerima parameter `n` (number) dan mengembalikan array berisi angka dari `n` hingga 1 (hitung mundur).\n\n**Contoh:**\n- Input: 5 → Output: [5, 4, 3, 2, 1]\n- Input: 3 → Output: [3, 2, 1]\n\nBayangkan ini seperti hitung mundur peluncuran roket! 🚀",
+    "starterCode": "function solution(n) {\n  // Tulis kodemu di sini\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Buat array kosong, lalu gunakan for loop dari n sampai 1 untuk mengisi array tersebut."
+      },
+      {
+        "level": 2,
+        "text": "Loop mulai dari i = n, kondisi i >= 1, dan kurangi i setiap iterasi (i--)."
+      },
+      {
+        "level": 3,
+        "text": "let hasil = [];\nfor (let i = n; i >= 1; i--) {\n  hasil.push(i);\n}\nreturn hasil;"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [5],
+        "expected": [5, 4, 3, 2, 1],
+        "description": "Test hitung mundur dari 5"
+      },
+      {
+        "input": [3],
+        "expected": [3, 2, 1],
+        "description": "Test hitung mundur dari 3"
+      },
+      {
+        "input": [1],
+        "expected": [1],
+        "description": "Test edge case dengan angka 1"
+      },
+      {
+        "input": [10],
+        "expected": [10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+        "description": "Test hitung mundur dari 10"
+      }
+    ]
+  },
+  {
+    "id": "js-loops-easy-02",
+    "title": "Jumlahkan Semua Angka di Array",
+    "topic": "Loops",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nLoop sangat berguna untuk **iterasi (mengunjungi satu per satu)** elemen dalam array.\n\n**Contoh Iterasi Array:**\n```javascript\nlet angka = [10, 20, 30];\nlet total = 0;\n\nfor (let i = 0; i < angka.length; i++) {\n  total += angka[i]; // tambahkan ke total\n}\n\nconsole.log(total); // Output: 60\n```\n\n**Penjelasan:**\n- `i = 0` → mulai dari index 0\n- `i < angka.length` → sampai panjang array\n- `angka[i]` → akses elemen array di index i\n\n**While Loop (Alternatif):**\n```javascript\nlet i = 0;\nwhile (i < angka.length) {\n  total += angka[i];\n  i++;\n}\n```\n\n### Misi\nBuatlah function `solution` yang menerima parameter `angka` (array of numbers) dan mengembalikan total jumlah semua angka di dalam array (number).\n\n**Contoh:**\n- Input: [1, 2, 3, 4, 5] → Output: 15\n- Input: [10, 20, 30] → Output: 60\n- Input: [5] → Output: 5",
+    "starterCode": "function solution(angka) {\n  // Tulis kodemu di sini\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Buat variabel total = 0, lalu loop array dan tambahkan setiap elemen ke total."
+      },
+      {
+        "level": 2,
+        "text": "Gunakan for loop dari i = 0 sampai i < angka.length, lalu total += angka[i]."
+      },
+      {
+        "level": 3,
+        "text": "let total = 0;\nfor (let i = 0; i < angka.length; i++) {\n  total += angka[i];\n}\nreturn total;"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [[1, 2, 3, 4, 5]],
+        "expected": 15,
+        "description": "Test array dengan 5 elemen"
+      },
+      {
+        "input": [[10, 20, 30]],
+        "expected": 60,
+        "description": "Test array dengan angka besar"
+      },
+      {
+        "input": [[5]],
+        "expected": 5,
+        "description": "Test array dengan 1 elemen"
+      },
+      {
+        "input": [[100, 200, 300, 400]],
+        "expected": 1000,
+        "description": "Test array dengan angka ratusan"
+      },
+      {
+        "input": [[-5, 5, -10, 10]],
+        "expected": 0,
+        "description": "Test array dengan angka negatif dan positif"
+      }
+    ]
+  },
+  {
+    "id": "js-loops-medium-01",
+    "title": "Filter Angka Genap Saja",
+    "topic": "Loops",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nKita bisa menggabungkan **loop** dengan **conditional (if)** untuk memfilter atau memproses data tertentu saja.\n\n**Contoh:**\n```javascript\nlet angka = [1, 2, 3, 4, 5, 6];\nlet genap = [];\n\nfor (let i = 0; i < angka.length; i++) {\n  if (angka[i] % 2 === 0) { // cek genap\n    genap.push(angka[i]);\n  }\n}\n\nconsole.log(genap); // Output: [2, 4, 6]\n```\n\n**Operator Modulus (%):**\n- `angka % 2 === 0` → angka genap\n- `angka % 2 !== 0` → angka ganjil\n\n### Misi\nBuatlah function `solution` yang menerima parameter `angka` (array of numbers) dan mengembalikan array baru yang hanya berisi angka **genap** saja.\n\n**Contoh:**\n- Input: [1, 2, 3, 4, 5, 6] → Output: [2, 4, 6]\n- Input: [10, 15, 20, 25] → Output: [10, 20]\n- Input: [1, 3, 5] → Output: [] (tidak ada genap)\n- Input: [2, 4, 6] → Output: [2, 4, 6] (semua genap)",
+    "starterCode": "function solution(angka) {\n  // Tulis kodemu di sini\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Buat array kosong untuk hasil, loop array, cek setiap angka apakah genap (% 2 === 0), jika ya masukkan ke array hasil."
+      },
+      {
+        "level": 2,
+        "text": "Gunakan if di dalam loop: if (angka[i] % 2 === 0) hasil.push(angka[i]);"
+      },
+      {
+        "level": 3,
+        "text": "let hasil = [];\nfor (let i = 0; i < angka.length; i++) {\n  if (angka[i] % 2 === 0) {\n    hasil.push(angka[i]);\n  }\n}\nreturn hasil;"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [[1, 2, 3, 4, 5, 6]],
+        "expected": [2, 4, 6],
+        "description": "Test array campuran ganjil dan genap"
+      },
+      {
+        "input": [[10, 15, 20, 25]],
+        "expected": [10, 20],
+        "description": "Test array dengan beberapa genap"
+      },
+      {
+        "input": [[1, 3, 5, 7]],
+        "expected": [],
+        "description": "Test array tanpa angka genap (edge case)"
+      },
+      {
+        "input": [[2, 4, 6, 8]],
+        "expected": [2, 4, 6, 8],
+        "description": "Test array semua genap"
+      },
+      {
+        "input": [[0, -2, -4, 3]],
+        "expected": [0, -2, -4],
+        "description": "Test array dengan 0 dan angka negatif genap"
+      }
+    ]
+  },
+  {
+    "id": "js-loops-medium-02",
+    "title": "Hitung Faktorial",
+    "topic": "Loops",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\n**Akumulasi** adalah proses mengumpulkan nilai secara bertahap dalam loop. Salah satu contohnya adalah menghitung faktorial.\n\n**Faktorial** adalah perkalian berturut-turut dari 1 hingga N.\n\n**Rumus:**\n- 5! = 5 × 4 × 3 × 2 × 1 = 120\n- 4! = 4 × 3 × 2 × 1 = 24\n- 3! = 3 × 2 × 1 = 6\n- 1! = 1\n- 0! = 1 (khusus)\n\n**Contoh Implementasi:**\n```javascript\nfunction faktorial(n) {\n  let hasil = 1;\n  for (let i = 1; i <= n; i++) {\n    hasil *= i; // hasil = hasil * i\n  }\n  return hasil;\n}\n\nconsole.log(faktorial(5)); // Output: 120\n```\n\n**Perbedaan For vs While:**\n- **For**: Tahu berapa kali harus loop → `for (let i = 1; i <= n; i++)`\n- **While**: Loop sampai kondisi terpenuhi → `while (i <= n) { ... i++; }`\n\n### Misi\nBuatlah function `solution` yang menerima parameter `n` (number) dan mengembalikan hasil faktorial dari n (number).\n\n**Contoh:**\n- Input: 5 → Output: 120 (5×4×3×2×1)\n- Input: 3 → Output: 6 (3×2×1)\n- Input: 0 → Output: 1 (faktorial 0 adalah 1)\n- Input: 1 → Output: 1",
+    "starterCode": "function solution(n) {\n  // Tulis kodemu di sini\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Buat variabel hasil = 1, lalu kalikan hasil dengan setiap angka dari 1 sampai n."
+      },
+      {
+        "level": 2,
+        "text": "Gunakan loop dari i = 1 sampai i <= n, lalu hasil *= i (hasil dikali dengan i)."
+      },
+      {
+        "level": 3,
+        "text": "let hasil = 1;\nfor (let i = 1; i <= n; i++) {\n  hasil *= i;\n}\nreturn hasil;"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [5],
+        "expected": 120,
+        "description": "Test faktorial 5 (5×4×3×2×1)"
+      },
+      {
+        "input": [3],
+        "expected": 6,
+        "description": "Test faktorial 3 (3×2×1)"
+      },
+      {
+        "input": [0],
+        "expected": 1,
+        "description": "Test edge case faktorial 0 (harus 1)"
+      },
+      {
+        "input": [1],
+        "expected": 1,
+        "description": "Test edge case faktorial 1"
+      },
+      {
+        "input": [7],
+        "expected": 5040,
+        "description": "Test faktorial 7 (angka lebih besar)"
+      }
+    ]
+  },
+  {
+    "id": "js-loops-hard-01",
+    "title": "Cek Bilangan Prima",
+    "topic": "Loops",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\n**Bilangan Prima** adalah bilangan bulat lebih dari 1 yang hanya bisa dibagi oleh 1 dan dirinya sendiri.\n\n**Contoh:**\n- Prima: 2, 3, 5, 7, 11, 13, 17, 19, 23...\n- Bukan Prima: 1, 4, 6, 8, 9, 10, 12...\n\n**Cara Cek Prima:**\n1. Angka kurang dari 2 → Bukan Prima\n2. Angka 2 → Prima (satu-satunya prima genap)\n3. Loop dari 2 sampai akar kuadrat angka\n4. Jika ada yang bisa membagi habis → Bukan Prima\n5. Jika tidak ada → Prima\n\n**Break & Continue:**\n```javascript\n// break: keluar dari loop\nfor (let i = 1; i <= 10; i++) {\n  if (i === 5) break; // berhenti di 5\n  console.log(i); // 1, 2, 3, 4\n}\n\n// continue: skip iterasi ini, lanjut ke berikutnya\nfor (let i = 1; i <= 5; i++) {\n  if (i === 3) continue; // skip 3\n  console.log(i); // 1, 2, 4, 5\n}\n```\n\n**Optimasi:**\nTidak perlu cek sampai N, cukup sampai √N (akar kuadrat N).\n\n**Contoh:**\nCek 25 prima atau bukan?\n- √25 = 5\n- Cek pembagi: 2, 3, 4, 5\n- 25 ÷ 5 = 5 (habis dibagi) → Bukan Prima\n\n### Misi\nBuatlah function `solution` yang menerima parameter `angka` (number) dan mengembalikan:\n- `true` jika angka adalah bilangan prima\n- `false` jika bukan bilangan prima\n\n**Contoh:**\n- Input: 7 → Output: true (prima)\n- Input: 10 → Output: false (bisa dibagi 2 dan 5)\n- Input: 2 → Output: true (prima terkecil)\n- Input: 1 → Output: false (bukan prima)",
+    "starterCode": "function solution(angka) {\n  // Tulis kodemu di sini\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Cek edge case: jika angka < 2 return false, jika angka === 2 return true. Lalu loop dari 2 sampai akar kuadrat angka untuk cek pembagi."
+      },
+      {
+        "level": 2,
+        "text": "Gunakan loop for dari i = 2 sampai i <= Math.sqrt(angka). Jika angka % i === 0, berarti ada pembagi, return false. Jika loop selesai tanpa return false, berarti prima, return true."
+      },
+      {
+        "level": 3,
+        "text": "if (angka < 2) return false;\nif (angka === 2) return true;\nfor (let i = 2; i <= Math.sqrt(angka); i++) {\n  if (angka % i === 0) return false;\n}\nreturn true;"
+      }
+    ],
+    "testCases": [
+      { "input": [7], "expected": true, "description": "Test angka prima 7" },
+      {
+        "input": [10],
+        "expected": false,
+        "description": "Test angka bukan prima 10 (dibagi 2 dan 5)"
+      },
+      {
+        "input": [2],
+        "expected": true,
+        "description": "Test prima terkecil yaitu 2"
+      },
+      {
+        "input": [1],
+        "expected": false,
+        "description": "Test edge case angka 1 (bukan prima)"
+      },
+      { "input": [17], "expected": true, "description": "Test angka prima 17" },
+      {
+        "input": [20],
+        "expected": false,
+        "description": "Test angka bukan prima 20"
+      },
+      {
+        "input": [29],
+        "expected": true,
+        "description": "Test angka prima besar 29"
+      },
+      {
+        "input": [100],
+        "expected": false,
+        "description": "Test angka besar bukan prima 100"
+      }
+    ]
+  }
+]

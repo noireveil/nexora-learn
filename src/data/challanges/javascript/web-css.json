@@ -1,0 +1,95 @@
+[
+  {
+    "id": "web-css-easy-01",
+    "title": "Warnai Dunia (Color)",
+    "topic": "CSS Logic",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nCSS digunakan untuk menghias HTML. Property paling dasar:\n- `color`: Warna teks.\n- `background-color`: Warna latar.\n\nKode warna bisa pakai nama (`red`) atau Hex (`#FF0000`).\n\n### Misi\nBuat function `solution()` yang me-return string CSS untuk:\n**\"Teks berwarna merah dan latar belakang hitam.\"**\n\nFormat: `color: red; background-color: black;`",
+    "starterCode": "function solution() {\n  // Return properti CSS beserta titik komanya (;)\n  return \"\";\n}",
+    "hints": [
+      { "level": 1, "text": "Jangan lupa titik dua (:) dan titik koma (;)." },
+      {
+        "level": 2,
+        "text": "Urutan tidak berpengaruh, tapi ikuti instruksi soal."
+      },
+      { "level": 3, "text": "return \"color: red; background-color: black;\";" }
+    ],
+    "testCases": [
+      {
+        "input": [],
+        "expected": "color: red; background-color: black;",
+        "description": "Cek property warna"
+      }
+    ]
+  },
+  {
+    "id": "web-css-med-01",
+    "title": "Selector Jitu (Class & ID)",
+    "topic": "CSS Logic",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nUntuk menarget elemen spesifik:\n- **Class** pakai titik (`.nama-class`). Bisa banyak elemen.\n- **ID** pakai pagar (`#nama-id`). Hanya satu elemen.\n\n### Misi\nKita ingin mengubah warna elemen dengan **ID** `tombol` menjadi `blue`.\n\nReturn string CSS lengkap dengan selectornya.\nTarget: `#tombol { color: blue; }`",
+    "starterCode": "function solution() {\n  // Selector { property: value; }\n  return \"\";\n}",
+    "hints": [
+      { "level": 1, "text": "Gunakan tanda pagar # untuk ID." },
+      { "level": 2, "text": "Bungkus property dengan kurung kurawal {}." },
+      { "level": 3, "text": "return \"#tombol { color: blue; }\";" }
+    ],
+    "testCases": [
+      {
+        "input": [],
+        "expected": "#tombol { color: blue; }",
+        "description": "Selector ID tombol"
+      }
+    ]
+  },
+  {
+    "id": "web-css-med-02",
+    "title": "Box Model (Margin & Padding)",
+    "topic": "CSS Logic",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nSetiap elemen di web adalah kotak.\n- **Padding**: Jarak isi ke bingkai (dalam).\n- **Margin**: Jarak bingkai ke elemen lain (luar).\n- **Border**: Garis bingkai.\n\n### Misi\nBuat elemen punya jarak dalam `10px` dan garis pinggir `1px solid black`.\n\nReturn: `padding: 10px; border: 1px solid black;`",
+    "starterCode": "function solution() {\n  // Perhatikan spasi!\n  return \"\";\n}",
+    "hints": [
+      { "level": 1, "text": "padding: 10px;" },
+      { "level": 2, "text": "border: 1px solid black;" },
+      {
+        "level": 3,
+        "text": "return \"padding: 10px; border: 1px solid black;\";"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [],
+        "expected": "padding: 10px; border: 1px solid black;",
+        "description": "Cek box model properties"
+      }
+    ]
+  },
+  {
+    "id": "web-css-hard-01",
+    "title": "Flexbox Center (Layouting)",
+    "topic": "CSS Logic",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\n**Flexbox** adalah teknik layout modern.\nUntuk membuat konten berada persis di **tengah-tengah** (Center), kita butuh 3 mantra:\n1. `display: flex;`\n2. `justify-content: center;` (Horizontal)\n3. `align-items: center;` (Vertikal)\n\n### Misi\nReturn string CSS untuk membuat elemen menjadi Flex Container dan isinya rata tengah (center) di kedua sumbu.",
+    "starterCode": "function solution() {\n  // Tulis 3 properti flexbox secara berurutan\n  return \"\";\n}",
+    "hints": [
+      { "level": 1, "text": "display: flex;" },
+      { "level": 2, "text": "justify-content: center;" },
+      {
+        "level": 3,
+        "text": "return \"display: flex; justify-content: center; align-items: center;\";"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [],
+        "expected": "display: flex; justify-content: center; align-items: center;",
+        "description": "Centering div sempurna"
+      }
+    ]
+  }
+]

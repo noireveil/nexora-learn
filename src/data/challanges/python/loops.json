@@ -1,0 +1,168 @@
+[
+  {
+    "id": "py-loops-easy-01",
+    "title": "Ganjil atau Genap? (If/Else)",
+    "topic": "Python Loops & Logic",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nLogika percabangan di Python sangat bersih. Tidak perlu kurung kurawal `{}`, cukup titik dua `:` dan indentasi.\n\n**Syntax:**\n```python\nif kondisi:\n    aksi_true\nelse:\n    aksi_false\n```\n\n### Misi\nBuatlah fungsi `solution(angka)`.\n\nJika `angka` habis dibagi 2 (genap), return string `\"Genap\"`.\nJika tidak (ganjil), return string `\"Ganjil\"`.",
+    "starterCode": "def solution(angka):\n    # Cek modulus % 2\n    pass",
+    "hints": [
+      { "level": 1, "text": "Gunakan operator modulus: angka % 2 == 0." },
+      {
+        "level": 2,
+        "text": "Jangan lupa titik dua ':' di akhir baris if dan else."
+      },
+      {
+        "level": 3,
+        "text": "if angka % 2 == 0:\n        return \"Genap\"\n    else:\n        return \"Ganjil\""
+      }
+    ],
+    "testCases": [
+      {
+        "input": [10],
+        "expected": "Genap",
+        "description": "10 adalah Genap"
+      },
+      {
+        "input": [7],
+        "expected": "Ganjil",
+        "description": "7 adalah Ganjil"
+      },
+      {
+        "input": [0],
+        "expected": "Genap",
+        "description": "0 dianggap Genap"
+      }
+    ]
+  },
+  {
+    "id": "py-loops-easy-02",
+    "title": "Range Ajaib (For Loop)",
+    "topic": "Python Loops & Logic",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nUntuk melakukan looping angka, Python menggunakan fungsi `range(stop)`.\n\n- `range(5)` akan menghasilkan: `0, 1, 2, 3, 4` (5 tidak ikut).\n\n**Contoh:**\n```python\nfor i in range(3):\n    print(i) # Output: 0, 1, 2\n```\n\n### Misi\nBuatlah fungsi `solution(n)`.\nTugasmu adalah mengembalikan sebuah **list** berisi angka dari `0` sampai `n-1`.\n\n*Tips: Kamu bisa langsung mengubah range menjadi list dengan `list(range(n))`.*",
+    "starterCode": "def solution(n):\n    # Gunakan list() dan range()\n    pass",
+    "hints": [
+      { "level": 1, "text": "Fungsi range(n) membuat urutan angka." },
+      {
+        "level": 2,
+        "text": "Fungsi list(...) mengubah urutan tersebut menjadi list."
+      },
+      { "level": 3, "text": "return list(range(n))" }
+    ],
+    "testCases": [
+      {
+        "input": [5],
+        "expected": [0, 1, 2, 3, 4],
+        "description": "Range sampai 5"
+      },
+      {
+        "input": [3],
+        "expected": [0, 1, 2],
+        "description": "Range sampai 3"
+      }
+    ]
+  },
+  {
+    "id": "py-loops-medium-01",
+    "title": "Grading Nilai (Elif)",
+    "topic": "Python Loops & Logic",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nJika kondisinya banyak, gunakan `elif` (singkatan dari *else if*).\n\n**Syntax:**\n```python\nif nilai > 90:\n    return \"A\"\nelif nilai > 80:\n    return \"B\"\nelse:\n    return \"C\"\n```\n\n### Misi\nBuat fungsi `solution(skor)` untuk menentukan Grade:\n1. Skor >= 85: Return `\"A\"`\n2. Skor >= 70: Return `\"B\"`\n3. Sisanya: Return `\"C\"`",
+    "starterCode": "def solution(skor):\n    # Gunakan if, elif, dan else\n    pass",
+    "hints": [
+      { "level": 1, "text": "Cek urutan dari yang terbesar (85 dulu)." },
+      { "level": 2, "text": "Gunakan syntax 'elif' untuk kondisi kedua." },
+      {
+        "level": 3,
+        "text": "if skor >= 85:\n        return \"A\"\n    elif skor >= 70:\n        return \"B\"\n    else:\n        return \"C\""
+      }
+    ],
+    "testCases": [
+      {
+        "input": [90],
+        "expected": "A",
+        "description": "Skor 90 dapat A"
+      },
+      {
+        "input": [75],
+        "expected": "B",
+        "description": "Skor 75 dapat B"
+      },
+      {
+        "input": [60],
+        "expected": "C",
+        "description": "Skor 60 dapat C"
+      }
+    ]
+  },
+  {
+    "id": "py-loops-medium-02",
+    "title": "Total Belanja (For In List)",
+    "topic": "Python Loops & Logic",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nLooping di Python paling enak dipakai untuk membaca List. Kita tidak perlu pusing dengan index `i`.\n\n**Syntax:**\n```python\nfor item in daftar_barang:\n    # lakukan sesuatu dengan item\n```\n\n### Misi\nBuat fungsi `solution(harga_barang)` yang menerima list angka.\nHitung **Total Harga** dari semua barang tersebut menggunakan `for` loop (Manual, jangan pakai `sum()`).",
+    "starterCode": "def solution(harga_barang):\n    total = 0\n    # Loop setiap harga, tambahkan ke total\n    \n    return total",
+    "hints": [
+      { "level": 1, "text": "Buat variabel total = 0 di awal." },
+      { "level": 2, "text": "Gunakan 'for harga in harga_barang:'" },
+      {
+        "level": 3,
+        "text": "for harga in harga_barang:\n        total = total + harga"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [[1000, 2000, 5000]],
+        "expected": 8000,
+        "description": "Total 1000+2000+5000"
+      },
+      {
+        "input": [[500, 500]],
+        "expected": 1000,
+        "description": "Total 500+500"
+      }
+    ]
+  },
+  {
+    "id": "py-loops-hard-01",
+    "title": "Cari Angka Terbesar (Manual Logic)",
+    "topic": "Python Loops & Logic",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\nSalah satu logika dasar algoritma adalah mencari nilai maksimum/minimum secara manual.\n\nIdenya: Anggap angka pertama adalah \"Juara Sementara\". Lalu tantang dengan angka berikutnya. Jika penantang lebih besar, dia jadi juara baru.\n\n### Misi\nBuat fungsi `solution(angka)`.\nKembalikan angka **terbesar** dari list tersebut.\n\n*Tantangan: Cobalah buat logic loop sendiri, jangan pakai fungsi bawaan `max()`.*",
+    "starterCode": "def solution(angka):\n    terbesar = angka[0] # Juara sementara\n    \n    # Loop dari angka kedua sampai habis\n    for x in angka:\n        # Cek jika x lebih besar dari terbesar\n        pass\n        \n    return terbesar",
+    "hints": [
+      { "level": 1, "text": "Loop setiap 'x' di dalam list 'angka'." },
+      {
+        "level": 2,
+        "text": "Jika x > terbesar, maka update nilai terbesar = x."
+      },
+      {
+        "level": 3,
+        "text": "for x in angka:\n        if x > terbesar:\n            terbesar = x"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [[10, 50, 20, 5]],
+        "expected": 50,
+        "description": "Maksimum adalah 50"
+      },
+      {
+        "input": [[-10, -5, -20]],
+        "expected": -5,
+        "description": "Hati-hati angka negatif, -5 paling besar"
+      },
+      {
+        "input": [[100, 100, 90]],
+        "expected": 100,
+        "description": "Angka kembar"
+      }
+    ]
+  }
+]

@@ -1,0 +1,101 @@
+[
+  {
+    "id": "web-html-easy-01",
+    "title": "Judul & Paragraf",
+    "topic": "HTML Structure",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nHTML adalah kerangka web. Elemen dasar teks adalah:\n- `<h1>` s.d `<h6>`: Judul (Heading).\n- `<p>`: Paragraf.\n- `<span>`: Teks kecil (inline).\n\n**Syntax:** `<tag>Isi Konten</tag>`\n\n### Misi\nBuat function `solution()` yang mengembalikan string HTML berisi:\n1. Judul H1 dengan teks: `\"Nexora\"`\n2. Paragraf dengan teks: `\"Belajar Koding\"`\n\n**Output Harapan:** `\"<h1>Nexora</h1><p>Belajar Koding</p>\"`",
+    "starterCode": "function solution() {\n  // Return string HTML gabungan\n  return \"\";\n}",
+    "hints": [
+      { "level": 1, "text": "Buat string \"<h1>Nexora</h1>\"." },
+      { "level": 2, "text": "Sambung dengan \"<p>Belajar Koding</p>\"." },
+      { "level": 3, "text": "return \"<h1>Nexora</h1><p>Belajar Koding</p>\";" }
+    ],
+    "testCases": [
+      {
+        "input": [],
+        "expected": "<h1>Nexora</h1><p>Belajar Koding</p>",
+        "description": "Cek struktur H1 dan P"
+      }
+    ]
+  },
+  {
+    "id": "web-html-med-01",
+    "title": "Daftar Belanja (Lists)",
+    "topic": "HTML Structure",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nAda 2 jenis list:\n1. **UL** (Unordered/Bulat): `<ul><li>Item</li></ul>`\n2. **OL** (Ordered/Angka): `<ol><li>Item</li></ol>`\n\n### Misi\nBuat function `solution()` yang mengembalikan Unordered List (`<ul>`) berisi 2 item (`<li>`):\n1. `\"Susu\"`\n2. `\"Roti\"`\n\n**PENTING:** Jangan gunakan spasi/enter antar tag agar test case lolos.",
+    "starterCode": "function solution() {\n  // Return string <ul><li>...</li>...</ul>\n}",
+    "hints": [
+      { "level": 1, "text": "Bungkus li dengan ul." },
+      {
+        "level": 2,
+        "text": "Urutan: ul buka -> li Susu -> li Roti -> ul tutup."
+      },
+      { "level": 3, "text": "return \"<ul><li>Susu</li><li>Roti</li></ul>\";" }
+    ],
+    "testCases": [
+      {
+        "input": [],
+        "expected": "<ul><li>Susu</li><li>Roti</li></ul>",
+        "description": "List Susu dan Roti"
+      }
+    ]
+  },
+  {
+    "id": "web-html-med-02",
+    "title": "Tabel Data (Table)",
+    "topic": "HTML Structure",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nStruktur Tabel:\n- `<table>`: Wadah utama.\n- `<tr>`: Baris (Table Row).\n- `<td>`: Sel data (Table Data).\n\n### Misi\nBuat tabel 1 baris 2 kolom:\nBaris pertama berisi data `\"A\"` dan `\"B\"`.\n\nFormat String: `<table><tr><td>A</td><td>B</td></tr></table>`",
+    "starterCode": "function solution() {\n  return \"\";\n}",
+    "hints": [
+      { "level": 1, "text": "Ingat urutannya: table > tr > td." },
+      { "level": 2, "text": "Jangan lupa penutup tag (tanda slash /)." },
+      {
+        "level": 3,
+        "text": "return \"<table><tr><td>A</td><td>B</td></tr></table>\";"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [],
+        "expected": "<table><tr><td>A</td><td>B</td></tr></table>",
+        "description": "Tabel 1x2"
+      }
+    ]
+  },
+  {
+    "id": "web-html-hard-01",
+    "title": "Form Login (Input & Button)",
+    "topic": "HTML Structure",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\nInteraksi user membutuhkan Form.\n- `<input type=\"text\">`: Kotak isian.\n- `<input type=\"password\">`: Kotak sandi.\n- `<button>`: Tombol klik.\n\n### Misi\nSusun string HTML untuk form login sederhana (tanpa tag `<form>`):\n1. Input username (type text)\n2. Input password (type password)\n3. Tombol dengan teks `\"Login\"`\n\n**Target:** `<input type=\"text\"><input type=\"password\"><button>Login</button>`",
+    "starterCode": "function solution() {\n  // Hati-hati dengan tanda kutip dua (\") di dalam string\n  // Gunakan kutip satu (') untuk membungkus string luarnya\n  return '';\n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Gunakan kutip satu untuk string JS: return '<input...>'."
+      },
+      {
+        "level": 2,
+        "text": "Atau escape kutip dua: \"<input type=\\\"text\\\">\"."
+      },
+      {
+        "level": 3,
+        "text": "return '<input type=\"text\"><input type=\"password\"><button>Login</button>';"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [],
+        "expected": "<input type=\"text\"><input type=\"password\"><button>Login</button>",
+        "description": "Validasi elemen form"
+      }
+    ]
+  }
+]

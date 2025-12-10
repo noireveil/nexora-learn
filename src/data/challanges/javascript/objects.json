@@ -1,0 +1,184 @@
+[
+  {
+    "id": "js-objects-easy-01",
+    "title": "Kartu Identitas (Property Access)",
+    "topic": "Objects",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\n**Object** adalah kumpulan data yang memiliki label (key) dan nilai (value). Ini mirip seperti biodata.\n\n**Contoh:**\n```javascript\nlet mobil = {\n  merk: \"Toyota\",\n  warna: \"Hitam\",\n  tahun: 2020\n};\n```\n\nUntuk mengakses datanya, kita gunakan **Dot Notation** (titik).\n- `mobil.merk` → \"Toyota\"\n- `mobil.tahun` → 2020\n\n### Misi\nBuatlah function `solution` yang menerima parameter object `user`.\n\nObject `user` memiliki properti: `nama`, `umur`, dan `pekerjaan`.\nTugasmu adalah mengembalikan string dengan format:\n`\"[nama] adalah seorang [pekerjaan]\"`.",
+    "starterCode": "function solution(user) {\n  // Akses user.nama dan user.pekerjaan\n  \n}",
+    "hints": [
+      { "level": 1, "text": "Gunakan user.nama untuk mengambil nama." },
+      {
+        "level": 2,
+        "text": "Gunakan Template Literal `${...}` untuk menggabungkan string."
+      },
+      {
+        "level": 3,
+        "text": "return `${user.nama} adalah seorang ${user.pekerjaan}`;"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [{ "nama": "Budi", "umur": 25, "pekerjaan": "Programmer" }],
+        "expected": "Budi adalah seorang Programmer",
+        "description": "Test data Budi"
+      },
+      {
+        "input": [{ "nama": "Siti", "umur": 30, "pekerjaan": "Dokter" }],
+        "expected": "Siti adalah seorang Dokter",
+        "description": "Test data Siti"
+      }
+    ]
+  },
+  {
+    "id": "js-objects-easy-02",
+    "title": "Upgrade Status (Add Property)",
+    "topic": "Objects",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nObject itu dinamis! Kita bisa mengubah nilai yang sudah ada, atau menambahkan properti baru kapan saja.\n\n**Mengubah:**\n`mobil.warna = \"Merah\";` (Warna berubah jadi Merah)\n\n**Menambah:**\n`mobil.pemilik = \"Andi\";` (Menambah key baru 'pemilik')\n\n### Misi\nBuatlah function `solution` yang menerima object `akun`.\n\nTugasmu:\n1. Ubah properti `level` menjadi `\"Premium\"`.\n2. Tambahkan properti baru `isActive` dengan nilai `true`.\n3. Return object `akun` yang sudah dimodifikasi.",
+    "starterCode": "function solution(akun) {\n  // Modifikasi object di sini\n  \n  return akun;\n}",
+    "hints": [
+      { "level": 1, "text": "Gunakan akun.level = ... untuk mengubah." },
+      {
+        "level": 2,
+        "text": "Gunakan akun.isActive = ... untuk menambah properti baru."
+      },
+      {
+        "level": 3,
+        "text": "akun.level = \"Premium\";\nakun.isActive = true;\nreturn akun;"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [{ "username": "player1", "level": "Basic" }],
+        "expected": {
+          "username": "player1",
+          "level": "Premium",
+          "isActive": true
+        },
+        "description": "Upgrade akun Basic ke Premium"
+      },
+      {
+        "input": [{ "username": "admin", "level": "Gold" }],
+        "expected": {
+          "username": "admin",
+          "level": "Premium",
+          "isActive": true
+        },
+        "description": "Upgrade akun Gold"
+      }
+    ]
+  },
+  {
+    "id": "js-objects-medium-01",
+    "title": "Kirim Data (JSON.stringify)",
+    "topic": "Objects",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nSaat mengirim data ke server (Backend), kita tidak bisa mengirim Object JavaScript mentah. Kita harus mengubahnya menjadi **String JSON**.\n\nMethod sakti: `JSON.stringify(data)`\n\n**Contoh:**\n```javascript\nlet data = { id: 1, nama: \"A\" };\nlet paket = JSON.stringify(data);\n// Output string: '{\"id\":1,\"nama\":\"A\"}'\n```\n\n### Misi\nBuatlah function `solution` yang menerima object `pesanan`.\n\nKembalikan object tersebut dalam bentuk **String JSON**.",
+    "starterCode": "function solution(pesanan) {\n  // Ubah ke JSON String\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Gunakan method bawaan JavaScript JSON.stringify()."
+      },
+      {
+        "level": 2,
+        "text": "Masukkan parameter pesanan ke dalam kurung method tersebut."
+      },
+      { "level": 3, "text": "return JSON.stringify(pesanan);" }
+    ],
+    "testCases": [
+      {
+        "input": [{ "item": "Laptop", "qty": 1 }],
+        "expected": "{\"item\":\"Laptop\",\"qty\":1}",
+        "description": "Convert object sederhana"
+      },
+      {
+        "input": [{ "id": 123, "active": true }],
+        "expected": "{\"id\":123,\"active\":true}",
+        "description": "Convert object dengan boolean"
+      }
+    ]
+  },
+  {
+    "id": "js-objects-medium-02",
+    "title": "Lokasi Pengiriman (Nested Object)",
+    "topic": "Objects",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nObject bisa berisi object lain di dalamnya. Ini disebut **Nested Object** (Objek Bersarang).\n\n**Contoh:**\n```javascript\nlet user = {\n  nama: \"Budi\",\n  alamat: {\n    kota: \"Jakarta\",\n    kodePos: 12345\n  }\n};\n```\nUntuk mengakses `kota`, kita harus masuk satu per satu: `user.alamat.kota`.\n\n### Misi\nBuatlah function `solution` yang menerima object `transaksi`.\n\nObject `transaksi` memiliki struktur:\n`{ id: 1, detail: { pengirim: \"A\", penerima: \"B\" } }`\n\nTugasmu adalah mengembalikan nama **penerima**.",
+    "starterCode": "function solution(transaksi) {\n  // Akses properti di dalam properti\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Perhatikan struktur object. Penerima ada di dalam properti 'detail'."
+      },
+      { "level": 2, "text": "Gunakan dot notation dua kali." },
+      { "level": 3, "text": "return transaksi.detail.penerima;" }
+    ],
+    "testCases": [
+      {
+        "input": [
+          { "id": 1, "detail": { "pengirim": "Toko A", "penerima": "Budi" } }
+        ],
+        "expected": "Budi",
+        "description": "Ambil penerima Budi"
+      },
+      {
+        "input": [
+          { "id": 99, "detail": { "pengirim": "Gudang", "penerima": "Siti" } }
+        ],
+        "expected": "Siti",
+        "description": "Ambil penerima Siti"
+      }
+    ]
+  },
+  {
+    "id": "js-objects-hard-01",
+    "title": "Total Belanja (Array of Objects)",
+    "topic": "Objects",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\nDi aplikasi e-commerce, Keranjang Belanja biasanya berbentuk **Array of Objects**.\n\nContoh:\n```javascript\nlet cart = [\n  { nama: \"Buku\", harga: 5000, qty: 2 },\n  { nama: \"Pulpen\", harga: 2000, qty: 5 }\n];\n```\n\nUntuk menghitung total, kita perlu:\n1. Looping array.\n2. Di setiap item, akses `harga` dan `qty`.\n3. Kalikan `harga * qty`, lalu tambahkan ke total.\n\n### Misi\nBuatlah function `solution` yang menerima array `keranjang`.\n\nHitung dan kembalikan **Total Harga** (number) dari semua barang di keranjang tersebut.",
+    "starterCode": "function solution(keranjang) {\n  let total = 0;\n  // Loop array keranjang, hitung subtotal (harga * qty), tambahkan ke total\n  \n  return total;\n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Gunakan for loop untuk mengakses setiap barang (item)."
+      },
+      {
+        "level": 2,
+        "text": "Setiap item adalah object. Akses harganya dengan item.harga dan jumlahnya dengan item.qty."
+      },
+      {
+        "level": 3,
+        "text": "for (let i=0; i < keranjang.length; i++) {\n  total += keranjang[i].harga * keranjang[i].qty;\n}"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [
+          [
+            { "nama": "Roti", "harga": 5000, "qty": 2 },
+            { "nama": "Susu", "harga": 10000, "qty": 1 }
+          ]
+        ],
+        "expected": 20000,
+        "description": "(5000*2) + (10000*1) = 20000"
+      },
+      {
+        "input": [[{ "nama": "Permen", "harga": 500, "qty": 10 }]],
+        "expected": 5000,
+        "description": "Satu jenis barang"
+      },
+      {
+        "input": [[]],
+        "expected": 0,
+        "description": "Keranjang kosong"
+      }
+    ]
+  }
+]

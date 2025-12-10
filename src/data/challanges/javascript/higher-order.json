@@ -1,0 +1,128 @@
+[
+  {
+    "id": "js-hof-easy-01",
+    "title": "Diskon Spesial (.map)",
+    "topic": "Higher Order Functions",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nMethod `.map()` digunakan untuk **mengubah** setiap elemen di dalam array menjadi bentuk baru, tanpa mengubah array aslinya.\n\nRumus: `array.map(item => item * 2)`\n\n**Contoh:**\n```javascript\nconst angka = [1, 2, 3];\nconst kaliDua = angka.map(x => x * 2);\n// Hasil: [2, 4, 6]\n```\n\n### Misi\nBuatlah function `solution` yang menerima array `harga` (number).\n\nToko sedang mengadakan **Diskon 50%** untuk semua barang. Tugasmu adalah mengembalikan array baru berisi harga yang sudah dipotong diskon.\n\nContoh: Input `[10000, 5000]` → Output `[5000, 2500]`",
+    "starterCode": "function solution(harga) {\n  // Gunakan .map() untuk membagi 2 setiap harga\n  \n}",
+    "hints": [
+      { "level": 1, "text": "Gunakan method harga.map()." },
+      {
+        "level": 2,
+        "text": "Di dalam map, kalikan setiap item dengan 0.5 atau bagi dengan 2."
+      },
+      { "level": 3, "text": "return harga.map(item => item * 0.5);" }
+    ],
+    "testCases": [
+      {
+        "input": [[10000, 20000, 4000]],
+        "expected": [5000, 10000, 2000],
+        "description": "Diskon 50% harga normal"
+      },
+      {
+        "input": [[500, 100]],
+        "expected": [250, 50],
+        "description": "Diskon harga kecil"
+      }
+    ]
+  },
+  {
+    "id": "js-hof-easy-02",
+    "title": "Seleksi Kelulusan (.filter)",
+    "topic": "Higher Order Functions",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nMethod `.filter()` berfungsi untuk **menyaring** data. Elemen yang lolos seleksi (kondisi `true`) akan dimasukkan ke array baru.\n\n**Contoh:**\n```javascript\nconst nilai = [50, 80, 90];\nconst lulus = nilai.filter(x => x >= 75);\n// Hasil: [80, 90]\n```\n\n### Misi\nBuatlah function `solution` yang menerima array `nilaiSiswa`.\n\nKembalikan array baru yang hanya berisi nilai yang **Lulus KKM** (Nilai >= 75).",
+    "starterCode": "function solution(nilaiSiswa) {\n  // Gunakan .filter() untuk menyaring nilai >= 75\n  \n}",
+    "hints": [
+      { "level": 1, "text": "Gunakan method nilaiSiswa.filter()." },
+      { "level": 2, "text": "Kondisinya adalah item >= 75." },
+      { "level": 3, "text": "return nilaiSiswa.filter(nilai => nilai >= 75);" }
+    ],
+    "testCases": [
+      {
+        "input": [[50, 80, 60, 90, 100]],
+        "expected": [80, 90, 100],
+        "description": "Filter nilai di atas KKM"
+      },
+      {
+        "input": [[40, 50, 60]],
+        "expected": [],
+        "description": "Tidak ada yang lulus"
+      }
+    ]
+  },
+  {
+    "id": "js-hof-medium-01",
+    "title": "Ambil Nama User (.map Object)",
+    "topic": "Higher Order Functions",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\n`.map()` sangat powerful jika digabungkan dengan **Array of Objects**. Kita bisa mengekstrak data tertentu saja dari object yang kompleks.\n\n**Contoh:**\nKita punya data user lengkap (id, email, password), tapi kita cuma butuh list email-nya saja.\n\n```javascript\nconst users = [{id: 1, email: 'a@mail.com'}, {id: 2, email: 'b@mail.com'}];\nconst listEmail = users.map(user => user.email);\n// Hasil: ['a@mail.com', 'b@mail.com']\n```\n\n### Misi\nBuatlah function `solution` yang menerima array object `dataUser`. Setiap object berisi `{ nama, umur, role }`.\n\nTugasmu adalah mengembalikan **Array string** yang hanya berisi **nama** mereka saja.",
+    "starterCode": "function solution(dataUser) {\n  // Return array berisi nama saja\n  \n}",
+    "hints": [
+      { "level": 1, "text": "Gunakan .map() pada dataUser." },
+      {
+        "level": 2,
+        "text": "Callback function-nya menerima object user, return user.nama."
+      },
+      { "level": 3, "text": "return dataUser.map(user => user.nama);" }
+    ],
+    "testCases": [
+      {
+        "input": [
+          [
+            { "nama": "Budi", "umur": 20 },
+            { "nama": "Siti", "umur": 25 }
+          ]
+        ],
+        "expected": ["Budi", "Siti"],
+        "description": "Ekstrak nama Budi dan Siti"
+      },
+      {
+        "input": [[{ "nama": "Admin", "role": "Superadmin" }]],
+        "expected": ["Admin"],
+        "description": "Ekstrak nama Admin"
+      }
+    ]
+  },
+  {
+    "id": "js-hof-hard-01",
+    "title": "Hitung Omset (.reduce)",
+    "topic": "Higher Order Functions",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\n`.reduce()` digunakan untuk merangkum (akumulasi) semua elemen array menjadi **satu nilai tunggal** (misalnya total penjumlahan).\n\n**Syntax:**\n`array.reduce((total, item) => total + item, nilaiAwal)`\n\n**Contoh:**\n```javascript\nconst uang = [1000, 2000, 5000];\nconst total = uang.reduce((acc, curr) => acc + curr, 0);\n// Proses: 0+1000 -> 1000+2000 -> 3000+5000 = 8000\n```\n\n### Misi\nBuatlah function `solution` yang menerima array `transaksi` (number).\n\nHitunglah **Total Omset** (jumlah seluruh angka) menggunakan `.reduce()`.",
+    "starterCode": "function solution(transaksi) {\n  // Gunakan .reduce() untuk menjumlahkan semua\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "reduce menerima 2 argumen: callback function dan nilai awal (0)."
+      },
+      { "level": 2, "text": "Callback-nya: (total, angka) => total + angka." },
+      {
+        "level": 3,
+        "text": "return transaksi.reduce((total, num) => total + num, 0);"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [[10000, 50000, 20000]],
+        "expected": 80000,
+        "description": "Total transaksi normal"
+      },
+      {
+        "input": [[500, 500, 500, 500]],
+        "expected": 2000,
+        "description": "Penjumlahan banyak item kecil"
+      },
+      {
+        "input": [[]],
+        "expected": 0,
+        "description": "Array kosong harus return 0 (nilai awal reduce)"
+      }
+    ]
+  }
+]

@@ -1,0 +1,123 @@
+[
+  {
+    "id": "js-operators-easy-01",
+    "title": "Kalkulator Sederhana",
+    "topic": "Operators",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nOperator aritmatika digunakan untuk melakukan operasi matematika dasar di JavaScript.\n\n**Operator Aritmatika:**\n```javascript\n+ → Penjumlahan (5 + 3 = 8)\n- → Pengurangan (5 - 3 = 2)\n* → Perkalian (5 * 3 = 15)\n/ → Pembagian (6 / 3 = 2)\n% → Modulus/Sisa bagi (5 % 3 = 2)\n** → Pangkat (2 ** 3 = 8)\n```\n\n### Misi\nBuatlah function `solution` yang menerima 3 parameter:\n- `angka1` (number)\n- `operator` (string: '+', '-', '*', '/')\n- `angka2` (number)\n\nFunction harus mengembalikan hasil operasi sesuai operator yang diberikan.\n\n**Contoh:** `solution(10, '+', 5)` → `15`",
+    "starterCode": "function solution(angka1, operator, angka2) {\n  // Tulis kodemu di sini\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Gunakan if-else atau switch-case untuk memeriksa operator apa yang digunakan."
+      },
+      {
+        "level": 2,
+        "text": "Untuk setiap operator, lakukan operasi matematika yang sesuai: if (operator === '+') return angka1 + angka2;"
+      },
+      {
+        "level": 3,
+        "text": "if (operator === '+') return angka1 + angka2;\nelse if (operator === '-') return angka1 - angka2;\ndan seterusnya..."
+      }
+    ],
+    "testCases": [
+      {
+        "input": [10, "+", 5],
+        "expected": 15,
+        "description": "Test penjumlahan sederhana"
+      },
+      {
+        "input": [20, "-", 8],
+        "expected": 12,
+        "description": "Test pengurangan"
+      },
+      { "input": [6, "*", 7], "expected": 42, "description": "Test perkalian" },
+      {
+        "input": [100, "/", 4],
+        "expected": 25,
+        "description": "Test pembagian"
+      }
+    ]
+  },
+  {
+    "id": "js-operators-medium-01",
+    "title": "Cek Angka (Genap/Ganjil)",
+    "topic": "Operators",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\n**Operator Modulus (%)** sangat berguna untuk mengecek sisa pembagian. Operator ini sering dipakai untuk:\n- Mengecek genap/ganjil (angka % 2 === 0 berarti genap)\n- Mengecek kelipatan tertentu\n\n### Misi\nBuatlah function `solution` yang menerima satu `angka`.\n\nKembalikan **ARRAY** dengan urutan berikut:\n1. Tipe (\"genap\" atau \"ganjil\")\n2. Apakah positif? (true/false)\n3. Apakah kelipatan 5? (true/false)\n\n**Contoh:** `solution(10)` → `[\"genap\", true, true]`",
+    "starterCode": "function solution(angka) {\n  // Return array [tipe, isPositif, isKelipatan5]\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Gunakan operator % untuk cek genap/ganjil (angka % 2) dan kelipatan 5 (angka % 5)."
+      },
+      {
+        "level": 2,
+        "text": "Genap jika angka % 2 === 0, positif jika angka > 0, kelipatan 5 jika angka % 5 === 0."
+      },
+      {
+        "level": 3,
+        "text": "return [\n  angka % 2 === 0 ? \"genap\" : \"ganjil\",\n  angka > 0,\n  angka % 5 === 0\n];"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [10],
+        "expected": ["genap", true, true],
+        "description": "Test angka positif genap kelipatan 5"
+      },
+      {
+        "input": [7],
+        "expected": ["ganjil", true, false],
+        "description": "Test angka positif ganjil bukan kelipatan 5"
+      },
+      {
+        "input": [-15],
+        "expected": ["ganjil", false, true],
+        "description": "Test angka negatif kelipatan 5"
+      }
+    ]
+  },
+  {
+    "id": "js-operators-hard-01",
+    "title": "Validasi Password Kompleks",
+    "topic": "Operators",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\nUntuk validasi kompleks, kita perlu menggabungkan berbagai operator Logika (`&&`, `||`) dan String method atau Regex.\n\n### Misi\nBuatlah function `solution` yang mengecek keamanan password.\n\n**Kriteria:** (1) Min 8 char, (2) Huruf Besar, (3) Huruf Kecil, (4) Angka, (5) Simbol (!@#$%^&*).\n\n**Return STRING:**\n- \"Kuat\" (jika memenuhi SEMUA 5 kriteria)\n- \"Sedang\" (jika memenuhi 3-4 kriteria)\n- \"Lemah\" (jika memenuhi < 3 kriteria)",
+    "starterCode": "function solution(password) {\n  // Cek kriteria satu per satu, lalu return 'Kuat'/'Sedang'/'Lemah'\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Cek setiap kriteria satu per satu menggunakan operator perbandingan dan regex."
+      },
+      {
+        "level": 2,
+        "text": "Gunakan password.length >= 8, /[A-Z]/.test(password), dll."
+      },
+      {
+        "level": 3,
+        "text": "Hitung jumlah kriteria yg true. Jika 5 return 'Kuat', jika 3-4 return 'Sedang', sisanya 'Lemah'."
+      }
+    ],
+    "testCases": [
+      {
+        "input": ["Abc123!@"],
+        "expected": "Kuat",
+        "description": "Test password kuat dengan semua kriteria terpenuhi"
+      },
+      {
+        "input": ["Pass123"],
+        "expected": "Sedang",
+        "description": "Test password sedang (kurang simbol)"
+      },
+      {
+        "input": ["abc"],
+        "expected": "Lemah",
+        "description": "Test password lemah"
+      }
+    ]
+  }
+]

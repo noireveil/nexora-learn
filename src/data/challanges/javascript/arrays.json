@@ -1,0 +1,164 @@
+[
+  {
+    "id": "js-arrays-easy-01",
+    "title": "Daftar Absensi",
+    "topic": "Arrays",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nArray adalah variabel yang bisa menampung banyak data sekaligus. Setiap data punya nomor urut yang disebut **index**, dimulai dari **0**.\n\n**Contoh:**\n```javascript\nlet buah = [\"Apel\", \"Jeruk\", \"Mangga\"];\nconsole.log(buah[0]); // \"Apel\"\nconsole.log(buah[2]); // \"Mangga\"\n```\n\n### Misi\nBuatlah function `solution` yang menerima array `siswa`.\n\nTugasmu adalah mengembalikan nama siswa urutan **ke-3** (index ke-2).",
+    "starterCode": "function solution(siswa) {\n  // Ambil data index ke-2\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Ingat, index array dimulai dari 0. Jadi urutan ke-1 adalah index 0."
+      },
+      { "level": 2, "text": "Urutan ke-3 berarti berada di index 2." },
+      { "level": 3, "text": "return siswa[2];" }
+    ],
+    "testCases": [
+      {
+        "input": [["Andi", "Budi", "Caca", "Deni"]],
+        "expected": "Caca",
+        "description": "Ambil siswa ke-3"
+      },
+      {
+        "input": [["A", "B", "Target", "D"]],
+        "expected": "Target",
+        "description": "Ambil elemen target"
+      }
+    ]
+  },
+  {
+    "id": "js-arrays-easy-02",
+    "title": "Tumpukan Piring (Push & Pop)",
+    "topic": "Arrays",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nKita bisa menambah dan menghapus data di array secara dinamis.\n\n- **push(data)**: Menambah data ke urutan paling belakang.\n- **pop()**: Menghapus data paling belakang.\n\n**Contoh:**\n```javascript\nlet angka = [1, 2];\nangka.push(3); // [1, 2, 3]\nangka.pop();   // [1, 2]\n```\n\n### Misi\nBuatlah function `solution` yang menerima array `piring`.\n\nLakukan langkah berikut secara berurutan:\n1. Tambahkan piring baru bernama `\"Piring Kaca\"` ke dalam array.\n2. Hapus satu piring paling belakang (yang baru saja dimasukkan).\n3. Tambahkan lagi `\"Piring Plastik\"`.\n4. Return array `piring` hasil akhirnya.",
+    "starterCode": "function solution(piring) {\n  // Gunakan .push() dan .pop()\n  return piring;\n}",
+    "hints": [
+      { "level": 1, "text": "Gunakan method .push(\"Nama\") untuk menambah." },
+      {
+        "level": 2,
+        "text": "Gunakan method .pop() untuk menghapus elemen terakhir."
+      },
+      {
+        "level": 3,
+        "text": "piring.push(\"Piring Kaca\");\npiring.pop();\npiring.push(\"Piring Plastik\");\nreturn piring;"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [["Piring 1", "Piring 2"]],
+        "expected": ["Piring 1", "Piring 2", "Piring Plastik"],
+        "description": "Simulasi tumpukan piring"
+      },
+      {
+        "input": [[]],
+        "expected": ["Piring Plastik"],
+        "description": "Mulai dari rak kosong"
+      }
+    ]
+  },
+  {
+    "id": "js-arrays-medium-01",
+    "title": "Copy Resep (Slice)",
+    "topic": "Arrays",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nMethod **slice(start, end)** digunakan untuk memotong (menyalin) sebagian isi array menjadi array baru tanpa mengubah array asli.\n\n- `start`: Index mulai ambil.\n- `end`: Index berhenti (tidak termasuk).\n\n**Contoh:**\n```javascript\nlet hewan = [\"Kucing\", \"Anjing\", \"Burung\", \"Ikan\"];\nlet darat = hewan.slice(0, 2); \n// Output: [\"Kucing\", \"Anjing\"]\n```\n\n### Misi\nBuatlah function `solution` yang menerima array `bahanMasakan`.\n\nAmbil bahan dari index ke-1 sampai sebelum index ke-4. Return array potongannya.",
+    "starterCode": "function solution(bahanMasakan) {\n  // Gunakan .slice()\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Method slice membutuhkan 2 parameter: index awal dan index batas akhir."
+      },
+      {
+        "level": 2,
+        "text": "Kita ingin mulai dari index 1, dan berhenti sebelum index 4."
+      },
+      { "level": 3, "text": "return bahanMasakan.slice(1, 4);" }
+    ],
+    "testCases": [
+      {
+        "input": [["Gula", "Garam", "Merica", "Kecap", "Saus"]],
+        "expected": ["Garam", "Merica", "Kecap"],
+        "description": "Ambil index 1, 2, 3"
+      },
+      {
+        "input": [["A", "B", "C", "D", "E", "F"]],
+        "expected": ["B", "C", "D"],
+        "description": "Test huruf"
+      }
+    ]
+  },
+  {
+    "id": "js-arrays-medium-02",
+    "title": "Edit Playlist (Splice)",
+    "topic": "Arrays",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nMethod **splice(start, deleteCount, item...)** adalah method 'sakti' yang bisa menghapus sekaligus menyisipkan elemen di tengah array. **Hati-hati, array asli akan berubah!**\n\n**Syntax:**\n`array.splice(indexMulai, jumlahHapus, barangBaru)`\n\n**Contoh:**\n```javascript\nlet warna = [\"Merah\", \"Hijau\", \"Biru\"];\n// Hapus \"Hijau\" (index 1), ganti dengan \"Kuning\"\nwarna.splice(1, 1, \"Kuning\"); \n// Hasil: [\"Merah\", \"Kuning\", \"Biru\"]\n```\n\n### Misi\nKamu punya playlist lagu. Tugasmu di function `solution(playlist)` adalah:\n1. Pergi ke index ke-2.\n2. Hapus 1 lagu di sana.\n3. Ganti dengan lagu baru: `\"Lagu Hits\"`.\n4. Return playlist yang sudah diedit.",
+    "starterCode": "function solution(playlist) {\n  // Gunakan .splice() untuk mengedit array asli\n  \n  return playlist;\n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Gunakan playlist.splice(index, jumlahHapus, dataBaru)."
+      },
+      { "level": 2, "text": "Index target adalah 2. Jumlah yang dihapus 1." },
+      { "level": 3, "text": "playlist.splice(2, 1, \"Lagu Hits\");" }
+    ],
+    "testCases": [
+      {
+        "input": [["Lagu A", "Lagu B", "Lagu Lama", "Lagu D"]],
+        "expected": ["Lagu A", "Lagu B", "Lagu Hits", "Lagu D"],
+        "description": "Ganti 'Lagu Lama' dengan 'Lagu Hits'"
+      },
+      {
+        "input": [["1", "2", "3", "4"]],
+        "expected": ["1", "2", "Lagu Hits", "4"],
+        "description": "Test angka"
+      }
+    ]
+  },
+  {
+    "id": "js-arrays-hard-01",
+    "title": "Hapus Duplikat (Manual Filter)",
+    "topic": "Arrays",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\nTerkadang data kita kotor dan memiliki nilai ganda (duplikat). Kita perlu membersihkannya agar setiap data bersifat **unik**.\n\nKita bisa menggunakan method `.includes()` atau `.indexOf()` untuk mengecek apakah data sudah ada di array hasil atau belum.\n\n### Misi\nBuatlah function `solution` yang menerima array `angka` (yang mungkin berisi angka kembar).\n\nKembalikan array baru yang **bersih** (tidak ada angka yang sama/double).\n\n**Contoh:**\nInput: `[1, 2, 2, 3, 1]`\nOutput: `[1, 2, 3]`",
+    "starterCode": "function solution(angka) {\n  let unik = [];\n  // Loop array 'angka', jika belum ada di 'unik', maka push\n  \n  return unik;\n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Buat array kosong 'unik'. Loop setiap item di array input."
+      },
+      {
+        "level": 2,
+        "text": "Cek: if (!unik.includes(item)) { unik.push(item) }"
+      },
+      {
+        "level": 3,
+        "text": "for (let i = 0; i < angka.length; i++) {\n  if (!unik.includes(angka[i])) {\n    unik.push(angka[i]);\n  }\n}"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [[1, 2, 2, 3, 3, 3, 4]],
+        "expected": [1, 2, 3, 4],
+        "description": "Hapus angka berulang"
+      },
+      {
+        "input": [[10, 10, 10]],
+        "expected": [10],
+        "description": "Semua angka sama"
+      },
+      {
+        "input": [[1, 2, 3]],
+        "expected": [1, 2, 3],
+        "description": "Sudah unik, tidak berubah"
+      }
+    ]
+  }
+]

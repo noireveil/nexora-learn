@@ -1,0 +1,158 @@
+[
+  {
+    "id": "py-basics-easy-01",
+    "title": "Hello Python!",
+    "topic": "Python Basics",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nSelamat datang di Python! Bahasa ini sangat populer untuk AI dan Data Science karena kodenya mudah dibaca.\n\n**Aturan Emas Python:**\n1.  Tidak butuh titik koma `;` di akhir baris.\n2.  **Indentasi (Spasi) itu WAJIB!** Kode di dalam fungsi harus menjorok ke dalam (biasanya 2 atau 4 spasi).\n\n**Contoh Fungsi:**\n```python\ndef sapa():\n    return \"Halo!\"  # Perhatikan spasi di depan return\n```\n\n### Misi\nBuatlah fungsi `solution` yang mengembalikan string `\"Python itu Mudah\"`.\n\n*Ingat: Perhatikan huruf besar/kecilnya!*",
+    "starterCode": "def solution():\n  # Tulis kodemu di sini (jangan lupa spasi/indentasi)\n  pass",
+    "hints": [
+      { "level": 1, "text": "Gunakan kata kunci 'return' diikuti stringnya." },
+      {
+        "level": 2,
+        "text": "Pastikan baris return menjorok ke dalam (di-indent)."
+      },
+      { "level": 3, "text": "return \"Python itu Mudah\"" }
+    ],
+    "testCases": [
+      {
+        "input": [],
+        "expected": "Python itu Mudah",
+        "description": "Cek string output persis"
+      }
+    ]
+  },
+  {
+    "id": "py-basics-easy-02",
+    "title": "Magic F-Strings",
+    "topic": "Python Basics",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nDi Python, cara paling keren untuk menggabungkan teks dan variabel adalah menggunakan **f-string**.\n\nCukup taruh huruf `f` di depan kutip, dan masukkan variabel di dalam kurung kurawal `{}`.\n\n**Contoh:**\n```python\nnama = \"Budi\"\npesan = f\"Halo {nama}, selamat datang!\"\n# Hasil: \"Halo Budi, selamat datang!\"\n```\n\n### Misi\nBuatlah fungsi `solution(nama, umur)`.\nKembalikan kalimat dengan format:\n`\"Nama saya [nama], umur [umur] tahun.\"`",
+    "starterCode": "def solution(nama, umur):\n  # Gunakan f-string\n  pass",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Awali string dengan huruf f, contoh: f\"teks...\""
+      },
+      {
+        "level": 2,
+        "text": "Masukkan variabel nama dan umur ke dalam kurung kurawal {}."
+      },
+      { "level": 3, "text": "return f\"Nama saya {nama}, umur {umur} tahun.\"" }
+    ],
+    "testCases": [
+      {
+        "input": ["Andi", 20],
+        "expected": "Nama saya Andi, umur 20 tahun.",
+        "description": "Test data Andi"
+      },
+      {
+        "input": ["Siti", 17],
+        "expected": "Nama saya Siti, umur 17 tahun.",
+        "description": "Test data Siti"
+      }
+    ]
+  },
+  {
+    "id": "py-basics-medium-01",
+    "title": "Potong String (Slicing)",
+    "topic": "Python Basics",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nPython punya fitur **Slicing** yang sangat powerful untuk memotong text atau list.\n\nSyntax: `text[start:end]`\n- `start`: index awal (terbawa).\n- `end`: index akhir (TIDAK terbawa).\n\n**Contoh:**\n```python\nkata = \"Nexora\"\nprint(kata[0:3]) # Output: \"Nex\" (ambil index 0, 1, 2)\nprint(kata[1:])  # Output: \"exora\" (dari index 1 sampai habis)\n```\n\n### Misi\nBuatlah fungsi `solution(kode)` yang menerima string kode unik (misal: `\"ID-12345\"`).\n\nTugasmu adalah mengambil **3 karakter pertama** dari kode tersebut.",
+    "starterCode": "def solution(kode):\n  # Ambil 3 huruf pertama menggunakan slicing\n  pass",
+    "hints": [
+      { "level": 1, "text": "Gunakan kurung siku [start:end]." },
+      {
+        "level": 2,
+        "text": "Kita mulai dari index 0, dan berhenti sebelum index 3."
+      },
+      { "level": 3, "text": "return kode[0:3]" }
+    ],
+    "testCases": [
+      {
+        "input": ["ID-123"],
+        "expected": "ID-",
+        "description": "Ambil 3 karakter awal"
+      },
+      {
+        "input": ["Python"],
+        "expected": "Pyt",
+        "description": "Ambil Pyt"
+      }
+    ]
+  },
+  {
+    "id": "py-basics-medium-02",
+    "title": "Logika Python (And/Or)",
+    "topic": "Python Basics",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nBerbeda dengan JavaScript yang pakai simbol (`&&`, `||`), Python menggunakan kata bahasa Inggris: `and`, `or`, dan `not`.\n\n**Syntax:**\n- `True and False` -> `False`\n- `True or False` -> `True`\n- `not True` -> `False`\n\nPenulisan Boolean di Python harus huruf besar: `True` dan `False` (bukan `true/false`).\n\n### Misi\nBuatlah fungsi `solution(nilai, absen)`.\nSiswa dinyatakan **Lulus** (return `True`) JIKA:\n1. `nilai` lebih dari 75\n2. **DAN** `absen` kurang dari 3 hari.\n\nSelain itu return `False`.",
+    "starterCode": "def solution(nilai, absen):\n  # Gunakan operator 'and' dan perbandingan (> atau <)\n  pass",
+    "hints": [
+      { "level": 1, "text": "Cek kondisi: nilai > 75 dan absen < 3." },
+      {
+        "level": 2,
+        "text": "Gunakan keyword 'and' untuk menggabungkan kedua kondisi."
+      },
+      { "level": 3, "text": "return nilai > 75 and absen < 3" }
+    ],
+    "testCases": [
+      {
+        "input": [80, 1],
+        "expected": true,
+        "description": "Nilai bagus, absen bagus -> Lulus"
+      },
+      {
+        "input": [80, 5],
+        "expected": false,
+        "description": "Nilai bagus, tapi bolos terus -> Gagal"
+      },
+      {
+        "input": [60, 0],
+        "expected": false,
+        "description": "Rajin tapi nilai jelek -> Gagal"
+      }
+    ]
+  },
+  {
+    "id": "py-basics-hard-01",
+    "title": "Konversi Tipe Data (Casting)",
+    "topic": "Python Basics",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\nTerkadang kita mendapat angka tapi bentuknya String (teks), misal `\"100\"`. Kita tidak bisa menjumlahkannya langsung.\n\nKita perlu melakukan **Casting** (ubah tipe data):\n- `int(\"100\")` -> jadi angka `100`\n- `str(200)` -> jadi teks `\"200\"`\n- `float(\"3.14\")` -> jadi desimal `3.14`\n\n### Misi\nBuatlah fungsi `solution(angka1, angka2)`.\nInput berupa **String** (misal `\"10\"` dan `\"20\"`).\n\nTugasmu:\n1. Ubah kedua input menjadi **Integer**.\n2. Jumlahkan keduanya.\n3. Return hasilnya dalam bentuk **String** lagi.",
+    "starterCode": "def solution(angka1, angka2):\n  # String -> Int -> Jumlah -> String\n  pass",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Gunakan int() untuk mengubah input menjadi angka dulu."
+      },
+      { "level": 2, "text": "Jumlahkan kedua angka tersebut." },
+      {
+        "level": 3,
+        "text": "Gunakan str() untuk mengubah hasil penjumlahan kembali menjadi string."
+      }
+    ],
+    "testCases": [
+      {
+        "input": ["10", "20"],
+        "expected": "30",
+        "description": "10 + 20 = 30 (String)"
+      },
+      {
+        "input": ["5", "5"],
+        "expected": "10",
+        "description": "5 + 5 = 10 (String)"
+      },
+      {
+        "input": ["-5", "10"],
+        "expected": "5",
+        "description": "Penjumlahan dengan negatif"
+      }
+    ]
+  }
+]

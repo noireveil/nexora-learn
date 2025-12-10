@@ -1,0 +1,160 @@
+[
+  {
+    "id": "py-func-easy-01",
+    "title": "Data Koordinat (Tuple)",
+    "topic": "Python Functions & Tuples",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\n**Tuple** mirip dengan List, tapi **tidak bisa diubah** (immutable). Tuple menggunakan kurung biasa `()`.\n\n**Kenapa pakai Tuple?**\nTuple lebih hemat memori dan aman untuk data yang pasti tetap, seperti koordinat GPS `(lat, long)`.\n\n**Contoh:**\n```python\nkoordinat = (10, 20)\nprint(koordinat[0]) # Output: 10\n# koordinat[0] = 5  <-- ERROR! Tidak bisa diubah.\n```\n\n### Misi\nBuat fungsi `solution(data_tuple)`.\nAmbil elemen **kedua** (index 1) dari tuple tersebut.",
+    "starterCode": "def solution(data_tuple):\n    # Ambil index ke-1\n    pass",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Cara akses tuple sama persis dengan list, pakai kurung siku []."
+      },
+      { "level": 2, "text": "Ambil index 1." },
+      { "level": 3, "text": "return data_tuple[1]" }
+    ],
+    "testCases": [
+      {
+        "input": [[100, 200]],
+        "expected": 200,
+        "description": "Ambil Y dari (X, Y)"
+      },
+      {
+        "input": [["A", "B", "C"]],
+        "expected": "B",
+        "description": "Ambil elemen kedua"
+      }
+    ]
+  },
+  {
+    "id": "py-func-easy-02",
+    "title": "Default Parameter",
+    "topic": "Python Functions & Tuples",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nDi Python, kita bisa memberikan **nilai default** pada parameter fungsi. Jika user tidak mengisi parameter tersebut, nilai default yang akan dipakai.\n\n**Contoh:**\n```python\ndef sapa(nama=\"Teman\"):\n    return f\"Halo {nama}\"\n\nprint(sapa(\"Budi\")) # \"Halo Budi\"\nprint(sapa())       # \"Halo Teman\" (Otomatis)\n```\n\n### Misi\nBuatlah fungsi `solution(nama, salam=\"Halo\")`.\nKembalikan string dengan format: `\"[salam], [nama]!\"`.",
+    "starterCode": "def solution(nama, salam=\"Halo\"):\n    # Gabungkan salam dan nama\n    pass",
+    "hints": [
+      { "level": 1, "text": "Gunakan f-string untuk menggabungkan variabel." },
+      { "level": 2, "text": "Formatnya: f\"{salam}, {nama}!\"" },
+      { "level": 3, "text": "return f\"{salam}, {nama}!\"" }
+    ],
+    "testCases": [
+      {
+        "input": ["Budi", "Selamat Pagi"],
+        "expected": "Selamat Pagi, Budi!",
+        "description": "Custom salam"
+      },
+      {
+        "input": ["Andi"],
+        "expected": "Halo, Andi!",
+        "description": "Default salam (Halo)"
+      }
+    ]
+  },
+  {
+    "id": "py-func-medium-01",
+    "title": "Multiple Returns (Paket Hemat)",
+    "topic": "Python Functions & Tuples",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nIni fitur Python yang bikin iri programmer bahasa lain: **Bisa return banyak nilai sekaligus!**\n\nSebenarnya, Python mengembalikan nilainya dalam bentuk **Tuple**.\n\n**Contoh:**\n```python\ndef hitung(a, b):\n    return a+b, a*b  # Return 2 nilai\n\ntambah, kali = hitung(3, 4)\n# tambah = 7, kali = 12\n```\n\n### Misi\nBuat fungsi `solution(panjang, lebar)` untuk menghitung persegi panjang.\n\nKembalikan dua nilai sekaligus: **Luas** dan **Keliling**.\n\n*Rumus: Luas = p x l, Keliling = 2 x (p + l)*",
+    "starterCode": "def solution(panjang, lebar):\n    # Hitung luas dan keliling\n    # Return keduanya dipisah koma\n    pass",
+    "hints": [
+      { "level": 1, "text": "Hitung luas = panjang * lebar." },
+      { "level": 2, "text": "Hitung keliling = 2 * (panjang + lebar)." },
+      { "level": 3, "text": "return luas, keliling" }
+    ],
+    "testCases": [
+      {
+        "input": [10, 5],
+        "expected": [50, 30],
+        "description": "Luas 50, Keliling 30"
+      },
+      {
+        "input": [4, 4],
+        "expected": [16, 16],
+        "description": "Persegi 4x4"
+      }
+    ]
+  },
+  {
+    "id": "py-func-medium-02",
+    "title": "Unpacking Tuple",
+    "topic": "Python Functions & Tuples",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nKita sering bekerja dengan **List of Tuples**. Contohnya data siswa: `[(\"Andi\", 80), (\"Budi\", 90)]`.\n\nKita bisa memecah (unpack) datanya langsung di dalam loop.\n\n**Contoh:**\n```python\ndata = [(\"A\", 1), (\"B\", 2)]\nfor huruf, angka in data:\n    print(huruf) # \"A\", lalu \"B\"\n```\n\n### Misi\nBuat fungsi `solution(data_siswa)`.\nInput berupa list of tuples: `[(\"Nama\", Nilai), ...]`. \n\nKembalikan **List** berisi nama siswa yang nilainya di atas 75 (Lulus).",
+    "starterCode": "def solution(data_siswa):\n    lulus = []\n    for nama, nilai in data_siswa:\n        # Cek jika nilai > 75\n        pass\n    return lulus",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Looping dengan cara unpacking: for nama, nilai in data_siswa:"
+      },
+      { "level": 2, "text": "If nilai > 75, maka lulus.append(nama)." },
+      { "level": 3, "text": "if nilai > 75:\n            lulus.append(nama)" }
+    ],
+    "testCases": [
+      {
+        "input": [
+          [
+            ["Andi", 80],
+            ["Budi", 60],
+            ["Caca", 90]
+          ]
+        ],
+        "expected": ["Andi", "Caca"],
+        "description": "Andi & Caca lulus"
+      },
+      {
+        "input": [
+          [
+            ["X", 50],
+            ["Y", 40]
+          ]
+        ],
+        "expected": [],
+        "description": "Tidak ada yang lulus"
+      }
+    ]
+  },
+  {
+    "id": "py-func-hard-01",
+    "title": "Statistik Data (Tuple Agregation)",
+    "topic": "Python Functions & Tuples",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\nMari gabungkan List, Tuple, dan Built-in Function (`min`, `max`, `sum`, `len`) untuk analisis data cepat.\n\n### Misi\nBuat fungsi `solution(angka)` yang menerima list nilai.\n\nKembalikan sebuah **Tuple** yang berisi 3 data statistik:\n`(Nilai Terendah, Nilai Tertinggi, Rata-rata)`\n\n*Catatan: Rata-rata tidak perlu dibulatkan.*",
+    "starterCode": "def solution(angka):\n    # Cari min, max, dan average\n    # Return dalam bentuk (min, max, avg)\n    pass",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Gunakan fungsi bawaan min(angka) dan max(angka)."
+      },
+      { "level": 2, "text": "Rata-rata = sum(angka) / len(angka)." },
+      {
+        "level": 3,
+        "text": "return min(angka), max(angka), sum(angka)/len(angka)"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [[10, 20, 30]],
+        "expected": [10, 30, 20.0],
+        "description": "Min 10, Max 30, Avg 20"
+      },
+      {
+        "input": [[5, 5, 5]],
+        "expected": [5, 5, 5.0],
+        "description": "Data seragam"
+      },
+      {
+        "input": [[0, 100]],
+        "expected": [0, 100, 50.0],
+        "description": "Min 0, Max 100, Avg 50"
+      }
+    ]
+  }
+]

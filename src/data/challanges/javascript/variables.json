@@ -1,0 +1,114 @@
+[
+  {
+    "id": "js-var-01-easy",
+    "title": "Kenalan dengan Variabel",
+    "topic": "Variables",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nVariabel adalah wadah untuk menyimpan data. Di JavaScript modern, kita gunakan `let` (bisa berubah) atau `const` (tetap).\n\n**Contoh:**\n```javascript\nlet nama = \"Budi\";\nconst umur = 20;\n```\n\n### Misi\nBuatlah function yang menerima 2 parameter: `nama` (string) dan `umur` (number).\n\nFunction harus mengembalikan kalimat: `\"Halo, nama saya [nama] dan umur saya [umur] tahun.\"`\n\n(Gunakan Template Literal dengan tanda backtick ` ` untuk menggabungkan variabel).",
+    "starterCode": "function solution(nama, umur) {\n  // Tulis kodemu di sini\n  \n}",
+    "hints": [
+      { "level": 1, "text": "Gunakan backtick (`) bukan kutip satu atau dua." },
+      { "level": 2, "text": "Formatnya: `Teks ${variabel} teks`" },
+      {
+        "level": 3,
+        "text": "return `Halo, nama saya ${nama} dan umur saya ${umur} tahun.`"
+      }
+    ],
+    "testCases": [
+      {
+        "input": ["Budi", 20],
+        "expected": "Halo, nama saya Budi dan umur saya 20 tahun.",
+        "description": "Test case standar"
+      },
+      {
+        "input": ["Siti", 17],
+        "expected": "Halo, nama saya Siti dan umur saya 17 tahun.",
+        "description": "Variasi nama lain"
+      }
+    ]
+  },
+  {
+    "id": "js-var-02-medium",
+    "title": "Tukar Nilai (Swap)",
+    "topic": "Variables",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nMenukar nilai dua variabel adalah teknik dasar algoritma. Di JavaScript modern (ES6), kita bisa menggunakan **Destructuring**.\n\n**Cara Modern:**\n```javascript\nlet a = 1, b = 2;\n[a, b] = [b, a]; // a jadi 2, b jadi 1\n```\n\n### Misi\nFunction ini menerima dua angka `a` dan `b`. Tugasmu adalah mengembalikan array di mana posisi nilainya ditukar.\n\nContoh Input: `solution(5, 10)`\nOutput Harapan: `[10, 5]`",
+    "starterCode": "function solution(a, b) {\n  // Tukar dan return dalam bentuk array\n  \n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Kamu bisa langsung return array baru dengan urutan terbalik."
+      },
+      { "level": 2, "text": "Format array: [elemen1, elemen2]" },
+      { "level": 3, "text": "return [b, a];" }
+    ],
+    "testCases": [
+      {
+        "input": [5, 10],
+        "expected": [10, 5],
+        "description": "Tukar 5 dan 10"
+      },
+      {
+        "input": [-5, 15],
+        "expected": [15, -5],
+        "description": "Tukar angka negatif"
+      }
+    ]
+  },
+  {
+    "id": "js-var-03-hard",
+    "title": "Analisis Nilai Siswa",
+    "topic": "Variables",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\nKita akan memproses data array of objects. Kamu perlu mengakses properti di dalam object dan melakukan perhitungan matematika dasar.\n\n### Misi\nFunction `solution` menerima array `dataSiswa` (berisi object `{nama, nilai}`).\n\nTugasmu:\n1. Hitung rata-rata nilai seluruh siswa.\n2. **PENTING:** Rata-rata harus **dibulatkan 2 desimal** (Gunakan `Number(avg.toFixed(2))`).\n3. Cari nama siswa dengan nilai tertinggi.\n4. Return object: `{ rataRata, siswaTerbaik, nilaiTertinggi }`.",
+    "starterCode": "function solution(dataSiswa) {\n  // dataSiswa contoh: [{nama: 'A', nilai: 90}, ...]\n  // Tulis logika di sini\n}",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Gunakan loop untuk menjumlahkan nilai (total) dan mencari nilai max."
+      },
+      {
+        "level": 2,
+        "text": "Untuk pembulatan: gunakan method .toFixed(2) lalu convert ke Number."
+      },
+      {
+        "level": 3,
+        "text": "Simpan index atau nama siswa saat kamu menemukan nilai tertinggi baru di dalam loop."
+      }
+    ],
+    "testCases": [
+      {
+        "input": [
+          [
+            { "nama": "Budi", "nilai": 80 },
+            { "nama": "Siti", "nilai": 95 },
+            { "nama": "Andi", "nilai": 70 }
+          ]
+        ],
+        "expected": {
+          "rataRata": 81.67,
+          "siswaTerbaik": "Siti",
+          "nilaiTertinggi": 95
+        },
+        "description": "3 Siswa (Wajib rounding 81.666... jadi 81.67)"
+      },
+      {
+        "input": [
+          [
+            { "nama": "Rina", "nilai": 100 },
+            { "nama": "Doni", "nilai": 85 }
+          ]
+        ],
+        "expected": {
+          "rataRata": 92.5,
+          "siswaTerbaik": "Rina",
+          "nilaiTertinggi": 100
+        },
+        "description": "2 Siswa"
+      }
+    ]
+  }
+]

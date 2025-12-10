@@ -1,0 +1,155 @@
+[
+  {
+    "id": "py-struct-easy-01",
+    "title": "Juara Terakhir (Negative Index)",
+    "topic": "Python Structures",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\nDi Python, **List** (mirip Array di JS) punya fitur unik: **Negative Indexing**.\n\nKalau index `0` itu elemen pertama, maka index `-1` adalah **elemen terakhir**.\n\n**Contoh:**\n```python\nbuah = [\"Apel\", \"Jeruk\", \"Mangga\"]\nprint(buah[0])   # \"Apel\"\nprint(buah[-1])  # \"Mangga\"\nprint(buah[-2])  # \"Jeruk\"\n```\n\n### Misi\nBuatlah fungsi `solution(peserta)` yang menerima sebuah List nama peserta lomba.\n\nTugasmu adalah mengembalikan nama peserta yang berada di **urutan paling terakhir**, tanpa perlu tahu panjang list-nya.",
+    "starterCode": "def solution(peserta):\n    # Ambil elemen terakhir dengan index negatif\n    pass",
+    "hints": [
+      { "level": 1, "text": "Gunakan kurung siku [] untuk mengakses elemen." },
+      {
+        "level": 2,
+        "text": "Gunakan index -1 untuk mengambil elemen paling belakang."
+      },
+      { "level": 3, "text": "return peserta[-1]" }
+    ],
+    "testCases": [
+      {
+        "input": [["Andi", "Budi", "Caca"]],
+        "expected": "Caca",
+        "description": "Ambil Caca (terakhir)"
+      },
+      {
+        "input": [["Juara 1", "Juara 2"]],
+        "expected": "Juara 2",
+        "description": "Ambil Juara 2"
+      }
+    ]
+  },
+  {
+    "id": "py-struct-easy-02",
+    "title": "Kamus Pintar (Dictionary)",
+    "topic": "Python Structures",
+    "difficulty": "Easy",
+    "xpReward": 50,
+    "description": "### Teori\n**Dictionary** (Kamus) adalah struktur data pasangan **Key** dan **Value**. Ini mirip Object di JavaScript.\n\n**Syntax:**\n```python\ndata = {\n    \"nama\": \"Budi\",\n    \"umur\": 20\n}\n```\nUntuk mengambil data, gunakan key-nya: `data[\"nama\"]`.\n\n### Misi\nBuatlah fungsi `solution(kamus, kata)`.\nParameter `kamus` adalah Dictionary berisi kata dan artinya.\n\nTugasmu adalah mengembalikan **arti** dari `kata` yang dicari.",
+    "starterCode": "def solution(kamus, kata):\n    # Ambil value berdasarkan key 'kata'\n    pass",
+    "hints": [
+      { "level": 1, "text": "Gunakan syntax: dictionary[key]" },
+      {
+        "level": 2,
+        "text": "Masukkan variabel 'kata' ke dalam kurung siku 'kamus'."
+      },
+      { "level": 3, "text": "return kamus[kata]" }
+    ],
+    "testCases": [
+      {
+        "input": [{ "apple": "apel", "cat": "kucing" }, "cat"],
+        "expected": "kucing",
+        "description": "Cari arti 'cat'"
+      },
+      {
+        "input": [{ "red": "merah", "blue": "biru" }, "red"],
+        "expected": "merah",
+        "description": "Cari arti 'red'"
+      }
+    ]
+  },
+  {
+    "id": "py-struct-medium-01",
+    "title": "Manipulasi List (Append & Pop)",
+    "topic": "Python Structures",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nList di Python itu dinamis. Kita bisa menambah dan menghapus isinya.\n\n- `list.append(data)`: Menambah data ke belakang.\n- `list.pop(index)`: Menghapus data di index tertentu (kosongkan index untuk hapus yang terakhir).\n\n**Contoh:**\n```python\nangka = [1, 2]\nangka.append(3) # [1, 2, 3]\nangka.pop(0)    # Hapus index 0 -> sisa [2, 3]\n```\n\n### Misi\nBuatlah fungsi `solution(keranjang, barang_baru)`.\n\nTugasmu:\n1. Masukkan `barang_baru` ke dalam list `keranjang`.\n2. Hapus barang pertama (index 0) dari `keranjang`.\n3. Return list `keranjang` hasil akhirnya.",
+    "starterCode": "def solution(keranjang, barang_baru):\n    # append dulu, baru pop(0)\n    pass",
+    "hints": [
+      { "level": 1, "text": "Gunakan method .append() untuk menambah." },
+      {
+        "level": 2,
+        "text": "Gunakan method .pop(0) untuk menghapus elemen pertama."
+      },
+      {
+        "level": 3,
+        "text": "keranjang.append(barang_baru)\n    keranjang.pop(0)\n    return keranjang"
+      }
+    ],
+    "testCases": [
+      {
+        "input": [["Roti", "Susu"], "Keju"],
+        "expected": ["Susu", "Keju"],
+        "description": "Tambah Keju, Hapus Roti"
+      },
+      {
+        "input": [["A", "B", "C"], "D"],
+        "expected": ["B", "C", "D"],
+        "description": "Geser antrian"
+      }
+    ]
+  },
+  {
+    "id": "py-struct-medium-02",
+    "title": "Update Biodata (Dict Manipulation)",
+    "topic": "Python Structures",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\nMenambah atau mengubah data di Dictionary sangat mudah.\n\n**Syntax:** `dict[key_baru] = nilai_baru`\n\nJika key sudah ada, nilainya akan ter-update. Jika belum ada, key baru akan dibuat.\n\n### Misi\nBuatlah fungsi `solution(biodata, hobi_baru)`.\n\nInput `biodata` adalah dictionary `{ \"nama\": ..., \"umur\": ... }`.\nTugasmu:\n1. Tambahkan key baru `\"hobi\"` dengan nilai `hobi_baru`.\n2. Return dictionary `biodata` yang sudah lengkap.",
+    "starterCode": "def solution(biodata, hobi_baru):\n    # Tambahkan key 'hobi'\n    pass",
+    "hints": [
+      {
+        "level": 1,
+        "text": "Akses dictionary dengan key 'hobi' dan beri nilai dengan tanda sama dengan (=)."
+      },
+      { "level": 2, "text": "biodata['hobi'] = hobi_baru" },
+      { "level": 3, "text": "biodata['hobi'] = hobi_baru\n    return biodata" }
+    ],
+    "testCases": [
+      {
+        "input": [{ "nama": "Andi" }, "Coding"],
+        "expected": { "nama": "Andi", "hobi": "Coding" },
+        "description": "Tambah hobi coding"
+      },
+      {
+        "input": [{ "nama": "Siti", "hobi": "Makan" }, "Membaca"],
+        "expected": { "nama": "Siti", "hobi": "Membaca" },
+        "description": "Update hobi yang sudah ada"
+      }
+    ]
+  },
+  {
+    "id": "py-struct-hard-01",
+    "title": "List Comprehension (The Pythonic Way)",
+    "topic": "Python Structures",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\nIni adalah fitur **Paling Keren** di Python: **List Comprehension**.\nKita bisa membuat list baru dari list lama hanya dengan **1 baris kode**.\n\n**Cara Biasa (4 baris):**\n```python\nhasil = []\nfor x in angka:\n    hasil.append(x * 2)\n```\n\n**Cara Pythonic (1 baris):**\n```python\n# [rumus for variabel in list_lama]\nhasil = [x * 2 for x in angka]\n```\n\n### Misi\nBuatlah fungsi `solution(angka)` yang menerima list angka.\n\nGunakan **List Comprehension** untuk mengembalikan list baru yang berisi **kuadrat** (pangkat 2) dari setiap angka.\n\nContoh: Input `[2, 3]` -> Output `[4, 9]`.",
+    "starterCode": "def solution(angka):\n    # Coba pakai List Comprehension (1 baris)\n    pass",
+    "hints": [
+      { "level": 1, "text": "Pattern-nya: [x**2 for x in angka]" },
+      {
+        "level": 2,
+        "text": "Simbol pangkat di Python adalah ** (bintang dua)."
+      },
+      { "level": 3, "text": "return [x**2 for x in angka]" }
+    ],
+    "testCases": [
+      {
+        "input": [[2, 3, 4]],
+        "expected": [4, 9, 16],
+        "description": "Kuadratkan 2, 3, 4"
+      },
+      {
+        "input": [[1, 5, 10]],
+        "expected": [1, 25, 100],
+        "description": "Kuadratkan 1, 5, 10"
+      },
+      {
+        "input": [[-2, -5]],
+        "expected": [4, 25],
+        "description": "Kuadrat bilangan negatif jadi positif"
+      }
+    ]
+  }
+]

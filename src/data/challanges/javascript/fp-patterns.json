@@ -1,0 +1,56 @@
+[
+  {
+    "id": "fp-med-01",
+    "title": "Currying (Fungsi Berantai)",
+    "topic": "FP Patterns",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\n**Currying**: Mengubah fungsi banyak argumen menjadi rangkaian fungsi satu argumen.\n`f(a, b, c)` -> `f(a)(b)(c)`.\n\n### Misi\nBuat function `solution(a)` untuk penjumlahan 3 angka berantai: `a + b + c`.",
+    "starterCode": "function solution(a) {\n  return function(b) {\n    // Lanjutkan rantainya\n  };\n}",
+    "hints": [
+      { "level": 1, "text": "Function return function." },
+      { "level": 2, "text": "return function(c) { return a+b+c }" },
+      {
+        "level": 3,
+        "text": "return function(b) { return function(c) { return a+b+c; } }"
+      }
+    ],
+    "testCases": [
+      { "input": [1, 2, 3], "expected": 6, "description": "1 + 2 + 3 = 6" }
+    ]
+  },
+  {
+    "id": "fp-med-02",
+    "title": "Closures (Counter)",
+    "topic": "FP Patterns",
+    "difficulty": "Medium",
+    "xpReward": 100,
+    "description": "### Teori\n**Closure**: Inner function yang \"mengingat\" variabel parent-nya.\n\n### Misi\nBuat `solution(nilaiAwal)` yang mengembalikan **Function baru**.\nSetiap kali function baru dipanggil, nilai bertambah +1.",
+    "starterCode": "function solution(nilaiAwal) {\n  let count = nilaiAwal;\n  return function() {\n    // Tambah count, lalu return\n  };\n}",
+    "hints": [
+      { "level": 1, "text": "count++" },
+      { "level": 2, "text": "return count" },
+      { "level": 3, "text": "return function() { count++; return count; }" }
+    ],
+    "testCases": [
+      { "input": [10], "expected": 11, "description": "Call 1x jadi 11" }
+    ]
+  },
+  {
+    "id": "fp-hard-01",
+    "title": "Function Composition",
+    "topic": "FP Patterns",
+    "difficulty": "Hard",
+    "xpReward": 200,
+    "description": "### Teori\n**Composition**: Menggabungkan fungsi. Output fungsi A jadi Input fungsi B.\n\n### Misi\nBuat function `solution(x)` yang melakukan urutan:\n1. Tambah 5\n2. Kali 2\n3. Kurang 3",
+    "starterCode": "function solution(x) {\n  const tambah5 = n => n + 5;\n  const kali2 = n => n * 2;\n  const kurang3 = n => n - 3;\n  // Gabungkan\n}",
+    "hints": [
+      { "level": 1, "text": "Urutan: kurang3( kali2( tambah5(x) ) )" },
+      { "level": 2, "text": "return kurang3(kali2(tambah5(x)));" },
+      { "level": 3, "text": "return kurang3(kali2(tambah5(x)));" }
+    ],
+    "testCases": [
+      { "input": [5], "expected": 17, "description": "((5+5)*2)-3 = 17" }
+    ]
+  }
+]

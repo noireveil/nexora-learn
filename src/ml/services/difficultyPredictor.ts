@@ -5,11 +5,10 @@ import { db } from '@/lib/db/schema';
 const MODEL_URL = '/models/skill-predictor/model.json';
 let model: tf.LayersModel | null = null;
 
-// Dummy model creation for illustration; replace with actual model loading
 const createDummyModel = () => {
     const model = tf.sequential();
     model.add(tf.layers.dense({ units: 8, inputShape: [5], activation: 'relu' }));
-    model.add(tf.layers.dense({ units: 3, activation: 'softmax' })); // 3 Output: Easy, Medium, Hard
+    model.add(tf.layers.dense({ units: 3, activation: 'softmax' })); 
     model.compile({ optimizer: 'sgd', loss: 'categoricalCrossentropy' });
     return model;
 }
@@ -19,9 +18,7 @@ const loadModel = async () => {
     
     try {
         model = await tf.loadLayersModel(MODEL_URL);
-        console.log("Model loaded from URL");
     } catch (err) {
-        console.warn("Model not found, using Fallback Dummy Model (Untrained)");
         model = createDummyModel();
     }
     return model;
@@ -33,7 +30,6 @@ export const predictNextDifficulty = async (userId: string): Promise<'Easy' | 'M
         const submissions = await db.submissions.where('userId').equals(userId).toArray();
 
         const features = extractUserFeatures(progress, submissions);
-        
         const inputTensor = convertToTensor(features);
         
         const aiModel = await loadModel();
@@ -49,7 +45,6 @@ export const predictNextDifficulty = async (userId: string): Promise<'Easy' | 'M
         return labels[resultIndex] || 'Medium';
 
     } catch (error) {
-        console.error("Prediction Error:", error);
-        return 'Medium'; // Fallback 
+        return 'Medium'; 
     }
 };

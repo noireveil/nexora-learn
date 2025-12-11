@@ -1,5 +1,3 @@
-// Contract definitions for Worker communication
-
 export type ExecutionStatus = 'success' | 'error' | 'timeout';
 
 export interface TestResult {
@@ -10,12 +8,11 @@ export interface TestResult {
 }
 
 export interface ConsoleLog {
-  type: 'log' | 'error' | 'warn' | 'info';
+  type: 'log' | 'error' | 'warn' | 'info' | 'success' | 'fail';
   content: string;
   timestamp: number;
 }
 
-// Payload sent TO Worker
 export interface WorkerPayload {
   code: string;
   language: 'javascript' | 'python';
@@ -26,7 +23,6 @@ export interface WorkerPayload {
   }[];
 }
 
-// Response FROM Worker
 export interface WorkerResponse {
   status: ExecutionStatus;
   logs: ConsoleLog[];

@@ -3,20 +3,21 @@ import { ReactNode } from "react";
 
 interface BadgeProps {
   children: ReactNode;
-  variant?: 'primary' | 'success' | 'warning';
+  variant?: 'primary' | 'success' | 'warning' | 'neutral';
   className?: string;
 }
 
 export const Badge = ({ children, variant = 'primary', className }: BadgeProps) => {
   const variants = {
-    primary: "bg-primary/10 border-primary/20 text-primary",
-    success: "bg-green-500/10 border-green-500/20 text-green-500",
-    warning: "bg-yellow-500/10 border-yellow-500/20 text-yellow-500",
+    primary: "bg-primary/10 text-primary border-primary/20",
+    success: "bg-success/10 text-success-700 border-success/20",
+    warning: "bg-warning/10 text-warning-700 border-warning/20",
+    neutral: "bg-gray-100 text-gray-600 border-gray-200",
   };
 
   return (
     <div className={cn(
-      "inline-block px-4 py-1.5 rounded-full border text-sm font-medium backdrop-blur-sm",
+      "inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-medium border",
       variants[variant],
       className
     )}>

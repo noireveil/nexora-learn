@@ -9,7 +9,6 @@ export interface UserSkillVector {
     difficultyLevel: number; 
 }
 
-// Transform user history into numeric features
 export const extractUserFeatures = (
     progress: Progress | undefined, 
     recentSubmissions: Submission[]
@@ -46,7 +45,6 @@ export const extractUserFeatures = (
     };
 };
 
-// Convert features object to TF tensor
 export const convertToTensor = (features: UserSkillVector): tf.Tensor2D => {
     return tf.tensor2d([[
         features.accuracyRate,

@@ -13,11 +13,8 @@ export const useLearningPaths = () => {
         if (user && user.id) {
           const progress = await db.progress.where('userId').equals(user.id).first();
           
-          // Map DB progress to Course IDs
           if (progress?.skillLevels) {
              setProgressMap(progress.skillLevels); 
-          } else {
-             setProgressMap({ 'js-path': 0, 'python-path': 0, 'web-path': 0 });
           }
         }
       } catch (err) {
@@ -28,6 +25,5 @@ export const useLearningPaths = () => {
     };
     loadProgress();
   }, []);
-
   return { courses: COURSES, progressMap, isLoading };
 };

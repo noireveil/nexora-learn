@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 
 type ButtonProps = Omit<HTMLMotionProps<"button">, "children"> & {
   children?: ReactNode; 
-  variant?: "primary" | "secondary" | "danger" | "ghost";
+  variant?: "primary" | "secondary" | "danger" | "ghost" | "accent";
   size?: "sm" | "md" | "lg";
   icon?: ReactNode;
 };
@@ -18,27 +18,24 @@ export const Button = ({
   ...props
 }: ButtonProps) => {
   const variants = {
-    primary:
-      "bg-primary hover:bg-indigo-600 text-white shadow-[0_0_15px_rgba(99,102,241,0.5)] border border-indigo-500/50",
-    secondary:
-      "bg-surfaceHighlight hover:bg-slate-700 text-text-main border border-slate-600",
-    danger:
-      "bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/50",
-    ghost: "bg-transparent hover:bg-white/5 text-text-muted hover:text-white",
+    primary: "bg-primary hover:bg-indigo-600 text-white shadow-md shadow-primary/20 border border-transparent",
+    accent: "bg-accent hover:bg-orange-600 text-white shadow-lg shadow-accent/30 hover:-translate-y-0.5 border border-transparent",
+    secondary: "bg-white text-slate-700 border border-slate-200 hover:border-primary/30 hover:bg-slate-50",
+    danger: "bg-red-50 text-red-600 border border-red-200 hover:bg-red-100",
+    ghost: "bg-transparent text-slate-500 hover:text-slate-900 hover:bg-slate-100",
   };
 
   const sizes = {
-    sm: "px-3 py-1.5 text-sm rounded-lg",
-    md: "px-5 py-2.5 text-base rounded-xl",
-    lg: "px-6 py-3 text-lg rounded-xl",
+    sm: "px-3 py-1.5 text-xs rounded-lg font-medium",
+    md: "px-5 py-2.5 text-sm rounded-xl font-semibold",
+    lg: "px-8 py-3.5 text-base rounded-xl font-bold",
   };
 
   return (
     <motion.button
-      whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       className={cn(
-        "font-medium flex items-center justify-center gap-2 transition-all duration-200",
+        "flex items-center justify-center gap-2 transition-all duration-200 outline-none focus:ring-2 focus:ring-primary/20",
         variants[variant],
         sizes[size],
         className

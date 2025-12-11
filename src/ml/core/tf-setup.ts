@@ -14,14 +14,12 @@ export const initTFBackend = async () => {
         }
         
         await tf.ready();
-        console.log(`[ML-Engine] Initialized: ${tf.getBackend()}`);
     } catch (error) {
-        console.warn("[ML-Engine] WebGL failed, falling back to CPU", error);
         try {
             await tf.setBackend('cpu');
             await tf.ready();
         } catch (cpuError) {
-            console.error("[ML-Engine] CRITICAL FAILURE: Could not initialize TFJS", cpuError);
+            console.error("TFJS Initialization failed", cpuError);
         }
     }
 };

@@ -6,27 +6,31 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: '#0B0F19', // Darker cleaner background
-        surface: '#151B2B',
-        surfaceHighlight: '#1E2738',
-        primary: '#6366F1', // Indigo
-        primaryGlow: 'rgba(99, 102, 241, 0.4)',
-        secondary: '#10B981', // Emerald
-        accent: '#F43F5E', // Rose
+        background: '#F9F7F2', // Cream lebih hangat (Retro Base)
+        surface: '#FFFFFF',
+        surfaceHighlight: '#EFECE6', // Cream sedikit lebih gelap untuk hover
+        primary: '#264653', // Deep Teal/Charcoal (Warna Profesional Utama)
+        secondary: '#2A9D8F', // Muted Teal
+        accent: '#E76F51', // Burnt Sienna (Warna Tombol/Aksen Retro)
         text: {
-            main: '#F1F5F9',
-            muted: '#94A3B8'
-        }
+            main: '#2B2D42', // Hampir hitam, tidak pure black
+            muted: '#5D6777'  // Abu-abu hangat
+        },
+        success: '#10B981',
+        warning: '#F4A261',
+        danger: '#E63946'
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],
         mono: ['var(--font-jetbrains)', 'monospace'],
       },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'hero-glow': 'conic-gradient(from 180deg at 50% 50%, #1a1f35 0deg, #0B0F19 180deg, #1a1f35 360deg)',
+      boxShadow: {
+        'retro': '4px 4px 0px 0px rgba(38, 70, 83, 0.1)',
+        'retro-hover': '6px 6px 0px 0px rgba(38, 70, 83, 0.15)',
       }
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
 }

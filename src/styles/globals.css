@@ -2,18 +2,29 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Scrollbar */
+@layer base {
+  html, body {
+    @apply bg-background text-text-main;
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
+/* Retro Scrollbar */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #0B0F19;
+  @apply bg-surfaceHighlight;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
-  border-radius: 4px;
+  @apply bg-text-muted/30 rounded-full border-2 border-background;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #475569;
+  @apply bg-primary/50;
+}
+
+.monaco-editor {
+  padding-top: 10px;
 }

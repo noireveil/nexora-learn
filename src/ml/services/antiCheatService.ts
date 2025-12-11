@@ -6,16 +6,17 @@ interface SimilarityResult {
     detectedPatterns?: string[];
 }
 
-// Normalize code for comparison
 const tokenizeCode = (code: string): string => {
     return code
-        .replace(/\/\/.*|\/\*[\s\S]*?\*\//g, "") // Hapus komentar JS/TS
-        .replace(/\s+/g, "") // Hapus semua whitespace
+        .replace(/\/\/.*|\/\*[\s\S]*?\*\//g, "") 
+        .replace(/\s+/g, "") 
         .toLowerCase();
 };
 
-// TODO: Implement Levenshtein distance algorithm
 const calculateLevenshtein = (a: string, b: string): number => {
+    if (a.length === 0) return b.length;
+    if (b.length === 0) return a.length;
+
     const matrix = Array.from({ length: a.length + 1 }, () => Array(b.length + 1).fill(0));
 
     for (let i = 0; i <= a.length; i++) matrix[i][0] = i;
@@ -25,9 +26,9 @@ const calculateLevenshtein = (a: string, b: string): number => {
         for (let j = 1; j <= b.length; j++) {
             const cost = a[i - 1] === b[j - 1] ? 0 : 1;
             matrix[i][j] = Math.min(
-                matrix[i - 1][j] + 1,      // deletion
-                matrix[i][j - 1] + 1,      // insertion
-                matrix[i - 1][j - 1] + cost // substitution
+                matrix[i - 1][j] + 1,      
+                matrix[i][j - 1] + 1,      
+                matrix[i - 1][j - 1] + cost 
             );
         }
     }
@@ -35,27 +36,30 @@ const calculateLevenshtein = (a: string, b: string): number => {
 };
 
 export const checkPlagiarism = async (currentCode: string, challengeId: string, userId: string): Promise<SimilarityResult> => {
-    // 1. Ambil submission user LAIN untuk soal yang sama
-    const otherSubmissions = await db.submissions
+    const allSubmissions = await db.submissions
         .where('challengeId').equals(challengeId)
-        .filter(s => s.userId !== userId && s.status === 'PASSED')
+        .filter(s => s.status === 'PASSED') 
         .toArray();
     
+    if (allSubmissions.length === 0) {
+        return { isOriginal: true, similarityScore: 0 };
+    }
+
     const cleanCurrent = tokenizeCode(currentCode);
     let maxSimilarity = 0;
 
-    // 2. Bandingkan satu per satu
-    for (const sub of otherSubmissions) {
+    for (const sub of allSubmissions) {
         if (!sub.code) continue;
+        
         const cleanOther = tokenizeCode(sub.code);
         
-        // Hitung jarak edit
+        if (Math.abs(cleanCurrent.length - cleanOther.length) / cleanCurrent.length > 0.5) continue;
+
         const distance = calculateLevenshtein(cleanCurrent, cleanOther);
         const maxLength = Math.max(cleanCurrent.length, cleanOther.length);
         
         if (maxLength === 0) continue;
 
-        // Similarity = 1 - (Beda / Total Panjang)
         const similarity = 1 - (distance / maxLength);
         
         if (similarity > maxSimilarity) {
@@ -63,12 +67,12 @@ export const checkPlagiarism = async (currentCode: string, challengeId: string, 
         }
     }
     
-    // Threshold 85% dianggap plagiat (sesuai proposal)
-    const THRESHOLD = 0.85; 
+    const THRESHOLD = 0.90; 
     
     return {
         isOriginal: maxSimilarity < THRESHOLD,
         similarityScore: maxSimilarity,
-        detectedPatterns: maxSimilarity > THRESHOLD ? ["High similarity with existing submission"] : []
+        detectedPatterns: maxSimilarity > THRESHOLD ? 
+            [`Terdeteksi kemiripan ${(maxSimilarity*100).toFixed(1)}% dengan solusi yang ada di database lokal (Shared Device Protection).`] : []
     };
 };

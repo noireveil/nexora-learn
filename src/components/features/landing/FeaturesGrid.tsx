@@ -15,8 +15,8 @@ export const FeaturesGrid = () => {
     },
     {
       icon: <Shield className="w-10 h-10 text-accent mb-4" />,
-      title: "Anti-Cheat AI",
-      description: "Mendeteksi plagiarisme dan pola kecurangan menggunakan analisis struktur kode lokal."
+      title: "Anti-Paste Integrity",
+      description: "Sistem mendeteksi anomali pengetikan. Copy-Paste dilarang untuk melatih Muscle Memory coding yang sesungguhnya."
     }
   ];
 

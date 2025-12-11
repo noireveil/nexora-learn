@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "@/styles/globals.css";
-import { Navbar } from "@/components/layout/Navbar";
+import { ClientLayout } from "@/components/layout/ClientLayout";
 import { Toaster } from "react-hot-toast";
-import { FirstTimeModal } from "@/components/features/FirstTimeModal";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains" });
@@ -11,6 +10,11 @@ const jetbrains = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrai
 export const metadata: Metadata = {
   title: "Nexora Learn | Adaptive Coding",
   description: "AI-Powered Offline Coding Platform",
+  icons: {
+    icon: '/icon.png',
+    shortcut: '/icon.png',
+    apple: '/icon.png',
+  },
 };
 
 export default function RootLayout({
@@ -19,11 +23,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.variable} ${jetbrains.variable} bg-background text-text-main antialiased selection:bg-primary/30`}>
-        <Navbar />
-        <FirstTimeModal />
-        <main className="pt-20 min-h-screen">
+        
+        <ClientLayout>
             {children}
-        </main>
+        </ClientLayout>
+
         <Toaster 
             position="bottom-right"
             toastOptions={{

@@ -1,10 +1,14 @@
 import { useState, useEffect } from 'react';
 import { getDashboardData } from '@/services/userService';
-import { User, Progress } from "@/lib/db/schema";
+import { User, Progress, Achievement } from "@/lib/db/schema";
 
 export const useDashboard = () => {
   const [user, setUser] = useState<User | null>(null);
   const [progress, setProgress] = useState<Progress | null>(null);
+  const [activityData, setActivityData] = useState<any[]>([]);
+  const [recentAchievement, setRecentAchievement] = useState<Achievement | null>(null);
+  const [lastActiveChallengeId, setLastActiveChallengeId] = useState<string | null>(null);
+  
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -14,6 +18,9 @@ export const useDashboard = () => {
         if (data) {
           setUser(data.user);
           setProgress(data.progress || null);
+          setActivityData(data.activityData || []);
+          setRecentAchievement(data.recentAchievement || null);
+          setLastActiveChallengeId(data.lastActiveChallengeId || null);
         }
       } catch (err) {
         console.error(err);
@@ -24,5 +31,5 @@ export const useDashboard = () => {
     load();
   }, []);
 
-  return { user, progress, isLoading };
+  return { user, progress, activityData, recentAchievement, lastActiveChallengeId, isLoading };
 };

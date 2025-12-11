@@ -14,7 +14,6 @@ interface UserDataDump {
   achievements: Achievement[];
 }
 
-// Export user data to JSON
 export async function exportProgress(): Promise<void> {
   try {
     const user = await db.users.orderBy('lastLogin').last();
@@ -62,7 +61,6 @@ export async function exportProgress(): Promise<void> {
   }
 }
 
-// Import user data from JSON
 export async function importProgress(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -72,7 +70,6 @@ export async function importProgress(file: File): Promise<string> {
         const content = e.target?.result as string;
         const importData: ExportData = JSON.parse(content);
 
-        // Validate format
         if (!importData.version || !importData.appName || !importData.data) {
           throw new Error('Invalid file format.');
         }
@@ -81,7 +78,6 @@ export async function importProgress(file: File): Promise<string> {
           throw new Error('Invalid backup file source.');
         }
 
-        // Restore data using transaction
         await db.transaction('rw', db.users, db.progress, db.submissions, db.achievements, async () => {
           const { user, progress, submissions, achievements } = importData.data;
 

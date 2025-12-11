@@ -4,7 +4,7 @@ import { getRankTitle, calculateLevel } from '@/lib/gamification/levels';
 
 export const useProfile = () => {
   const [user, setUser] = useState<User | null>(null);
-  const [stats, setStats] = useState({ level: 1, xp: 0, rank: 'Novice', nextXp: 100 });
+  const [stats, setStats] = useState({ level: 1, xp: 0, rank: 'Novice', nextXp: 100, progress: 0 });
   const [achievements, setAchievements] = useState<Achievement[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -15,19 +15,18 @@ export const useProfile = () => {
       if (currentUser && currentUser.id) {
         setUser(currentUser);
         
-        // Load Progress Stats
-        const progress = await db.progress.where('userId').equals(currentUser.id).first();
-        if (progress) {
-            const calc = calculateLevel(progress.xp);
+        const progressData = await db.progress.where('userId').equals(currentUser.id).first();
+        if (progressData) {
+            const calc = calculateLevel(progressData.xp);
             setStats({
                 level: calc.level,
-                xp: progress.xp,
+                xp: progressData.xp,
                 rank: getRankTitle(calc.level),
-                nextXp: calc.nextLevelXp
+                nextXp: calc.nextLevelXp,
+                progress: calc.progress 
             });
         }
 
-        // Load Achievements
         const userAchievements = await db.achievements.where('userId').equals(currentUser.id).toArray();
         setAchievements(userAchievements);
       }

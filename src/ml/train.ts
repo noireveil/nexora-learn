@@ -32,14 +32,10 @@ const generateSyntheticData = (numSamples: number) => {
 };
 
 export const trainAndSaveModel = async () => {
-    console.log("Training Model on the way... (Please wait :3)");
-
     const model = tf.sequential();
     
     model.add(tf.layers.dense({ units: 16, inputShape: [5], activation: 'relu' }));
-    
     model.add(tf.layers.dense({ units: 8, activation: 'relu' }));
-
     model.add(tf.layers.dense({ units: 3, activation: 'softmax' }));
 
     model.compile({
@@ -52,17 +48,8 @@ export const trainAndSaveModel = async () => {
 
     await model.fit(xs, ys, {
         epochs: 50, 
-        shuffle: true,
-        callbacks: {
-            onEpochEnd: (epoch, logs) => {
-                if ((epoch + 1) % 10 === 0) {
-                    console.log(`Epoch ${epoch + 1}: Akurasi = ${((logs?.acc || 0) * 100).toFixed(1)}%`);
-                }
-            }
-        }
+        shuffle: true
     });
-
-    console.log("Train Completed!.");
 
     await model.save('downloads://skill-predictor-model');
     

@@ -5,6 +5,9 @@ export interface User {
   username: string;
   createdAt: string;
   lastLogin: string;
+  startingLevel?: string;
+  tutorialCompleted?: boolean;
+  avatar?: string; 
 }
 
 export interface Progress {
@@ -13,6 +16,7 @@ export interface Progress {
   level: number;
   xp: number;
   currentStreak: number;
+  lastStreakDate?: string;
   skillLevels: Record<string, number>;
   completedChallenges: string[];
 }
@@ -30,6 +34,12 @@ export interface TestCase {
   description: string;
 }
 
+export interface Hint {
+  level: number;
+  text: string;
+  codeSnippet?: string;
+}
+
 export interface Challenge {
   id: string; 
   title: string;
@@ -38,6 +48,7 @@ export interface Challenge {
   topic: string;
   starterCode: string;
   testCases: TestCase[];
+  hints: Hint[];
   xpReward: number;
 }
 
@@ -63,8 +74,8 @@ export class NexoraDB extends Dexie {
   constructor() {
     super('NexoraLearnDB');
     
-    this.version(4).stores({
-      users: 'id, username, lastLogin',
+    this.version(7).stores({
+      users: 'id, username, lastLogin, avatar',
       progress: '++id, userId',
       achievements: '++id, userId',
       challenges: 'id, topic, difficulty',

@@ -8,7 +8,6 @@ import { Badge } from "@/components/ui/Badge";
 export const HeroSection = () => {
   return (
     <section className="relative z-10 text-center max-w-4xl mx-auto space-y-8 pt-10">
-      {/* Background Gradients - Dipindah ke sini agar menyatu dengan Hero */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-primary/20 blur-[120px] rounded-full pointer-events-none -z-10" />
 
       <Badge variant="primary" className="mb-4 animate-in fade-in slide-in-from-top-4 duration-700">

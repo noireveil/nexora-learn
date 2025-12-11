@@ -11,28 +11,48 @@ export interface UserSkillVector {
 
 // Transform user history into numeric features
 export const extractUserFeatures = (
-    progress: Progress | null, 
+    progress: Progress | undefined, 
     recentSubmissions: Submission[]
 ): UserSkillVector => {
-    // TODO: Handle cold start for new users
-    
-    // TODO: Calculate accuracy rate (passed / total)
+    if (!progress || recentSubmissions.length === 0) {
+        return {
+            accuracyRate: 0.5, 
+            avgTimePerChallenge: 0.5,
+            streakImpact: 0,
+            hintUsageRate: 0,
+            difficultyLevel: 0.33
+        };
+    }
 
-    // TODO: Normalize execution time (0.0 - 1.0)
+    const passedCount = recentSubmissions.filter(s => s.status === 'PASSED').length;
+    const accuracyRate = passedCount / recentSubmissions.length;
 
-    // TODO: Calculate streak impact
+    const totalTime = recentSubmissions.reduce((acc, curr) => acc + (curr.timeSpent || 60), 0);
+    const avgTimeRaw = totalTime / recentSubmissions.length;
+    const avgTimePerChallenge = Math.min(avgTimeRaw / 300, 1.0);
+
+    const streakImpact = Math.min((progress.currentStreak || 0) / 10, 1.0);
+    const totalHints = recentSubmissions.reduce((acc, curr) => acc + (curr.hintsUsed || 0), 0);
+    const hintUsageRate = Math.min((totalHints / recentSubmissions.length) / 3, 1.0);
+
+    const difficultyLevel = Math.min((progress.level || 1) / 10, 1.0);
 
     return {
-        accuracyRate: 0,
-        avgTimePerChallenge: 0,
-        streakImpact: 0,
-        hintUsageRate: 0,
-        difficultyLevel: 0
+        accuracyRate,
+        avgTimePerChallenge,
+        streakImpact,
+        hintUsageRate,
+        difficultyLevel
     };
 };
 
 // Convert features object to TF tensor
 export const convertToTensor = (features: UserSkillVector): tf.Tensor2D => {
-    // TODO: Map features to 2D tensor [1, 5]
-    return tf.tensor2d([]); 
+    return tf.tensor2d([[
+        features.accuracyRate,
+        features.avgTimePerChallenge,
+        features.streakImpact,
+        features.hintUsageRate,
+        features.difficultyLevel
+    ]]);
 };

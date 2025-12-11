@@ -5,8 +5,7 @@ import { seedDatabase } from "@/lib/db/seeder";
 import { HeroSection } from "@/components/features/landing/HeroSection";
 import { FeaturesGrid } from "@/components/features/landing/FeaturesGrid";
 
-export default function Home() {
-  
+export default function Home() { 
   // Initialization logic
   useEffect(() => {
     const initApp = async () => {
@@ -19,7 +18,7 @@ export default function Home() {
   return (
     <main className="container mx-auto px-6 py-20 relative overflow-hidden">
         <HeroSection />
-        <FeaturesGrid />
+        <FeaturesGrid />        
     </main>
   );
 }

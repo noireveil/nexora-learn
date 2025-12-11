@@ -49,6 +49,8 @@ export interface Submission {
   status: 'PASSED' | 'FAILED';
   timestamp: string;
   executionTime: number;
+  timeSpent: number;
+  hintsUsed: number; 
 }
 
 export class NexoraDB extends Dexie {
@@ -61,7 +63,7 @@ export class NexoraDB extends Dexie {
   constructor() {
     super('NexoraLearnDB');
     
-    this.version(3).stores({
+    this.version(4).stores({
       users: 'id, username, lastLogin',
       progress: '++id, userId',
       achievements: '++id, userId',

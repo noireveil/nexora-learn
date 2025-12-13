@@ -2,112 +2,119 @@
 
 **Next-Era Adaptive Coding Education Platform**
 
-[![Next.js](https://img.shields.io/badge/Next.js-15.0-black?logo=next.js)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-15.5.7-black?logo=next.js)](https://nextjs.org/)
 [![React](https://img.shields.io/badge/React-19_RC-61DAFB?logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.6-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![TensorFlow.js](https://img.shields.io/badge/TensorFlow.js-4.22-orange?logo=tensorflow)](https://www.tensorflow.org/js)
-![Status](https://img.shields.io/badge/Status-Public%20Beta-success)
+[![Pyodide](https://img.shields.io/badge/Pyodide-WASM-gold?logo=python)](https://pyodide.org/)
+[![Status](https://img.shields.io/badge/Status-Production%20Ready-success)]()
 
-> Nexora Learn is an **Offline-First** coding education platform utilizing **On-Device Machine Learning** to personalize learning experiences in real-time, directly in the browser (Client-Side).
+> **Nexora Learn** is an **Offline-First** coding education platform utilizing **On-Device Machine Learning** to personalize learning experiences in real-time. Built to run entirely on the client-side without server dependency, ensuring privacy and accessibility anywhere.
+
+---
+
+## ✨ Key Features
+
+### 🚀 1. Adaptive AI Engine (TensorFlow.js)
+Unlike static learning platforms, Nexora adapts to you. The system calculates a **User Skill Vector** in real-time based on:
+* **Accuracy Rate & Hint Usage**
+* **Time Complexity & Execution Speed**
+* **Consistency (Streak Impact)**
+
+The on-device Neural Network (WebGL backend) predicts the optimal difficulty for your next challenge (Easy/Medium/Hard) to keep you in the "Flow State".
+
+### 🔒 2. Anti-Cheat & Integrity System
+Designed to build real muscle memory, not just copy-pasting skills.
+* **Anti-Paste Protection:** The editor detects large text insertions and blocks submission, encouraging manual typing.
+* **Plagiarism Detection:** Uses Levenshtein Distance algorithms to detect code similarity against local history, preventing cheating on shared devices.
+
+### ⚡ 3. Polyglot Code Execution
+Run code securely in the browser using sandboxed Web Workers and WebAssembly:
+* **JavaScript:** Secure `new Function` sandbox with constraints.
+* **Python:** Full Python runtime powered by **Pyodide (WASM)**, capable of running logic, math, and data structure operations offline.
+* **Web (HTML/CSS):** Real-time DOM rendering with "Space-Insensitive" Regex validation for flexible grading.
+
+### 🌐 4. True Offline-First Architecture
+* **No Server Required:** All progress, code history, and gamification data are stored in **IndexedDB** (via Dexie.js).
+* **PWA Support:** Installable as a native-like app on Desktop and Mobile.
+* **Data Sync:** Export/Import your progress via JSON to sync between devices manually.
 
 ---
 
 ## 🏗️ System Architecture
 
-This project employs a **Clean Architecture** separating UI, Logic, and Data Layers, built on top of the latest **React 19** features.
+This project employs a **Clean Architecture** separating UI, Logic, and Data Layers, optimized for **React 19** performance.
 
-* **`src/app`**: Routing & Pages (Next.js 15 App Router).
-* **`src/components`**: UI Components (Visual only, React Server Components where applicable).
-* **`src/hooks`**: React State & Lifecycle Logic (Controller).
-* **`src/services`**: Database & Business Logic (Model).
-* **`src/ml`**: Machine Learning Engine (TFJS WebGL Backend).
-* **`src/workers`**: Background Threads for secure code execution (JS & Python).
+| Layer | Technology | Description |
+| :--- | :--- | :--- |
+| **UI Layer** | **Tailwind CSS + Framer Motion** | Responsive, animated components with Shadcn/UI patterns. |
+| **Logic Layer** | **React Hooks + Web Workers** | State management and off-main-thread code execution. |
+| **Data Layer** | **Dexie.js (IndexedDB)** | High-performance local database for persistence. |
+| **AI Layer** | **TensorFlow.js** | Client-side inference and model management. |
+
+### Directory Structure
+```
+src/
+├── app/         # Next.js 15 App Router (Pages)
+├── components/  # Reusable UI Components
+├── data/        # Curriculum & Challenge JSONs
+├── hooks/       # React Custom Hooks (Controllers)
+├── lib/         # Utilities (DB Schema, Gamification Logic)
+├── ml/          # Machine Learning Models & Feature Extractor
+├── services/    # Business Logic (User, Course, Progress)
+└── workers/     # Background Threads (Code Executor)
+```
 
 ---
 
 ## 📦 Getting Started
 
-Ensure Node.js (v18+) is installed.
+Ensure you have **Node.js (v18+)** installed.
 
-1.  **Clone Repository**
-    ```bash
-    git clone https://github.com/noireveil/nexora-learn.git
-    ```
+### 1. Clone Repository
+```bash
+git clone https://github.com/noireveil/nexora-learn.git
+cd nexora-learn
+```
 
-2.  **Install Dependencies**
-    ```bash
-    npm install
-    ```
+### 2. Install Dependencies
+```bash
+npm install
+```
 
-3.  **Run Development Server**
-    Uses **Turbopack** for instant HMR.
-    ```bash
-    npm run dev
-    ```
+### 3. Run Development Server
+Uses Turbopack for instant Hot Module Replacement (HMR).
+```bash
+npm run dev
+```
 
-4.  **Open Application**
-    Visit [http://localhost:3000](http://localhost:3000).  
-    *Local database (IndexedDB) will automatically seed with curriculum data on first load.*
+### 4. Open Application
+Visit [http://localhost:3000](http://localhost:3000).
 
----
-
-## 📊 Development Progress
-
-### 🔴 Phase 1: Foundation & UI Skeleton (Completed)
-**Goal:** Setup project structure, Database, and Base Pages.
-
-- [x] Setup Next.js 15 + Tailwind + shadcn/ui
-- [x] Implement Clean Architecture (`hooks`, `services`, `components`)
-- [x] Setup IndexedDB Schema (`Dexie.js`)
-- [x] Basic Routing & Layout (Dashboard, Learn Path, Profile)
-- [x] UI Prototype (Hero Section, Course Cards, Stats Overview)
-
-### 🟡 Phase 2: Core Engine (Completed)
-**Goal:** Functional Code Editor and Execution System.
-
-- [x] Monaco Editor Integration (VS Code experience)
-- [x] **Code Execution Engine**: Run user JS in Web Worker (Sandboxed)
-- [x] **Python Support**: Full Python runtime via WebAssembly (Pyodide)
-- [x] **Test Runner**: Validate outputs against Test Cases
-- [x] **Data Seeder**: Automated initial data population
-- [x] Local Data Sync (Export/Import JSON)
-
-### 🟢 Phase 3: AI & Content (Completed)
-**Goal:** Active AI Engine and comprehensive content.
-
-- [x] **Engine Upgrade**: TensorFlow.js 4.22 (WebGL Backend optimized for React 19)
-- [x] ML Modular Structure (`src/ml`)
-- [x] **Feature Engineering**: Real-time user skill vector calculation (`extractor.ts`)
-- [x] **Anti-Cheat Engine**: Behavioral analysis & Anti-Paste Integrity System
-- [x] **Model Integration**: Adaptive difficulty prediction based on performance
-- [x] **Content Production**: 50+ unique coding challenges (JS & Python)
-
-### 🔵 Phase 4: Gamification & Polish (Completed)
-**Goal:** User engagement and security.
-
-- [x] Basic XP & Leveling Logic (`src/lib/gamification`)
-- [x] Dashboard Stats Visualization & Activity Chart
-- [x] **Performance**: React Compiler & Turbopack Integration
-- [x] **Offline Ready**: Architecture supports full offline usage (Local DB + Assets)
+*Note: On the first load, the local database will automatically seed with the latest curriculum data.*
 
 ---
 
-## 🧠 Key Features Implemented
+## 📚 Curriculum Paths
 
-### 1. Adaptive Learning (TensorFlow.js)
-The platform analyzes user performance in real-time to adjust the difficulty of subsequent challenges.
-* **Input Features:** Accuracy Rate, Average Time, Streak Impact, Hint Usage.
-* **Output:** Recommended Difficulty (Easy, Medium, Hard).
+Nexora Learn currently offers three comprehensive learning paths with Project-Based Learning:
 
-### 2. Anti-Paste Integrity
-To ensure authentic learning and muscle memory development:
-* **Behavioral Analysis:** Detects impossible typing speeds (e.g., pasting 50 lines in 10ms).
-* **Shared Device Protection:** Detects plagiarism against local history to prevent cheating on shared school computers.
+1. **JavaScript Mastery**: From Variables to Functional Programming & Higher Order Functions.
+2. **Python for Data Science**: Syntax, Structures, Modules, and Data Processing logic.
+3. **Web Foundation**: HTML5 Semantics, CSS3 Styling, Flexbox/Grid, and Responsive Layouts.
 
-### 3. True Offline-First
-* **Database:** Uses **IndexedDB** (via Dexie.js) to store all user progress, code history, and achievements locally.
-* **Python Runtime:** Python engine (Pyodide) can be cached for offline execution without server dependency.
+*Advanced users are fast-tracked to Level 20 (Guru Badge) and Final Projects via the "Warm Start" algorithm.*
 
-### 4. Polyglot Code Runner
-* **JavaScript:** Secure `new Function` sandbox in Web Worker.
-* **Python:** WebAssembly-based Python environment running entirely in the browser.
+---
+
+## 🚀 Build & Deploy
+
+### Production Build
+```bash
+npm run build
+```
+
+### Run Production Server
+```bash
+npm start
+```

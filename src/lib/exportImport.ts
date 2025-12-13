@@ -79,9 +79,20 @@ export async function importProgress(file: File): Promise<string> {
         }
 
         await db.transaction('rw', db.users, db.progress, db.submissions, db.achievements, async () => {
+          await db.users.clear();
+          await db.progress.clear();
+          await db.submissions.clear();
+          await db.achievements.clear();
+
           const { user, progress, submissions, achievements } = importData.data;
 
-          if (user) await db.users.put(user);
+          const now = new Date().toISOString();
+          
+          if (user) {
+              const updatedUser = { ...user, lastLogin: now };
+              await db.users.put(updatedUser);
+          }
+
           if (progress) await db.progress.put(progress);
           
           if (submissions && submissions.length > 0) {

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "py-proj-sales",
+    "title": "Laporan Penjualan Harian",
+    "topic": "Data Processing",
+    "difficulty": "Hard",
+    "xpReward": 1000,
+    "description": "### Misi: Sales Aggregator\n\nKamu memiliki data transaksi mentah berupa List of Dictionaries:\n`data = [{'product': 'Laptop', 'price': 5000}, {'product': 'Mouse', 'price': 100}, {'product': 'Laptop', 'price': 5000}]`\n\nBuat fungsi `solution(data)` yang mengembalikan Dictionary berisi total pendapatan per produk.\n\n**Output:** `{'Laptop': 10000, 'Mouse': 100}`",
+    "starterCode": "def solution(data):\n    report = {}\n    # Loop data, jumlahkan harga berdasarkan product\n    \n    return report",
+    "testCases": [
+      {
+        "input": [[{"product": "A", "price": 100}, {"product": "B", "price": 200}, {"product": "A", "price": 50}]],
+        "expected": {"A": 150, "B": 200},
+        "description": "Aggregasi produk A"
+      }
+    ]
+  },
+  {
+    "id": "py-proj-grades",
+    "title": "Filter Nilai Ekstrem",
+    "topic": "Data Processing",
+    "difficulty": "Hard",
+    "xpReward": 1000,
+    "description": "### Misi: Data Cleaning\n\nDalam statistik, 'Outlier' adalah data yang terlalu jauh menyimpang. \n\nBuat fungsi `solution(nilai)` yang menerima List angka. Tugasmu:\n1. Hitung rata-rata (mean).\n2. Hapus angka yang nilainya **2 kali lipat lebih besar** dari rata-rata.\n3. Hapus angka yang nilainya **setengah lebih kecil** dari rata-rata.\n4. Return list sisa angka yang sudah 'bersih'.",
+    "starterCode": "def solution(nilai):\n    # Hitung rata-rata dulu\n    # Filter list berdasarkan kriteria\n    pass",
+    "testCases": [
+      {
+        "input": [[10, 10, 10, 100, 1]],
+        "expected": [10, 10, 10],
+        "description": "Hapus 100 (terlalu besar) dan 1 (terlalu kecil)"
+      }
+    ]
+  }
+]

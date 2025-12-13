@@ -15,6 +15,10 @@ import jsFPProcessing from './javascript/fp-processing.json';
 import jsWebHTML from './javascript/web-html.json';
 import jsWebCSS from './javascript/web-css.json';
 
+import jsProjects from './javascript/projects.json';
+import pyProjects from './python/projects.json';
+import webProjects from './javascript/web-projects.json';
+
 import pyBasics from './python/basics.json';
 import pyLoops from './python/loops.json';
 import pyModules from './python/modules.json';
@@ -38,9 +42,12 @@ export const allChallenges = [
   ...jsFPProcessing,
   ...jsWebHTML,
   ...jsWebCSS,
+  ...jsProjects,
+  ...webProjects,
   ...pyBasics,
   ...pyLoops,
   ...pyModules,
   ...pyFunctions,
-  ...pyStruct
+  ...pyStruct,
+  ...pyProjects
 ];

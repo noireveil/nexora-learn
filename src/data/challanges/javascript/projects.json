@@ -1,0 +1,54 @@
+[
+  {
+    "id": "js-proj-inventory",
+    "title": "Sistem Inventory Toko",
+    "topic": "Complex Logic",
+    "difficulty": "Hard",
+    "xpReward": 1000,
+    "description": "### Misi: Manajemen Stok Gudang\n\nKamu adalah Lead Backend Engineer. Buatlah function `solution(logs, currentStock)` untuk mengupdate stok barang berdasarkan log transaksi.\n\n**Parameter:**\n1. `logs`: Array of Objects transaksi `{ item: 'Buku', type: 'in'/'out', qty: 5 }`\n2. `currentStock`: Object stok saat ini `{ 'Buku': 10, 'Pensil': 5 }`\n\n**Tugas:**\n- Jika type `in`, tambah stok.\n- Jika type `out`, kurangi stok.\n- Jika barang belum ada di stok, anggap stok awal 0 lalu tambahkan.\n- **PENTING**: Stok tidak boleh negatif! Jika transaksi 'out' membuat stok < 0, abaikan transaksi tersebut.\n\n**Return:** Object stok terbaru.",
+    "starterCode": "function solution(logs, currentStock) {\n  // 1. Loop setiap transaksi di logs\n  // 2. Cek tipe transaksi (in/out)\n  // 3. Validasi stok tidak boleh negatif\n  // 4. Update currentStock\n  \n  return currentStock;\n}",
+    "testCases": [
+      {
+        "input": [
+          [
+            { "item": "Laptop", "type": "in", "qty": 5 },
+            { "item": "Mouse", "type": "out", "qty": 2 }
+          ],
+          { "Laptop": 0, "Mouse": 10 }
+        ],
+        "expected": { "Laptop": 5, "Mouse": 8 },
+        "description": "Transaksi masuk dan keluar normal"
+      },
+      {
+        "input": [
+          [
+            { "item": "Kopi", "type": "out", "qty": 100 }
+          ],
+          { "Kopi": 10 }
+        ],
+        "expected": { "Kopi": 10 },
+        "description": "Transaksi out melebihi stok (Harus diabaikan)"
+      }
+    ]
+  },
+  {
+    "id": "js-proj-analytics",
+    "title": "Analisis Performa Siswa",
+    "topic": "Complex Logic",
+    "difficulty": "Hard",
+    "xpReward": 1000,
+    "description": "### Misi: School Analytics System\n\nBuatlah function `solution(students)` yang menerima array data siswa dengan format:\n`{ name: 'Ali', scores: [80, 90, 100], class: '10A' }`\n\n**Tugas:**\nKembalikan sebuah object summary dengan format:\n```javascript\n{\n  bestStudent: 'Nama Siswa Rata-rata Tertinggi',\n  classAverage: { '10A': 85.5, '10B': 90.0 } // Rata-rata per kelas\n}\n```\n\n*Gunakan pembulatan 1 angka di belakang koma untuk rata-rata kelas.*",
+    "starterCode": "function solution(students) {\n  // 1. Hitung rata-rata setiap siswa\n  // 2. Cari siswa terbaik\n  // 3. Kelompokkan nilai berdasarkan kelas dan hitung rata-rata kelas\n  \n  return { bestStudent: '', classAverage: {} };\n}",
+    "testCases": [
+      {
+        "input": [[
+          { "name": "A", "scores": [100, 100], "class": "A" },
+          { "name": "B", "scores": [50, 50], "class": "B" },
+          { "name": "C", "scores": [60, 60], "class": "B" }
+        ]],
+        "expected": { "bestStudent": "A", "classAverage": { "A": 100, "B": 55 } },
+        "description": "Hitung best student dan rata-rata kelas"
+      }
+    ]
+  }
+]

@@ -1,0 +1,49 @@
+[
+  {
+    "id": "web-proj-card",
+    "title": "Product Card UI",
+    "topic": "Web Layout",
+    "difficulty": "Hard",
+    "xpReward": 1000,
+    "description": "### Misi: Membuat Kartu Produk E-Commerce\n\nBuatlah sebuah komponen kartu produk yang cantik menggunakan HTML dan CSS.\n\n**Spesifikasi:**\n1. Container: `width: 300px`, `border-radius: 12px`, `box-shadow`, `overflow: hidden`.\n2. Gambar: `div` dengan class `image` tinggi `200px`, background abu-abu.\n3. Content: `div` dengan padding `16px`, berisi Judul (h3), Harga (bold), dan Tombol Beli (block, full width).\n\n**Target:** Tampilan harus rapi seperti kartu belanja online.",
+    "starterCode": "<style>\n  .card {\n    /* Tulis CSS Container */\n    font-family: sans-serif;\n  }\n  .image {\n    /* Tulis CSS Gambar Dummy */\n    background-color: #ddd;\n  }\n  .content {\n    /* Padding */\n  }\n  .btn {\n    /* CSS Tombol */\n    background-color: #007bff;\n    color: white;\n    border: none;\n    cursor: pointer;\n  }\n</style>\n\n<div class=\"card\">\n  <div class=\"image\"></div>\n  <div class=\"content\">\n    <h3>Sepatu Keren</h3>\n    <p>Rp 500.000</p>\n    <button class=\"btn\">Beli Sekarang</button>\n  </div>\n</div>",
+    "testCases": [
+      {
+        "input": [],
+        "expected": "border-radius",
+        "description": "Card harus rounded"
+      },
+      {
+        "input": [],
+        "expected": "box-shadow",
+        "description": "Card harus punya bayangan"
+      },
+      {
+        "input": [],
+        "expected": "padding",
+        "description": "Content harus punya jarak"
+      }
+    ]
+  },
+  {
+    "id": "web-proj-layout",
+    "title": "Holy Grail Layout (Grid)",
+    "topic": "Web Layout",
+    "difficulty": "Hard",
+    "xpReward": 2000,
+    "description": "### Misi: Dashboard Layout\n\nBuatlah layout website klasik (Header, Sidebar, Main, Footer) menggunakan **CSS Grid**.\n\n**Struktur:**\n- Header: Full width di atas.\n- Sidebar: Di kiri (lebar 200px).\n- Main: Di kanan (sisa lebar).\n- Footer: Full width di bawah.\n\n**Tinggi:** Minimum tinggi layar penuh (100vh).",
+    "starterCode": "<style>\n  .container {\n    display: grid;\n    height: 100vh;\n    /* Definisikan Grid Template Areas/Columns di sini */\n    grid-template-columns: 200px 1fr;\n    grid-template-rows: auto 1fr auto;\n  }\n  \n  header { background: #333; color: white; grid-column: 1 / -1; }\n  aside { background: #f4f4f4; }\n  main { background: white; }\n  footer { background: #333; color: white; grid-column: 1 / -1; }\n</style>\n\n<div class=\"container\">\n  <header>Header</header>\n  <aside>Sidebar</aside>\n  <main>Main Content</main>\n  <footer>Footer</footer>\n</div>",
+    "testCases": [
+      {
+        "input": [],
+        "expected": "display: grid",
+        "description": "Wajib pakai Grid"
+      },
+      {
+        "input": [],
+        "expected": "100vh",
+        "description": "Full height screen"
+      }
+    ]
+  }
+]

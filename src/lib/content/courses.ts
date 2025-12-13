@@ -21,7 +21,7 @@ export const COURSES: Course[] = [
     title: 'JavaScript Mastery',
     description: 'Kuasai bahasa #1 web. Dari variabel dasar hingga Functional Programming.',
     icon: 'js',
-    totalChapters: 6,
+    totalChapters: 7,
     chapters: [
       {
         id: 'js-basics',
@@ -64,6 +64,13 @@ export const COURSES: Course[] = [
         description: 'Higher Order Functions dan Immutability.',
         level: 'Advanced',
         challenges: ['js-hof-easy-01', 'fp-easy-01', 'fp-med-01', 'fp-hof-hard-02']
+      },
+      {
+        id: 'js-project',
+        title: 'Real-World Projects',
+        description: 'Studi kasus kompleks: E-Commerce Logic & Data Analysis.',
+        level: 'Advanced',
+        challenges: ['js-proj-inventory', 'js-proj-analytics']
       }
     ]
   },
@@ -72,7 +79,7 @@ export const COURSES: Course[] = [
     title: 'Python for Data Science',
     description: 'Belajar analisis data dan automation dengan Python.',
     icon: 'python',
-    totalChapters: 4,
+    totalChapters: 5,
     chapters: [
         { 
             id: 'py-basics', 
@@ -101,6 +108,13 @@ export const COURSES: Course[] = [
             description: 'List, Tuple, dan Dictionary.', 
             level: 'Advanced',
             challenges: ['py-struct-easy-01', 'py-struct-easy-02', 'py-struct-hard-01'] 
+        },
+        { 
+            id: 'py-project', 
+            title: 'Final Projects', 
+            description: 'Membangun sistem analisis data sederhana.', 
+            level: 'Advanced',
+            challenges: ['py-proj-sales', 'py-proj-grades'] 
         }
     ]
   },
@@ -109,7 +123,7 @@ export const COURSES: Course[] = [
     title: 'Web Foundation',
     description: 'Pondasi internet. HTML5 Semantic dan CSS3 Box Model.',
     icon: 'web',
-    totalChapters: 2,
+    totalChapters: 3,
     chapters: [
         {
             id: 'web-html',
@@ -124,6 +138,13 @@ export const COURSES: Course[] = [
             description: 'Menghias tampilan website.',
             level: 'Intermediate',
             challenges: ['web-css-easy-01', 'web-css-med-01', 'web-css-hard-01']
+        },
+        {
+            id: 'web-project',
+            title: 'UI Components',
+            description: 'Membangun komponen UI modern yang responsif.',
+            level: 'Advanced',
+            challenges: ['web-proj-card', 'web-proj-layout']
         }
     ]
   }

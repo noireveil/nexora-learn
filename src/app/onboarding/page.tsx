@@ -53,25 +53,46 @@ export default function OnboardingPage() {
         return ids;
     };
 
+    const getAllExceptProjects = () => {
+        let ids: string[] = [];
+        COURSES.forEach(course => {
+            course.chapters.forEach(chapter => {
+                if (!chapter.id.includes('project')) {
+                    ids.push(...chapter.challenges);
+                }
+            });
+        });
+        return ids;
+    };
+
     if (selectedLevel === 'basic') {
         completedChallenges = getFirstChapterChallenges();
-        initialXP = 300;
+        initialXP = 500;
     } 
     else if (selectedLevel === 'inter') {
         completedChallenges = getChallengesByLevel(['Beginner']);
-        initialXP = 1500;
+        initialXP = 5000;
     }
     else if (selectedLevel === 'adv') {
-        completedChallenges = getChallengesByLevel(['Beginner', 'Intermediate']);
-        initialXP = 4000; 
+        completedChallenges = getAllExceptProjects();
+        initialXP = 500000; 
     }
 
     const skillLevels: Record<string, number> = {
         'js-path': 0, 'python-path': 0, 'web-path': 0
     };
-    if (selectedLevel === 'basic') { skillLevels['js-path'] = 15; skillLevels['python-path'] = 15; }
-    if (selectedLevel === 'inter') { skillLevels['js-path'] = 50; skillLevels['python-path'] = 50; skillLevels['web-path'] = 50; }
-    if (selectedLevel === 'adv')   { skillLevels['js-path'] = 80; skillLevels['python-path'] = 80; skillLevels['web-path'] = 80; }
+    
+    if (selectedLevel === 'basic') { 
+        skillLevels['js-path'] = 15; skillLevels['python-path'] = 15; 
+    }
+    if (selectedLevel === 'inter') { 
+        skillLevels['js-path'] = 50; skillLevels['python-path'] = 50; skillLevels['web-path'] = 50; 
+    }
+    if (selectedLevel === 'adv') { 
+        skillLevels['js-path'] = 90; 
+        skillLevels['python-path'] = 90; 
+        skillLevels['web-path'] = 90; 
+    }
 
     const calculatedStats = calculateLevel(initialXP);
 

@@ -35,7 +35,8 @@ export const useChallenge = (challengeId: string) => {
         const data = await getChallengeById(challengeId);
         if (data) {
           setChallenge(data);
-          setCodeState(data.starterCode);
+          let codeToDisplay = data.starterCode; 
+          
           setIsCompleted(false); 
           setAiRecommendation(null);
           setUnlockedHints([]); 
@@ -47,10 +48,27 @@ export const useChallenge = (challengeId: string) => {
           const user = await getCurrentUser();
           if (user) {
             const progress = await getUserProgress(user.id!);
-            if (progress && progress.completedChallenges.includes(challengeId)) {
-                setHasSolvedBefore(true); 
+            const isSolved = progress?.completedChallenges.includes(challengeId);
+            
+            if (isSolved) {
+                setHasSolvedBefore(true);
+                setIsCompleted(true);
+
+                const lastSuccess = await db.submissions
+                    .where({ userId: user.id, challengeId: challengeId, status: 'PASSED' })
+                    .last();
+                
+                if (lastSuccess && lastSuccess.code) {
+                    codeToDisplay = lastSuccess.code;
+                    
+                    toast("📂 Mode Review: Memuat jawaban terakhirmu", { 
+                        icon: '👀',
+                        id: 'review-mode-toast'
+                    });
+                }
             }
           }
+          setCodeState(codeToDisplay);
         }
       } catch (error) {
         toast.error("Gagal memuat soal");
@@ -104,7 +122,7 @@ export const useChallenge = (challengeId: string) => {
 
     setIsRunning(true);
     setLogs([]);
-    setIsCompleted(false);
+    if (!hasSolvedBefore) setIsCompleted(false);
 
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     
@@ -150,7 +168,7 @@ export const useChallenge = (challengeId: string) => {
             const cheatResult = await checkPlagiarism(code, challenge.id, user.id);
             
             if (!cheatResult.isOriginal) {
-                 toast.error("Submission Ditolak: Terindikasi Plagiarisme");
+                 toast.error("Submission Ditolak: Terindikasi Plagiarisme dari user lain.");
                  setLogs(prev => [...prev, { 
                     type: 'fail', 
                     content: `[SECURITY] ${cheatResult.detectedPatterns?.[0]}`, 
@@ -181,6 +199,7 @@ export const useChallenge = (challengeId: string) => {
                   predictNextDifficulty(user.id).then(diff => setAiRecommendation(diff));
               } else {
                   toast.success("Solusi Valid! (Review Mode)");
+                  setIsCompleted(true);
               }
             } else if (testResults.length > 0) {
               toast.error("Masih ada test case yang gagal.");
@@ -202,10 +221,10 @@ export const useChallenge = (challengeId: string) => {
     if (challenge) {
         setCodeState(challenge.starterCode);
         isCheatDetected.current = false;
-        toast.success("Editor di-reset. Flag anomali dihapus.");
+        toast.success("Editor di-reset ke awal.");
     }
     setLogs([]);
-    setIsCompleted(false);
+    setIsCompleted(false); 
     setAiRecommendation(null);
   };
 
@@ -215,6 +234,10 @@ export const useChallenge = (challengeId: string) => {
       if (nextIndex < challenge.hints.length) {
           setUnlockedHints(prev => [...prev, nextIndex]);
       }
+  };
+
+  const closeModal = () => {
+      setIsCompleted(false);
   };
 
   return {
@@ -229,6 +252,7 @@ export const useChallenge = (challengeId: string) => {
     runCode,
     resetCode,
     unlockedHints, 
-    unlockHint     
+    unlockHint,
+    closeModal
   };
 };

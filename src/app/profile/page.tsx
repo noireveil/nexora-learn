@@ -5,16 +5,23 @@ import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { useProfile } from '@/hooks/useProfile';
 import { useRouteProtection } from '@/hooks/useRouteProtection';
-import { UserCircle, Trophy, Activity, Lock, Zap, Target, Award, Camera } from 'lucide-react';
+import { UserCircle, Trophy, Activity, Lock, Zap, Target, Award, Camera, Edit2, Check, X } from 'lucide-react';
 import { BADGES, BadgeDef } from '@/lib/gamification/badges'; 
 import { db } from '@/lib/db/schema';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
 
 export default function ProfilePage() {
   const isAuthorized = useRouteProtection();
   const { user, stats, achievements, isLoading } = useProfile();
   const [isUploading, setIsUploading] = useState(false);
+  
+  const [isEditingName, setIsEditingName] = useState(false);
+  const [newName, setNewName] = useState("");
+
+  useEffect(() => {
+    if (user) setNewName(user.username);
+  }, [user]);
 
   const handlePhotoUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -42,7 +49,19 @@ export default function ProfilePage() {
     reader.readAsDataURL(file);
   };
 
-  if (!isAuthorized || isLoading) return <div className="p-20 text-center text-slate-500">Loading...</div>;
+  const handleSaveName = async () => {
+      if (!newName.trim() || !user?.id) return;
+      try {
+          await db.users.update(user.id, { username: newName });
+          toast.success("Nama berhasil diubah!");
+          setIsEditingName(false);
+          setTimeout(() => window.location.reload(), 500); 
+      } catch (e) {
+          toast.error("Gagal mengubah nama");
+      }
+  };
+
+  if (!isAuthorized || isLoading) return <div className="min-h-screen flex items-center justify-center text-slate-400">Loading...</div>;
   if (!user) return null;
 
   const unlockedIds = new Set(achievements.map(a => a.achievementId));
@@ -66,11 +85,11 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="container mx-auto px-6 py-10 space-y-8 max-w-5xl">
+    <div className="container mx-auto px-6 py-10 space-y-8 max-w-5xl animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm flex flex-col md:flex-row items-center gap-8">
         
         <div className="relative group">
-            <div className="w-28 h-28 rounded-full bg-slate-100 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden relative">
+            <div className="w-28 h-28 rounded-full bg-slate-50 border-4 border-white shadow-lg flex items-center justify-center overflow-hidden relative">
                 {user.avatar ? (
                     <img src={user.avatar} alt="Profile" className="w-full h-full object-cover" />
                 ) : (
@@ -90,8 +109,33 @@ export default function ProfilePage() {
         </div>
         
         <div className="text-center md:text-left flex-1 w-full">
-            <h1 className="text-3xl font-black text-slate-900">{user.username}</h1>
-            <p className="text-slate-500 text-sm mt-1 mb-4">Bergabung sejak {new Date(user.createdAt).toLocaleDateString()}</p>
+            {isEditingName ? (
+                <div className="flex items-center justify-center md:justify-start gap-2 mb-2">
+                    <input 
+                        value={newName}
+                        onChange={(e) => setNewName(e.target.value)}
+                        className="text-3xl font-black text-slate-900 border-b-2 border-primary outline-none bg-transparent w-full max-w-[300px]"
+                        autoFocus
+                    />
+                    <button onClick={handleSaveName} className="p-2 bg-green-100 text-green-600 rounded-full hover:bg-green-200"><Check size={20}/></button>
+                    <button onClick={() => setIsEditingName(false)} className="p-2 bg-red-100 text-red-600 rounded-full hover:bg-red-200"><X size={20}/></button>
+                </div>
+            ) : (
+                <div className="flex items-center justify-center md:justify-start gap-3 mb-2 group">
+                    <h1 className="text-3xl font-black text-slate-900">{user.username}</h1>
+                    
+                    <button 
+                        onClick={() => setIsEditingName(true)}
+                        className="p-1.5 text-slate-400 hover:text-primary hover:bg-primary/5 rounded-lg transition-all"
+                        aria-label="Edit Name"
+                        title="Ubah Nama"
+                    >
+                        <Edit2 size={18} />
+                    </button>
+                </div>
+            )}
+            
+            <p className="text-slate-500 text-sm mb-4">Bergabung sejak {new Date(user.createdAt).toLocaleDateString()}</p>
             
             <div className="max-w-md mx-auto md:mx-0 mb-6">
                 <div className="flex justify-between text-xs font-bold text-slate-500 mb-1">

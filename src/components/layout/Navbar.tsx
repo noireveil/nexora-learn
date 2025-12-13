@@ -36,11 +36,11 @@ export const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 w-full z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md">
+    <nav className="fixed top-0 w-full z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md hidden md:block">
       <div className="container mx-auto px-6 h-20 flex items-center justify-between">
         
-        <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-90 ml-28">
-          <div className="relative w-72 h-16"> 
+        <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-90">
+          <div className="relative w-32 h-8 md:w-72 md:h-16"> 
              <Image 
                src="/logo.png" 
                alt="Nexora Learn Logo" 
@@ -53,7 +53,7 @@ export const Navbar = () => {
         </Link>
 
         {isMounted && !isLandingOrOnboarding && user && user.startingLevel && (
-          <div className="hidden md:flex items-center gap-2 animate-in fade-in slide-in-from-top-2 duration-500">
+          <div className="flex items-center gap-2 animate-in fade-in slide-in-from-top-2 duration-500">
             <NavItem href="/dashboard" icon={LayoutDashboard} label="Dashboard" />
             <NavItem href="/learn" icon={Map} label="Learning Paths" />
             <NavItem href="/profile" icon={UserCircle} label="Profile" />

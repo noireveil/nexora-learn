@@ -4,7 +4,7 @@ import { useParams, useRouter } from 'next/navigation';
 import { useChallenge } from '@/hooks/useChallenge';
 import { CodeEditor } from '@/components/editor/CodeEditor';
 import { Button } from '@/components/ui/Button';
-import { Play, RotateCcw, ChevronLeft, Terminal, FileText, CheckCircle, XCircle, ArrowRight, Star, BrainCircuit, Sparkles, Lightbulb, Lock } from 'lucide-react';
+import { Play, RotateCcw, ChevronLeft, Terminal, FileText, CheckCircle, XCircle, ArrowRight, Star, BrainCircuit, Sparkles, Lightbulb, Lock, BookOpen, Code2, SquareTerminal } from 'lucide-react';
 import { WebPreview } from '@/components/features/learn/WebPreview';
 import Link from 'next/link';
 import { cn } from '@/lib/utils/cn';
@@ -14,12 +14,15 @@ import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
 import 'katex/dist/katex.min.css';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useState } from 'react';
 
 export default function ChallengePage() {
   const params = useParams();
   const router = useRouter();
   const challengeId = params.id as string;
   
+  const [activeTab, setActiveTab] = useState<'problem' | 'editor' | 'console'>('problem');
+
   const { 
     challenge, 
     code, 
@@ -32,7 +35,8 @@ export default function ChallengePage() {
     runCode, 
     resetCode,
     unlockedHints, 
-    unlockHint     
+    unlockHint,
+    closeModal
   } = useChallenge(challengeId);
 
   const courseId = getCourseByChallengeId(challengeId);
@@ -44,6 +48,11 @@ export default function ChallengePage() {
   const isPython = challenge.id.startsWith('py-');
 
   const editorLanguage = isWebChallenge ? 'html' : isPython ? 'python' : 'javascript';
+
+  const handleRunMobile = () => {
+    setActiveTab('console');
+    runCode();
+  };
 
   return (
     <div className="h-screen flex flex-col bg-background overflow-hidden font-sans relative">
@@ -71,7 +80,7 @@ export default function ChallengePage() {
                             Kamu mendapatkan <span className="font-bold text-orange-600">+{challenge.xpReward} XP</span>.
                         </p>
 
-                        {aiRecommendation ? (
+                        {aiRecommendation && (
                             <motion.div 
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -82,17 +91,13 @@ export default function ChallengePage() {
                                     <span className="text-xs font-bold text-indigo-700 uppercase tracking-wider">AI Analysis</span>
                                 </div>
                                 <p className="text-xs text-indigo-800 leading-relaxed">
-                                    Berdasarkan kecepatan dan akurasi kodemu, Nexora menyarankan tantangan selanjutnya bertipe:
+                                    Berdasarkan performa kodemu, saran tantangan selanjutnya:
                                 </p>
                                 <div className="mt-2 flex items-center gap-2">
                                     <Sparkles size={14} className="text-indigo-500"/>
                                     <span className="font-black text-sm text-indigo-900 uppercase">{aiRecommendation}</span>
                                 </div>
                             </motion.div>
-                        ) : (
-                            <div className="mb-6 h-20 flex items-center justify-center text-xs text-slate-400 animate-pulse">
-                                Menganalisis performa...
-                            </div>
                         )}
 
                         <div className="space-y-3">
@@ -115,7 +120,7 @@ export default function ChallengePage() {
                             )}
                             
                             <Button 
-                                onClick={() => window.location.reload()} 
+                                onClick={closeModal} 
                                 variant="ghost" 
                                 className="w-full"
                             >
@@ -132,26 +137,74 @@ export default function ChallengePage() {
                 <Link href={backLink} className="p-2 hover:bg-gray-100 rounded-md text-text-muted transition-colors">
                     <ChevronLeft size={18} />
                 </Link>
-                <div className="h-6 w-px bg-gray-200 mx-1"></div>
-                <div className="flex items-baseline gap-2">
+                <div className="h-6 w-px bg-gray-200 mx-1 hidden sm:block"></div>
+                <div className="flex flex-col sm:flex-row sm:items-baseline gap-0 sm:gap-2">
                     <h1 className="font-bold text-primary text-sm md:text-base line-clamp-1">{challenge.title}</h1>
-                    <span className="text-xs text-text-muted hidden sm:inline-block px-2 py-0.5 bg-gray-100 rounded-full">{challenge.topic}</span>
+                    <span className="text-[10px] sm:text-xs text-text-muted hidden sm:inline-block px-2 py-0.5 bg-gray-100 rounded-full">{challenge.topic}</span>
                 </div>
             </div>
             
-            <div className="flex items-center gap-3">
-                <Button variant="ghost" size="sm" onClick={resetCode} className="text-xs h-8">
-                    <RotateCcw size={14} className="mr-2"/> Reset
+            <div className="flex items-center gap-2">
+                <Button variant="ghost" size="sm" onClick={resetCode} className="text-xs h-8 px-2 sm:px-3">
+                    <RotateCcw size={14} className="sm:mr-2"/> <span className="hidden sm:inline">Reset</span>
                 </Button>
-                <Button variant="accent" size="sm" onClick={runCode} disabled={isRunning} className="h-8 px-4 text-xs font-bold">
-                    {isRunning ? <span className="animate-pulse">Memproses...</span> : <><Play size={14} className="mr-2 fill-white"/> Jalankan Kode</>}
+                
+                <Button 
+                    variant="accent" 
+                    size="sm" 
+                    onClick={typeof window !== 'undefined' && window.innerWidth < 768 ? handleRunMobile : runCode} 
+                    disabled={isRunning} 
+                    className="h-8 px-3 sm:px-4 text-xs font-bold"
+                >
+                    {isRunning ? (
+                        <span className="animate-pulse">...</span>
+                    ) : (
+                        <><Play size={14} className="sm:mr-2 fill-white"/> <span className="hidden sm:inline">Jalankan</span></>
+                    )}
                 </Button>
             </div>
         </header>
 
-        <div className="flex-1 flex flex-col md:flex-row overflow-hidden">
-            <div className="w-full md:w-[35%] lg:w-[30%] bg-white border-r border-gray-200 flex flex-col z-10">
-                <div className="flex-1 overflow-y-auto p-6 custom-scrollbar">
+        <div className="md:hidden flex border-b border-gray-200 bg-white shrink-0">
+            <button 
+                onClick={() => setActiveTab('problem')}
+                className={cn(
+                    "flex-1 py-3 text-xs font-bold flex items-center justify-center gap-2 border-b-2 transition-colors",
+                    activeTab === 'problem' ? "border-primary text-primary bg-primary/5" : "border-transparent text-slate-500"
+                )}
+            >
+                <BookOpen size={16}/> Soal
+            </button>
+            <button 
+                onClick={() => setActiveTab('editor')}
+                className={cn(
+                    "flex-1 py-3 text-xs font-bold flex items-center justify-center gap-2 border-b-2 transition-colors",
+                    activeTab === 'editor' ? "border-primary text-primary bg-primary/5" : "border-transparent text-slate-500"
+                )}
+            >
+                <Code2 size={16}/> Kode
+            </button>
+            <button 
+                onClick={() => setActiveTab('console')}
+                className={cn(
+                    "flex-1 py-3 text-xs font-bold flex items-center justify-center gap-2 border-b-2 transition-colors relative",
+                    activeTab === 'console' ? "border-primary text-primary bg-primary/5" : "border-transparent text-slate-500"
+                )}
+            >
+                <SquareTerminal size={16}/> Hasil
+                {output.length > 0 && activeTab !== 'console' && (
+                    <span className="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full animate-pulse" />
+                )}
+            </button>
+        </div>
+
+        <div className="flex-1 flex flex-col md:flex-row overflow-hidden relative min-h-0">
+            
+            <div className={cn(
+                "w-full md:w-[35%] lg:w-[30%] bg-white border-r border-gray-200 flex-col z-10 h-full",
+                activeTab === 'problem' ? "flex" : "hidden md:flex"
+            )}>
+                <div className="flex-1 overflow-y-auto p-4 md:p-6 custom-scrollbar pb-20 md:pb-6">
                     <div className="mb-4">
                         <span className={cn(
                             "text-[10px] font-bold px-2 py-1 rounded border uppercase tracking-wider",
@@ -169,6 +222,7 @@ export default function ChallengePage() {
                         prose-code:text-primary prose-code:bg-primary/10 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:font-medium prose-code:before:content-none prose-code:after:content-none
                         prose-pre:bg-[#1e1e1e] prose-pre:text-gray-100 prose-pre:border prose-pre:border-gray-200 prose-pre:shadow-sm
                         [&_pre_code]:text-gray-100 [&_pre_code]:bg-transparent [&_pre_code]:p-0
+                        mb-8
                     ">
                         <ReactMarkdown
                             remarkPlugins={[remarkMath]}
@@ -178,7 +232,7 @@ export default function ChallengePage() {
                         </ReactMarkdown>
                     </article>
 
-                    <div className="mt-8 space-y-3">
+                    <div className="mt-8 space-y-3 mb-8">
                         <div className="flex items-center justify-between">
                             <h3 className="font-bold text-slate-800 flex items-center gap-2">
                                 <Lightbulb size={16} className="text-yellow-500" /> Bantuan
@@ -222,7 +276,7 @@ export default function ChallengePage() {
                         )}
                     </div>
 
-                    <div className="mt-8 bg-surfaceHighlight/50 rounded-xl border border-gray-200 overflow-hidden">
+                    <div className="bg-surfaceHighlight/50 rounded-xl border border-gray-200 overflow-hidden mb-6">
                         <div className="bg-gray-50 px-4 py-2 border-b border-gray-200 flex items-center gap-2">
                             <FileText size={14} className="text-text-muted"/>
                             <span className="text-xs font-bold text-text-muted uppercase">Kriteria Pengujian</span>
@@ -241,8 +295,15 @@ export default function ChallengePage() {
                 </div>
             </div>
 
-            <div className="flex-1 flex flex-col min-w-0 bg-[#1e1e1e]">
-                <div className="flex-1 relative">
+            <div className={cn(
+                "flex-1 flex-col min-w-0 bg-[#1e1e1e] h-full",
+                (activeTab === 'editor' || activeTab === 'console') ? "flex" : "hidden md:flex"
+            )}>
+                
+                <div className={cn(
+                    "relative",
+                    activeTab === 'editor' ? "flex-1 block h-full" : "hidden md:flex-1 md:block"
+                )}>
                     <CodeEditor 
                         code={code} 
                         onChange={(val) => setCode(val || '')} 
@@ -250,18 +311,21 @@ export default function ChallengePage() {
                     />
                 </div>
 
-                <div className="h-[35%] min-h-[150px] border-t border-white/10 flex flex-col bg-[#1e1e1e]">
+                <div className={cn(
+                    "border-t border-white/10 flex-col bg-[#1e1e1e]",
+                    activeTab === 'console' ? "flex-1 flex h-full" : "hidden md:flex md:h-[35%] md:min-h-[150px]"
+                )}>
                     {isWebChallenge ? (
                         <WebPreview code={code} />
                     ) : (
                         <>
-                            <div className="px-4 py-2 border-b border-white/10 bg-[#252526] flex justify-between items-center select-none">
+                            <div className="px-4 py-2 border-b border-white/10 bg-[#252526] flex justify-between items-center select-none shrink-0">
                                 <div className="flex items-center gap-2">
                                     <Terminal size={14} className="text-gray-400"/>
                                     <span className="text-xs font-bold text-gray-400 uppercase tracking-wider">Console Output</span>
                                 </div>
                             </div>
-                            <div className="flex-1 p-4 overflow-y-auto font-mono text-sm space-y-1.5">
+                            <div className="flex-1 p-4 overflow-y-auto font-mono text-sm space-y-1.5 custom-scrollbar text-gray-300">
                                 {output.length === 0 && (
                                     <div className="h-full flex items-center justify-center text-gray-600 italic text-xs">
                                         Hasil eksekusi kode akan muncul di sini...

@@ -36,19 +36,19 @@ const calculateLevenshtein = (a: string, b: string): number => {
 };
 
 export const checkPlagiarism = async (currentCode: string, challengeId: string, userId: string): Promise<SimilarityResult> => {
-    const allSubmissions = await db.submissions
+    const otherSubmissions = await db.submissions
         .where('challengeId').equals(challengeId)
-        .filter(s => s.status === 'PASSED') 
+        .filter(s => s.status === 'PASSED' && s.userId !== userId) 
         .toArray();
     
-    if (allSubmissions.length === 0) {
+    if (otherSubmissions.length === 0) {
         return { isOriginal: true, similarityScore: 0 };
     }
 
     const cleanCurrent = tokenizeCode(currentCode);
     let maxSimilarity = 0;
 
-    for (const sub of allSubmissions) {
+    for (const sub of otherSubmissions) {
         if (!sub.code) continue;
         
         const cleanOther = tokenizeCode(sub.code);
@@ -67,12 +67,12 @@ export const checkPlagiarism = async (currentCode: string, challengeId: string, 
         }
     }
     
-    const THRESHOLD = 0.90; 
+    const THRESHOLD = 0.95;
     
     return {
         isOriginal: maxSimilarity < THRESHOLD,
         similarityScore: maxSimilarity,
         detectedPatterns: maxSimilarity > THRESHOLD ? 
-            [`Terdeteksi kemiripan ${(maxSimilarity*100).toFixed(1)}% dengan solusi yang ada di database lokal (Shared Device Protection).`] : []
+            [`Terdeteksi kemiripan ${(maxSimilarity*100).toFixed(1)}% dengan user lain di device ini.`] : []
     };
 };

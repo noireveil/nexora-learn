@@ -27,15 +27,15 @@ export default function Dashboard() {
   let nextChallengeTitle: string | undefined = undefined;
 
   if (progress && lastActiveChallengeId) { 
-      const currentCourse = courses.find(c => 
-          c.chapters.some(ch => ch.challenges.includes(lastActiveChallengeId))
+      const currentCourse = courses.find((c: any) => 
+          c.chapters.some((ch: any) => ch.challenges.includes(lastActiveChallengeId))
       );
 
       if (currentCourse) {
           lastTopic = currentCourse.title;
           progressPercent = progress.skillLevels?.[currentCourse.id] || 0;
           
-          const activeChapter = currentCourse.chapters.find(ch => ch.challenges.includes(lastActiveChallengeId));
+          const activeChapter = currentCourse.chapters.find((ch: any) => ch.challenges.includes(lastActiveChallengeId));
           if (activeChapter) lastChapter = activeChapter.title;
 
           nextChallengeId = lastActiveChallengeId; 
@@ -70,7 +70,7 @@ export default function Dashboard() {
         <DashboardTutorial userId={user.id!} />
       )}
 
-      <div className="mb-10 flex flex-col md:flex-row justify-between items-end gap-4 border-b border-slate-100 pb-8">
+      <div className="mb-10 mt-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 border-b border-slate-100 pb-8">
         <div>
             <h1 className="text-3xl font-bold text-slate-900 mb-2">
                 Halo, <span className="text-primary">{user.username}</span> 👋

@@ -1,15 +1,17 @@
 'use client';
 
-import { Download, Upload, CheckCircle, AlertCircle, Loader2, Cloud, Database, RefreshCw, Box } from 'lucide-react';
+import { Download, Upload, CheckCircle, AlertCircle, Loader2, Cloud, Database, RefreshCw, Box, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { useDataSync } from '@/hooks/useDataSync';
 import { cn } from '@/lib/utils/cn';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
+import { db } from '@/lib/db/schema';
 
 export const DataSync = () => {
   const { isProcessing, status, performExport, performImport } = useDataSync();
   const [isDownloadingPy, setIsDownloadingPy] = useState(false);
+  const [isResetting, setIsResetting] = useState(false);
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -43,6 +45,25 @@ export const DataSync = () => {
         toast.error("Gagal download. Pastikan internet lancar.", { id: toastId });
     } finally {
         setIsDownloadingPy(false);
+    }
+  };
+
+  const handleFactoryReset = async () => {
+    if (!confirm("⚠️ BAHAYA: Semua progress, XP, dan akun akan dihapus permanen dari perangkat ini. Yakin?")) return;
+    
+    setIsResetting(true);
+    try {
+        await db.delete();
+        await db.open();
+        toast.success("Database berhasil di-reset!");
+        
+        setTimeout(() => {
+            window.location.href = "/";
+        }, 1000);
+    } catch (e) {
+        console.error(e);
+        toast.error("Gagal reset database");
+        setIsResetting(false);
     }
   };
 
@@ -136,6 +157,29 @@ export const DataSync = () => {
                     {isProcessing ? <Loader2 className="animate-spin" size={16}/> : <Upload size={16}/>}
                 </Button>
             </div>
+        </div>
+
+        <div className="group relative bg-red-50 rounded-xl border border-red-100 p-5 hover:border-red-300 transition-all duration-300">
+             <div className="flex items-start justify-between mb-4">
+                <div className="p-3 bg-red-100 text-red-600 rounded-lg group-hover:scale-110 transition-transform">
+                    <Trash2 size={24} />
+                </div>
+                <div className="bg-white px-2 py-1 rounded text-[10px] font-bold text-red-500 uppercase tracking-wider border border-red-100">
+                    Danger Zone
+                </div>
+            </div>
+            <h4 className="font-bold text-slate-900 mb-1">Factory Reset</h4>
+            <p className="text-xs text-slate-500 mb-4 h-8">
+                Hapus semua data akun dan progress dari perangkat ini.
+            </p>
+            <Button 
+                onClick={handleFactoryReset} 
+                disabled={isResetting}
+                className="w-full justify-between bg-red-600 hover:bg-red-700 text-white border-0 shadow-red-200"
+            >
+                <span>{isResetting ? 'Menghapus...' : 'Hapus Semua Data'}</span>
+                {isResetting ? <Loader2 className="animate-spin" size={16}/> : <Trash2 size={16}/>}
+            </Button>
         </div>
 
       </div>

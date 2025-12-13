@@ -8,6 +8,7 @@ export const useDashboard = () => {
   const [activityData, setActivityData] = useState<any[]>([]);
   const [recentAchievement, setRecentAchievement] = useState<Achievement | null>(null);
   const [lastActiveChallengeId, setLastActiveChallengeId] = useState<string | null>(null);
+  const [hasStarted, setHasStarted] = useState(false); // State baru
   
   const [isLoading, setIsLoading] = useState(true);
 
@@ -21,6 +22,7 @@ export const useDashboard = () => {
           setActivityData(data.activityData || []);
           setRecentAchievement(data.recentAchievement || null);
           setLastActiveChallengeId(data.lastActiveChallengeId || null);
+          setHasStarted(data.hasStarted || false); // Set state
         }
       } catch (err) {
         console.error(err);
@@ -31,5 +33,5 @@ export const useDashboard = () => {
     load();
   }, []);
 
-  return { user, progress, activityData, recentAchievement, lastActiveChallengeId, isLoading };
+  return { user, progress, activityData, recentAchievement, lastActiveChallengeId, hasStarted, isLoading };
 };

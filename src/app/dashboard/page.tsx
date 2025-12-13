@@ -14,7 +14,7 @@ import { BADGES } from "@/lib/gamification/badges";
 export default function Dashboard() {
   const isAuthorized = useRouteProtection();
   
-  const { user, progress, isLoading, activityData, recentAchievement, lastActiveChallengeId } = useDashboard() as any;
+  const { user, progress, isLoading, activityData, recentAchievement, lastActiveChallengeId, hasStarted } = useDashboard() as any;
   const { courses } = useLearningPaths();
 
   if (!isAuthorized || isLoading) return <div className="p-20 text-center text-slate-500">Memuat Dashboard...</div>;
@@ -26,7 +26,7 @@ export default function Dashboard() {
   let nextChallengeId: string | undefined = undefined;
   let nextChallengeTitle: string | undefined = undefined;
 
-  if (progress && lastActiveChallengeId) { 
+  if (hasStarted && progress && lastActiveChallengeId) { 
       const currentCourse = courses.find((c: any) => 
           c.chapters.some((ch: any) => ch.challenges.includes(lastActiveChallengeId))
       );
@@ -39,7 +39,9 @@ export default function Dashboard() {
           if (activeChapter) lastChapter = activeChapter.title;
 
           nextChallengeId = lastActiveChallengeId; 
-          nextChallengeTitle = "Lanjutkan Materi"; 
+          
+          const isProject = activeChapter?.id.includes('project');
+          nextChallengeTitle = isProject ? "Misi Project Baru" : "Lanjutkan Materi"; 
       }
   }
 

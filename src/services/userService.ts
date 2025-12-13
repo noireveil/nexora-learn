@@ -1,7 +1,8 @@
-import { db, User, Progress } from "@/lib/db/schema";
+import { db, User, Progress, Submission } from "@/lib/db/schema";
 import { calculateLevel } from "@/lib/gamification/levels";
 import { getCourseByChallengeId, getTotalChallengesInCourse } from "./courseService";
 import { BADGES } from "@/lib/gamification/badges";
+import { COURSES } from "@/lib/content/courses";
 
 export const getCurrentUser = async (): Promise<User | undefined> => {
   return await db.users.orderBy('lastLogin').last();
@@ -11,11 +12,20 @@ export const getUserProgress = async (userId: string): Promise<Progress | undefi
   return await db.progress.where('userId').equals(userId).first();
 };
 
+const isRealSubmission = (s: Submission) => {
+  if (!s.code) return false;
+  
+  const cleanCode = s.code.trim();
+  if (cleanCode.length === 0) return false;
+
+  if (s.code.includes('Auto-completed by Warm Start System')) return false;
+
+  return true;
+};
+
 const checkAndUnlockBadges = async (userId: string, progress: Progress) => {
-  const realSolvesCount = await db.submissions
-    .where('userId').equals(userId)
-    .filter(s => s.status === 'PASSED' && s.executionTime > 0) 
-    .count();
+  const allSubmissions = await db.submissions.where('userId').equals(userId).toArray();
+  const realSolvesCount = allSubmissions.filter(s => s.status === 'PASSED' && isRealSubmission(s)).length;
 
   const currentStreak = progress.currentStreak;
   const currentLevel = progress.level;
@@ -130,8 +140,27 @@ export const getDashboardData = async () => {
     accuracy = Math.round((passedCount / submissions.length) * 100);
   }
 
-  const lastRealSubmission = submissions.find(s => s.code !== '// Auto-completed by Warm Start System');
-  const lastActiveChallengeId = lastRealSubmission ? lastRealSubmission.challengeId : null;
+  const lastRealSubmission = submissions.find(isRealSubmission);
+  const hasStarted = !!lastRealSubmission;
+
+  let lastActiveChallengeId = lastRealSubmission ? lastRealSubmission.challengeId : null;
+
+  if (!lastActiveChallengeId && progress && progress.completedChallenges.length > 0) {
+      let foundNext = false;
+      for (const course of COURSES) {
+          if (foundNext) break;
+          for (const chapter of course.chapters) {
+              if (foundNext) break;
+              for (const challengeId of chapter.challenges) {
+                  if (!progress.completedChallenges.includes(challengeId)) {
+                      lastActiveChallengeId = challengeId;
+                      foundNext = true;
+                      break;
+                  }
+              }
+          }
+      }
+  }
 
   const achievements = await db.achievements.where('userId').equals(user.id).reverse().toArray();
 
@@ -142,7 +171,11 @@ export const getDashboardData = async () => {
   }).reverse();
 
   const activityData = last7Days.map(dateStr => {
-    const count = submissions.filter(s => new Date(s.timestamp).toDateString() === dateStr).length;
+    const count = submissions.filter(s => 
+        new Date(s.timestamp).toDateString() === dateStr && 
+        isRealSubmission(s)
+    ).length;
+    
     const dayName = new Date(dateStr).toLocaleDateString('en-US', { weekday: 'short' });
     return { day: dayName, count, fullDate: dateStr };
   });
@@ -152,6 +185,7 @@ export const getDashboardData = async () => {
     progress: progress ? { ...progress, accuracy } : null,
     recentAchievement: achievements[0],
     activityData,
-    lastActiveChallengeId 
+    lastActiveChallengeId,
+    hasStarted
   };
 };

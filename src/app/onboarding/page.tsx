@@ -109,7 +109,7 @@ export default function OnboardingPage() {
             userId: userId,
             level: calculatedStats.level, 
             xp: initialXP,
-            currentStreak: 1, 
+            currentStreak: 0,
             lastStreakDate: now,
             skillLevels: skillLevels,
             completedChallenges: completedChallenges
@@ -120,7 +120,7 @@ export default function OnboardingPage() {
             
             if (cId.includes('py-')) {
                 autoCode = '# Auto-completed by Warm Start System';
-            } else if (cId.includes('web-')) {
+            } else if (cId.includes('web-') || cId.includes('html') || cId.includes('css')) {
                 autoCode = '';
             }
 

@@ -15,7 +15,7 @@ export interface ConsoleLog {
 
 export interface WorkerPayload {
   code: string;
-  language: 'javascript' | 'python';
+  language: 'javascript' | 'python' | 'html';
   testCases: {
     input: any;
     expected: any;

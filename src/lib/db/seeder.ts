@@ -11,13 +11,6 @@ const chunkArray = <T>(arr: T[], size: number): T[][] => {
 
 export const seedDatabase = async () => {
     try {
-        const count = await db.challenges.count();
-        
-        if (count > 0 && count !== allChallenges.length) {
-             await db.challenges.clear(); 
-        } else if (count > 0) {
-             return;
-        }
         
         const batches = chunkArray(allChallenges, 50);
 
@@ -36,6 +29,8 @@ export const seedDatabase = async () => {
 
             await db.challenges.bulkPut(sanitizedBatch);
         }
+        
+        console.log("Database challenges updated successfully.");
     } catch (error) {
         console.error("Seeding failed:", error);
     }

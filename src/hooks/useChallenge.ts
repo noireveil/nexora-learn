@@ -141,7 +141,9 @@ export const useChallenge = (challengeId: string) => {
     }, 5000); 
 
     const isPython = challenge.id.startsWith('py-');
-    const language = isPython ? 'python' : 'javascript';
+    const isWeb = challenge.topic.includes('HTML') || challenge.topic.includes('CSS') || challenge.id.startsWith('web-');
+    
+    const language = isWeb ? 'html' : (isPython ? 'python' : 'javascript');
 
     const payload: WorkerPayload = {
       code,

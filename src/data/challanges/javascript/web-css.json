@@ -1,94 +1,94 @@
 [
   {
     "id": "web-css-easy-01",
-    "title": "Warnai Dunia (Color)",
-    "topic": "CSS Logic",
+    "title": "Warnai Dunia (CSS Color)",
+    "topic": "CSS Styling",
     "difficulty": "Easy",
     "xpReward": 50,
-    "description": "### Teori\nCSS digunakan untuk menghias HTML. Property paling dasar:\n- `color`: Warna teks.\n- `background-color`: Warna latar.\n\nKode warna bisa pakai nama (`red`) atau Hex (`#FF0000`).\n\n### Misi\nBuat function `solution()` yang me-return string CSS untuk:\n**\"Teks berwarna merah dan latar belakang hitam.\"**\n\nFormat: `color: red; background-color: black;`",
-    "starterCode": "function solution() {\n  // Return properti CSS beserta titik komanya (;)\n  return \"\";\n}",
+    "description": "### Teori\nCSS digunakan untuk mempercantik HTML. Kita bisa menulis CSS di dalam tag `<style>`.\n\nProperti dasar:\n- `color`: Mengubah warna teks.\n- `background-color`: Mengubah warna latar belakang.\n\n### Misi\nUbah kode di bawah agar teks \"Nexora\" menjadi berwarna **merah** (`red`) dan latar belakangnya **hitam** (`black`).",
+    "starterCode": "<style>\n  .judul {\n    /* Tulis properti CSS di sini */\n    \n  }\n</style>\n\n<div class=\"judul\">\n  <h1>Nexora Learn</h1>\n</div>",
     "hints": [
-      { "level": 1, "text": "Jangan lupa titik dua (:) dan titik koma (;)." },
-      {
-        "level": 2,
-        "text": "Urutan tidak berpengaruh, tapi ikuti instruksi soal."
-      },
-      { "level": 3, "text": "return \"color: red; background-color: black;\";" }
+      { "level": 1, "text": "Di dalam .judul {}, tambahkan 'color: red;'" },
+      { "level": 2, "text": "Tambahkan juga 'background-color: black;'" },
+      { "level": 3, "text": "color: red;\nbackground-color: black;" }
     ],
     "testCases": [
       {
         "input": [],
-        "expected": "color: red; background-color: black;",
-        "description": "Cek property warna"
+        "expected": "color: red",
+        "description": "Teks harus berwarna merah"
+      },
+      {
+        "input": [],
+        "expected": "background-color: black",
+        "description": "Background harus berwarna hitam"
       }
     ]
   },
   {
     "id": "web-css-med-01",
-    "title": "Selector Jitu (Class & ID)",
-    "topic": "CSS Logic",
+    "title": "Selector Class & ID",
+    "topic": "CSS Styling",
     "difficulty": "Medium",
     "xpReward": 100,
-    "description": "### Teori\nUntuk menarget elemen spesifik:\n- **Class** pakai titik (`.nama-class`). Bisa banyak elemen.\n- **ID** pakai pagar (`#nama-id`). Hanya satu elemen.\n\n### Misi\nKita ingin mengubah warna elemen dengan **ID** `tombol` menjadi `blue`.\n\nReturn string CSS lengkap dengan selectornya.\nTarget: `#tombol { color: blue; }`",
-    "starterCode": "function solution() {\n  // Selector { property: value; }\n  return \"\";\n}",
+    "description": "### Teori\nKita bisa memilih elemen mana yang mau dihias menggunakan **Selector**:\n- **.nama-class** (Titik) untuk Class.\n- **#nama-id** (Pagar) untuk ID.\n\n### Misi\n1. Ubah elemen dengan **ID** `tombol-spesial` agar teksnya berwarna `blue`.\n2. Ubah elemen dengan **Class** `teks-biasa` agar ukurannya `12px` (`font-size`).",
+    "starterCode": "<style>\n  /* Target ID tombol-spesial */\n  #tombol-spesial {\n    \n  }\n\n  /* Target Class teks-biasa */\n  .teks-biasa {\n    \n  }\n</style>\n\n<button id=\"tombol-spesial\">Klik Saya!</button>\n<p class=\"teks-biasa\">Ini teks deskripsi.</p>",
     "hints": [
-      { "level": 1, "text": "Gunakan tanda pagar # untuk ID." },
-      { "level": 2, "text": "Bungkus property dengan kurung kurawal {}." },
-      { "level": 3, "text": "return \"#tombol { color: blue; }\";" }
+      { "level": 1, "text": "Gunakan selector #tombol-spesial { color: blue; }" },
+      { "level": 2, "text": "Gunakan selector .teks-biasa { font-size: 12px; }" },
+      { "level": 3, "text": "#tombol-spesial { color: blue; }\n.teks-biasa { font-size: 12px; }" }
     ],
     "testCases": [
       {
         "input": [],
-        "expected": "#tombol { color: blue; }",
-        "description": "Selector ID tombol"
-      }
-    ]
-  },
-  {
-    "id": "web-css-med-02",
-    "title": "Box Model (Margin & Padding)",
-    "topic": "CSS Logic",
-    "difficulty": "Medium",
-    "xpReward": 100,
-    "description": "### Teori\nSetiap elemen di web adalah kotak.\n- **Padding**: Jarak isi ke bingkai (dalam).\n- **Margin**: Jarak bingkai ke elemen lain (luar).\n- **Border**: Garis bingkai.\n\n### Misi\nBuat elemen punya jarak dalam `10px` dan garis pinggir `1px solid black`.\n\nReturn: `padding: 10px; border: 1px solid black;`",
-    "starterCode": "function solution() {\n  // Perhatikan spasi!\n  return \"\";\n}",
-    "hints": [
-      { "level": 1, "text": "padding: 10px;" },
-      { "level": 2, "text": "border: 1px solid black;" },
-      {
-        "level": 3,
-        "text": "return \"padding: 10px; border: 1px solid black;\";"
-      }
-    ],
-    "testCases": [
+        "expected": "#tombol-spesial",
+        "description": "Menggunakan ID Selector"
+      },
       {
         "input": [],
-        "expected": "padding: 10px; border: 1px solid black;",
-        "description": "Cek box model properties"
+        "expected": "color: blue",
+        "description": "Warna tombol biru"
+      },
+      {
+        "input": [],
+        "expected": ".teks-biasa",
+        "description": "Menggunakan Class Selector"
+      },
+      {
+        "input": [],
+        "expected": "font-size: 12px",
+        "description": "Ukuran font 12px"
       }
     ]
   },
   {
     "id": "web-css-hard-01",
-    "title": "Flexbox Center (Layouting)",
-    "topic": "CSS Logic",
+    "title": "Flexbox Centering",
+    "topic": "CSS Styling",
     "difficulty": "Hard",
     "xpReward": 200,
-    "description": "### Teori\n**Flexbox** adalah teknik layout modern.\nUntuk membuat konten berada persis di **tengah-tengah** (Center), kita butuh 3 mantra:\n1. `display: flex;`\n2. `justify-content: center;` (Horizontal)\n3. `align-items: center;` (Vertikal)\n\n### Misi\nReturn string CSS untuk membuat elemen menjadi Flex Container dan isinya rata tengah (center) di kedua sumbu.",
-    "starterCode": "function solution() {\n  // Tulis 3 properti flexbox secara berurutan\n  return \"\";\n}",
+    "description": "### Teori\nMembuat konten rata tengah (Center) secara vertikal dan horizontal adalah 'mantra' wajib web developer.\n\nGunakan **Flexbox** pada container:\n1. `display: flex;`\n2. `justify-content: center;` (Horizontal)\n3. `align-items: center;` (Vertikal)\n\n### Misi\nBuat kotak `kotak-luar` agar `kotak-dalam` berada persis di tengah-tengahnya.",
+    "starterCode": "<style>\n  .kotak-luar {\n    width: 100%;\n    height: 200px;\n    background-color: #eee;\n    /* Tambahkan 3 baris Flexbox di sini */\n    \n  }\n\n  .kotak-dalam {\n    width: 50px;\n    height: 50px;\n    background-color: orange;\n  }\n</style>\n\n<div class=\"kotak-luar\">\n  <div class=\"kotak-dalam\"></div>\n</div>",
     "hints": [
-      { "level": 1, "text": "display: flex;" },
-      { "level": 2, "text": "justify-content: center;" },
-      {
-        "level": 3,
-        "text": "return \"display: flex; justify-content: center; align-items: center;\";"
-      }
+      { "level": 1, "text": "Aktifkan flexbox dengan 'display: flex;'" },
+      { "level": 2, "text": "Ratakan horizontal: 'justify-content: center;'" },
+      { "level": 3, "text": "Ratakan vertikal: 'align-items: center;'" }
     ],
     "testCases": [
       {
         "input": [],
-        "expected": "display: flex; justify-content: center; align-items: center;",
-        "description": "Centering div sempurna"
+        "expected": "display: flex",
+        "description": "Mengaktifkan Flexbox"
+      },
+      {
+        "input": [],
+        "expected": "justify-content: center",
+        "description": "Rata tengah horizontal"
+      },
+      {
+        "input": [],
+        "expected": "align-items: center",
+        "description": "Rata tengah vertikal"
       }
     ]
   }

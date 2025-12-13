@@ -94,16 +94,26 @@ export default function OnboardingPage() {
             completedChallenges: completedChallenges
         });
         
-        const bulkSubmissions = completedChallenges.map(cId => ({
-            userId,
-            challengeId: cId,
-            code: '// Auto-completed by Warm Start System',
-            status: 'PASSED' as const,
-            timestamp: now,
-            executionTime: 0,
-            timeSpent: 0,
-            hintsUsed: 0
-        }));
+        const bulkSubmissions = completedChallenges.map(cId => {
+            let autoCode = '// Auto-completed by Warm Start System';
+            
+            if (cId.includes('py-')) {
+                autoCode = '# Auto-completed by Warm Start System';
+            } else if (cId.includes('web-')) {
+                autoCode = '';
+            }
+
+            return {
+                userId,
+                challengeId: cId,
+                code: autoCode,
+                status: 'PASSED' as const,
+                timestamp: now,
+                executionTime: 0,
+                timeSpent: 0,
+                hintsUsed: 0
+            };
+        });
 
         if (bulkSubmissions.length > 0) {
             await db.submissions.bulkAdd(bulkSubmissions);

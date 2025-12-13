@@ -33,24 +33,26 @@ const safeSerialize = (val: any): any => {
 
 const checkEquality = (actual: any, expected: any): boolean => {
     if (typeof actual === 'function') return false;
-
     const strActual = String(actual).trim();
     const strExpected = String(expected).trim();
-
     if (strActual === strExpected) return true;
-
     const numActual = Number(strActual);
     const numExpected = Number(strExpected);
-    
     if (!isNaN(numActual) && !isNaN(numExpected)) {
         return Math.abs(numActual - numExpected) < 0.05; 
     }
-
     try {
         return JSON.stringify(actual) === JSON.stringify(expected);
     } catch (e) {
         return false;
     }
+};
+
+const checkHTMLCSS = (userCode: string, expectedPattern: string): boolean => {
+    const cleanCode = userCode.replace(/\s+/g, '').toLowerCase();
+    const cleanExpected = expectedPattern.replace(/\s+/g, '').toLowerCase();
+    
+    return cleanCode.includes(cleanExpected);
 };
 
 self.onmessage = async (e: MessageEvent<WorkerPayload>) => {
@@ -70,7 +72,21 @@ self.onmessage = async (e: MessageEvent<WorkerPayload>) => {
   };
 
   try {
-    if (language === 'javascript') {
+    if (language === 'html') {
+        if (testCases?.length > 0) {
+            testResults = testCases.map((tc) => {
+                const passed = checkHTMLCSS(code, tc.expected);
+                
+                return { 
+                    description: tc.description, 
+                    passed, 
+                    expected: tc.expected,
+                    actual: passed ? "Ditemukan" : "Tidak ditemukan" 
+                };
+            });
+        }
+    } 
+    else if (language === 'javascript') {
       const wrapperCode = `
         ${code}
         if (typeof solution !== 'undefined' && typeof solution === 'function') {

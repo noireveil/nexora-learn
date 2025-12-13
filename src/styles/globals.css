@@ -3,10 +3,13 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    scrollbar-gutter: stable;
+  }
+  
   html, body {
     @apply bg-background text-text-main;
     max-width: 100vw;
-    overflow-x: hidden;
   }
 }
 

@@ -9,11 +9,16 @@ import { WebPreview } from '@/components/features/learn/WebPreview';
 import Link from 'next/link';
 import { cn } from '@/lib/utils/cn';
 import ReactMarkdown from 'react-markdown';
+import { getCourseByChallengeId } from '@/services/courseService';
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ChallengePage() {
   const params = useParams();
   const router = useRouter();
+  const challengeId = params.id as string;
   
   const { 
     challenge, 
@@ -28,7 +33,10 @@ export default function ChallengePage() {
     resetCode,
     unlockedHints, 
     unlockHint     
-  } = useChallenge(params.id as string);
+  } = useChallenge(challengeId);
+
+  const courseId = getCourseByChallengeId(challengeId);
+  const backLink = courseId ? `/learn/${courseId}` : '/learn';
 
   if (!challenge) return <div className="min-h-screen flex items-center justify-center text-text-muted bg-background">Memuat Studio Koding...</div>;
 
@@ -121,7 +129,7 @@ export default function ChallengePage() {
 
         <header className="h-14 bg-white border-b border-gray-200 flex items-center justify-between px-4 shrink-0 z-20 shadow-sm">
             <div className="flex items-center gap-3">
-                <Link href={`/learn`} className="p-2 hover:bg-gray-100 rounded-md text-text-muted transition-colors">
+                <Link href={backLink} className="p-2 hover:bg-gray-100 rounded-md text-text-muted transition-colors">
                     <ChevronLeft size={18} />
                 </Link>
                 <div className="h-6 w-px bg-gray-200 mx-1"></div>
@@ -162,7 +170,10 @@ export default function ChallengePage() {
                         prose-pre:bg-[#1e1e1e] prose-pre:text-gray-100 prose-pre:border prose-pre:border-gray-200 prose-pre:shadow-sm
                         [&_pre_code]:text-gray-100 [&_pre_code]:bg-transparent [&_pre_code]:p-0
                     ">
-                        <ReactMarkdown>
+                        <ReactMarkdown
+                            remarkPlugins={[remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
+                        >
                             {challenge.description}
                         </ReactMarkdown>
                     </article>
